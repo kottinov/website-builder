@@ -20,7 +20,7 @@ from react_agent.builder import build_component
 from react_agent.descriptions import CREATE_TOOL_DESCRIPTION
 
 
-def list_components(file_path: Optional[str] = None) -> List[Dict[str, Any]]:
+def list(file_path: Optional[str] = None) -> List[Dict[str, Any]]:
     """Return a flat list of components with id, kind, orderIndex, parentId, title."""
     page = load_page(Path(file_path) if file_path else get_default_page_path())
     result: List[Dict[str, Any]] = []
@@ -85,7 +85,7 @@ def create(**kwargs) -> Dict[str, Any]:
     return new_component
 
 
-def get_component(file_path: str, component_id: str) -> Optional[Dict[str, Any]]:
+def retrieve(file_path: str, component_id: str) -> Optional[Dict[str, Any]]:
     """Return a single component by id."""
     page = load_page(Path(file_path))
 
@@ -100,7 +100,7 @@ def get_component(file_path: str, component_id: str) -> Optional[Dict[str, Any]]
 
     return find(page.get("items", []))
 
-def remove_component(file_path: str, component_id: str) -> bool:
+def remove(file_path: str, component_id: str) -> bool:
     """Remove a component by id."""
     page_path = Path(file_path)
     page = load_page(page_path)
@@ -131,7 +131,7 @@ def remove_component(file_path: str, component_id: str) -> bool:
     return removed
 
 
-def reorder_children(file_path: str, parent_id: Optional[str], order_ids: List[str]) -> List[Dict[str, Any]]:
+def reorder(file_path: str, parent_id: Optional[str], order_ids: List[str]) -> List[Dict[str, Any]]:
     """Reorder children under a parent, or top-level if parent_id is None."""
     page_path = Path(file_path)
     page = load_page(page_path)
@@ -176,7 +176,7 @@ def reorder_children(file_path: str, parent_id: Optional[str], order_ids: List[s
     return new_list
 
 
-def find_by_text(file_path: str, text: str) -> List[Dict[str, Any]]:
+def find(file_path: str, text: str) -> List[Dict[str, Any]]:
     """Locate components whose visible text contains a substring."""
     page = load_page(Path(file_path))
     hits: List[Dict[str, Any]] = []
@@ -198,9 +198,9 @@ def find_by_text(file_path: str, text: str) -> List[Dict[str, Any]]:
 
 TOOLS: List[Callable[..., Any]] = [
     create,
-    list_components,
-    get_component,
-    remove_component,
-    reorder_children,
-    find_by_text,
+    list,
+    retrieve,
+    remove,
+    reorder,
+    find,
 ]
