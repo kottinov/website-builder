@@ -1,0 +1,311 @@
+{
+  "id": "6819E1AB-53B7-42A8-A182-75C05980CE3F",
+  "type": "web.data.components.Page",
+  "name": "Generated Page",
+  "templateId": "9DC121E0-582B-466D-921F-0A90FAC66486",
+  "items": [
+    {
+      "id": "330A4A5F-3096-4CBB-AFC0-3B1C02C4B385",
+      "kind": "CONTAINER",
+      "inTemplate": false,
+      "orderIndex": 0,
+      "wrap": false,
+      "width": 1200,
+      "height": 600,
+      "name": "Pricing Container",
+      "items": [
+        {
+          "id": "9E63F0B4-67D2-4EA0-BF6D-9664ADE23CC8",
+          "kind": "TEXT",
+          "inTemplate": false,
+          "orderIndex": 0,
+          "wrap": false,
+          "left": 400,
+          "top": 20,
+          "content": "<h2>Our Pricing Plans</h2>",
+          "text": "Our Pricing Plans",
+          "items": [],
+          "horizontalAlignment": "center",
+          "fontSize": 36,
+          "bold": true
+        },
+        {
+          "id": "A773118F-473A-45B3-9B89-B9D0614A5622",
+          "kind": "CONTAINER",
+          "inTemplate": false,
+          "orderIndex": 1,
+          "wrap": false,
+          "left": 50,
+          "top": 120,
+          "width": 300,
+          "height": 400,
+          "name": "Basic Plan Card",
+          "items": [
+            {
+              "id": "3095E034-04D2-4A42-86A1-838290602325",
+              "kind": "TEXT",
+              "inTemplate": false,
+              "orderIndex": 0,
+              "wrap": false,
+              "top": 10,
+              "content": "<h3>Basic</h3>",
+              "text": "Basic",
+              "items": [],
+              "horizontalAlignment": "center",
+              "fontSize": 24,
+              "bold": true
+            },
+            {
+              "id": "A50C75F5-DA5C-435C-B744-2055D900EE6F",
+              "kind": "TEXT",
+              "inTemplate": false,
+              "orderIndex": 1,
+              "wrap": false,
+              "top": 80,
+              "content": "<p style=\"font-size: 48px; font-weight: bold;\">$9</p>",
+              "text": "$9",
+              "items": [],
+              "horizontalAlignment": "center",
+              "fontSize": 48,
+              "bold": true,
+              "color": "#007bff"
+            },
+            {
+              "id": "2100124C-6590-441D-A420-5CE9DE7F1A54",
+              "kind": "TEXT",
+              "inTemplate": false,
+              "orderIndex": 2,
+              "wrap": false,
+              "top": 160,
+              "content": "<p>per month</p>",
+              "text": "per month",
+              "items": [],
+              "horizontalAlignment": "center",
+              "fontSize": 14,
+              "color": "#666"
+            },
+            {
+              "id": "EB5A56EE-AAFD-45E2-A02F-05B39A2DF82D",
+              "kind": "BUTTON",
+              "inTemplate": false,
+              "orderIndex": 3,
+              "wrap": false,
+              "left": 50,
+              "top": 300,
+              "width": 200,
+              "height": 45,
+              "text": "Get Started",
+              "items": [],
+              "color": "#ffffff",
+              "background": "#007bff",
+              "corners": {
+                "radius": 5
+              }
+            }
+          ],
+          "background": "#ffffff",
+          "border": {
+            "width": 1,
+            "color": "#ddd"
+          },
+          "corners": {
+            "radius": 8
+          },
+          "padding": {
+            "top": 30,
+            "bottom": 30,
+            "left": 20,
+            "right": 20
+          }
+        },
+        {
+          "id": "334511A4-42C5-4428-BBA0-F07CB8A2A98D",
+          "kind": "CONTAINER",
+          "inTemplate": false,
+          "orderIndex": 2,
+          "wrap": false,
+          "left": 420,
+          "top": 120,
+          "width": 300,
+          "height": 400,
+          "name": "Pro Plan Card",
+          "items": [
+            {
+              "id": "694F2715-3E7A-4A5E-A32F-E6F1DE33E4A3",
+              "kind": "TEXT",
+              "inTemplate": false,
+              "orderIndex": 0,
+              "wrap": false,
+              "top": 10,
+              "content": "<h3>Pro</h3>",
+              "text": "Pro",
+              "items": [],
+              "horizontalAlignment": "center",
+              "fontSize": 24,
+              "bold": true
+            },
+            {
+              "id": "56CC0AC2-79F5-45C8-964C-EBB2995CD98B",
+              "kind": "TEXT",
+              "inTemplate": false,
+              "orderIndex": 1,
+              "wrap": false,
+              "top": 80,
+              "content": "<p style=\"font-size: 48px; font-weight: bold;\">$29</p>",
+              "text": "$29",
+              "items": [],
+              "horizontalAlignment": "center",
+              "fontSize": 48,
+              "bold": true,
+              "color": "#007bff"
+            },
+            {
+              "id": "EC628473-C44E-4311-8C26-EB244CA094CA",
+              "kind": "TEXT",
+              "inTemplate": false,
+              "orderIndex": 2,
+              "wrap": false,
+              "top": 160,
+              "content": "<p>per month</p>",
+              "text": "per month",
+              "items": [],
+              "horizontalAlignment": "center",
+              "fontSize": 14,
+              "color": "#666"
+            },
+            {
+              "id": "4B9043EB-E04B-42B8-9C2D-4B465270641C",
+              "kind": "BUTTON",
+              "inTemplate": false,
+              "orderIndex": 3,
+              "wrap": false,
+              "left": 50,
+              "top": 300,
+              "width": 200,
+              "height": 45,
+              "text": "Get Started",
+              "items": [],
+              "color": "#ffffff",
+              "background": "#007bff",
+              "corners": {
+                "radius": 5
+              }
+            }
+          ],
+          "background": "#ffffff",
+          "border": {
+            "width": 2,
+            "color": "#007bff"
+          },
+          "corners": {
+            "radius": 8
+          },
+          "padding": {
+            "top": 30,
+            "bottom": 30,
+            "left": 20,
+            "right": 20
+          }
+        },
+        {
+          "id": "077AAF1E-97D5-4A3F-AE4E-26CA80152191",
+          "kind": "CONTAINER",
+          "inTemplate": false,
+          "orderIndex": 3,
+          "wrap": false,
+          "left": 790,
+          "top": 120,
+          "width": 300,
+          "height": 400,
+          "name": "Enterprise Plan Card",
+          "items": [
+            {
+              "id": "5946664A-A35F-4F6B-A249-F956226BFAF5",
+              "kind": "TEXT",
+              "inTemplate": false,
+              "orderIndex": 0,
+              "wrap": false,
+              "top": 10,
+              "content": "<h3>Enterprise</h3>",
+              "text": "Enterprise",
+              "items": [],
+              "horizontalAlignment": "center",
+              "fontSize": 24,
+              "bold": true
+            },
+            {
+              "id": "EFE23D71-3A44-4D59-96A6-9499D135FE94",
+              "kind": "TEXT",
+              "inTemplate": false,
+              "orderIndex": 1,
+              "wrap": false,
+              "top": 80,
+              "content": "<p style=\"font-size: 48px; font-weight: bold;\">$99</p>",
+              "text": "$99",
+              "items": [],
+              "horizontalAlignment": "center",
+              "fontSize": 48,
+              "bold": true,
+              "color": "#007bff"
+            },
+            {
+              "id": "FA7D4C20-A158-4F33-AC90-6760A254CF94",
+              "kind": "TEXT",
+              "inTemplate": false,
+              "orderIndex": 2,
+              "wrap": false,
+              "top": 160,
+              "content": "<p>per month</p>",
+              "text": "per month",
+              "items": [],
+              "horizontalAlignment": "center",
+              "fontSize": 14,
+              "color": "#666"
+            },
+            {
+              "id": "288508C9-BA0F-4B33-B4C1-28B2FAB8FFE4",
+              "kind": "BUTTON",
+              "inTemplate": false,
+              "orderIndex": 3,
+              "wrap": false,
+              "left": 50,
+              "top": 300,
+              "width": 200,
+              "height": 45,
+              "text": "Get Started",
+              "items": [],
+              "color": "#ffffff",
+              "background": "#007bff",
+              "corners": {
+                "radius": 5
+              }
+            }
+          ],
+          "background": "#ffffff",
+          "border": {
+            "width": 1,
+            "color": "#ddd"
+          },
+          "corners": {
+            "radius": 8
+          },
+          "padding": {
+            "top": 30,
+            "bottom": 30,
+            "left": 20,
+            "right": 20
+          }
+        }
+      ],
+      "background": "#f8f9fa",
+      "padding": {
+        "top": 40,
+        "bottom": 40,
+        "left": 40,
+        "right": 40
+      }
+    }
+  ],
+  "shareHeaderAndFirstSectionBgImg": false,
+  "shareBgImgOffsetTop": 0
+}
