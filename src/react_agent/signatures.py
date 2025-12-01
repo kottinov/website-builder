@@ -6,7 +6,7 @@ and modify components in the Website Builder JSON format.
 
 from typing import Any, Dict, List, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 
 class RelIn(BaseModel):
@@ -186,6 +186,71 @@ class CreateComponent(BaseModel):
         extra = "forbid"
 
 
+class ListInput(BaseModel):
+    """Input schema for listing components from a WSB page."""
+    file_path: Optional[str] = Field(
+        default=None,
+        description="Optional path to the page JSON; defaults to static/wsb/page.json.",
+    )
+
+    class Config:
+        extra = "forbid"
+
+
+class RetrieveInput(BaseModel):
+    """Input schema for retrieving a single component by id."""
+    file_path: Optional[str] = Field(
+        default=None,
+        description="Optional path to the page JSON; defaults to static/wsb/page.json.",
+    )
+    component_id: str = Field(description="The component id to retrieve.")
+
+    class Config:
+        extra = "forbid"
+
+
+class RemoveInput(BaseModel):
+    """Input schema for removing a component by id."""
+    file_path: Optional[str] = Field(
+        default=None,
+        description="Optional path to the page JSON; defaults to static/wsb/page.json.",
+    )
+    component_id: str = Field(description="The component id to delete.")
+
+    class Config:
+        extra = "forbid"
+
+
+class ReorderInput(BaseModel):
+    """Input schema for reordering sibling components."""
+    file_path: Optional[str] = Field(
+        default=None,
+        description="Optional path to the page JSON; defaults to static/wsb/page.json.",
+    )
+    parent_id: Optional[str] = Field(
+        default=None,
+        description="Parent component id whose children will be reordered; omit for top-level.",
+    )
+    order_ids: List[str] = Field(
+        description="List of component ids in the desired order; missing ids stay appended in their previous relative order.",
+    )
+
+    class Config:
+        extra = "forbid"
+
+
+class FindInput(BaseModel):
+    """Input schema for searching components by text."""
+    file_path: Optional[str] = Field(
+        default=None,
+        description="Optional path to the page JSON; defaults to static/wsb/page.json.",
+    )
+    text: str = Field(description="Substring to search for (case-insensitive).")
+
+    class Config:
+        extra = "forbid"
+
+
 class CreateInput(BaseModel):
     """Input schema for creating a new WSB component.
 
@@ -324,3 +389,33 @@ class CreateInput(BaseModel):
 
     class Config:
         extra = "forbid"
+
+
+class EditInput(CreateInput):
+    """Input schema for editing an existing component using partial updates."""
+
+    component_id: str = Field(description="The component id to edit.")
+    file_path: Optional[str] = Field(
+        default=None,
+        description="Optional path to the page JSON; defaults to static/wsb/page.json.",
+    )
+    kind: Optional[str] = Field(
+        default=None,
+        description="Optional; if provided must match the target component kind.",
+    )
+
+    class Config:
+        extra = "forbid"
+
+    @model_validator(mode="after")
+    def _forbid_insert_fields(self) -> "EditInput":
+        forbidden = {
+            "id": self.id,
+            "parent_id": self.parent_id,
+            "before_id": self.before_id,
+            "after_id": self.after_id,
+        }
+        provided = [name for name, value in forbidden.items() if value is not None]
+        if provided:
+            raise ValueError(f"These fields are not editable: {provided}")
+        return self

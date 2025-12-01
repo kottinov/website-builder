@@ -8,18 +8,43 @@ from langchain.tools import tool
 from react_agent.utils import (
     generate_id,
     get_default_page_path,
+    find_component_by_id,
     insert_component,
     load_page,
     renumber_components,
     save_page,
 )
 
-from react_agent.signatures import CreateInput
+from react_agent.signatures import (
+    CreateInput,
+    EditInput,
+    FindInput,
+    ListInput,
+    ReorderInput,
+    RetrieveInput,
+    RemoveInput,
+)
 from react_agent.builder import build_component
 
-from react_agent.descriptions import CREATE_TOOL_DESCRIPTION
+from react_agent.descriptions import (
+    CREATE_TOOL_DESCRIPTION,
+    EDIT_TOOL_DESCRIPTION,
+    FIND_TOOL_DESCRIPTION,
+    LIST_TOOL_DESCRIPTION,
+    REMOVE_TOOL_DESCRIPTION,
+    REORDER_TOOL_DESCRIPTION,
+    RETRIEVE_TOOL_DESCRIPTION,
+)
+
+EDIT_EXCLUDE_FIELDS = {"component_id", "file_path", "kind"}
+EDIT_VALIDATION_FIELDS = {
+    name
+    for name in CreateInput.model_fields
+    if name not in {"file_path", "parent_id", "before_id", "after_id", "kind"}
+}
 
 
+@tool(description=LIST_TOOL_DESCRIPTION, args_schema=ListInput)
 def list(file_path: Optional[str] = None) -> List[Dict[str, Any]]:
     """Return a flat list of components with id, kind, orderIndex, parentId, title."""
     page = load_page(Path(file_path) if file_path else get_default_page_path())
@@ -27,13 +52,17 @@ def list(file_path: Optional[str] = None) -> List[Dict[str, Any]]:
 
     def walk(items: List[Dict[str, Any]], parent_id: Optional[str]) -> None:
         for item in items:
+            kind = item.get("kind") or item.get("type")
             result.append(
                 {
                     "id": item.get("id"),
-                    "kind": item.get("type"),
+                    "kind": kind,
                     "orderIndex": item.get("orderIndex"),
                     "parentId": parent_id,
-                    "title": item.get("title") or item.get("name"),
+                    "title": item.get("title")
+                    or item.get("name")
+                    or item.get("text")
+                    or item.get("content"),
                 }
             )
             if item.get("items"):
@@ -85,24 +114,18 @@ def create(**kwargs) -> Dict[str, Any]:
     return new_component
 
 
-def retrieve(file_path: str, component_id: str) -> Optional[Dict[str, Any]]:
+@tool(description=RETRIEVE_TOOL_DESCRIPTION, args_schema=RetrieveInput)
+def retrieve(component_id: str, file_path: Optional[str] = None) -> Optional[Dict[str, Any]]:
     """Return a single component by id."""
-    page = load_page(Path(file_path))
+    page_path = Path(file_path) if file_path else get_default_page_path()
+    page = load_page(page_path)
 
-    def find(items: List[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
-        for item in items:
-            if item.get("id") == component_id:
-                return item
-            child = find(item.get("items", []))
-            if child:
-                return child
-        return None
+    return find_component_by_id(page.get("items", []), component_id)
 
-    return find(page.get("items", []))
-
-def remove(file_path: str, component_id: str) -> bool:
+@tool(description=REMOVE_TOOL_DESCRIPTION, args_schema=RemoveInput)
+def remove(component_id: str, file_path: Optional[str] = None) -> bool:
     """Remove a component by id."""
-    page_path = Path(file_path)
+    page_path = Path(file_path) if file_path else get_default_page_path()
     page = load_page(page_path)
     
     removed = False
@@ -131,9 +154,46 @@ def remove(file_path: str, component_id: str) -> bool:
     return removed
 
 
-def reorder(file_path: str, parent_id: Optional[str], order_ids: List[str]) -> List[Dict[str, Any]]:
+@tool(description=EDIT_TOOL_DESCRIPTION, args_schema=EditInput)
+def edit(**kwargs: Any) -> Optional[Dict[str, Any]]:
+    """Apply a partial update to an existing component."""
+    payload = EditInput(**kwargs)
+    page_path = Path(payload.file_path) if payload.file_path else get_default_page_path()
+    page = load_page(page_path)
+
+    target = find_component_by_id(page.get("items", []), payload.component_id)
+    if target is None:
+        return None
+
+    kind_value = target.get("kind") or target.get("type")
+    if not kind_value:
+        raise ValueError("Target component missing kind/type; cannot validate update.")
+
+    if payload.kind and payload.kind != kind_value:
+        raise ValueError(f"Kind mismatch: target has '{kind_value}', got '{payload.kind}'.")
+
+    updates = payload.model_dump(
+        exclude_none=True,
+        exclude=EDIT_EXCLUDE_FIELDS,
+    )
+    target.update(updates)
+
+    validation_payload: Dict[str, Any] = {
+        field: target[field]
+        for field in EDIT_VALIDATION_FIELDS
+        if field in target and target[field] is not None
+    }
+    validation_payload["kind"] = kind_value
+
+    CreateInput(**validation_payload)
+    save_page(page_path, page)
+    return target
+
+
+@tool(description=REORDER_TOOL_DESCRIPTION, args_schema=ReorderInput)
+def reorder(order_ids: List[str], parent_id: Optional[str] = None, file_path: Optional[str] = None) -> List[Dict[str, Any]]:
     """Reorder children under a parent, or top-level if parent_id is None."""
-    page_path = Path(file_path)
+    page_path = Path(file_path) if file_path else get_default_page_path()
     page = load_page(page_path)
 
     def find_list(items: List[Dict[str, Any]]) -> Optional[List[Dict[str, Any]]]:
@@ -176,9 +236,10 @@ def reorder(file_path: str, parent_id: Optional[str], order_ids: List[str]) -> L
     return new_list
 
 
-def find(file_path: str, text: str) -> List[Dict[str, Any]]:
+@tool(description=FIND_TOOL_DESCRIPTION, args_schema=FindInput)
+def find(text: str, file_path: Optional[str] = None) -> List[Dict[str, Any]]:
     """Locate components whose visible text contains a substring."""
-    page = load_page(Path(file_path))
+    page = load_page(Path(file_path) if file_path else get_default_page_path())
     hits: List[Dict[str, Any]] = []
     needle = text.lower()
 
@@ -187,7 +248,13 @@ def find(file_path: str, text: str) -> List[Dict[str, Any]]:
             for key in ("text", "content", "title", "name"):
                 val = item.get(key)
                 if isinstance(val, str) and needle in val.lower():
-                    hits.append({"id": item.get("id"), "kind": item.get("type"), "matchField": key})
+                    hits.append(
+                        {
+                            "id": item.get("id"),
+                            "kind": item.get("kind") or item.get("type"),
+                            "matchField": key,
+                        }
+                    )
                     break
             if item.get("items"):
                 walk(item["items"])
@@ -201,6 +268,7 @@ TOOLS: List[Callable[..., Any]] = [
     list,
     retrieve,
     remove,
+    edit,
     reorder,
     find,
 ]

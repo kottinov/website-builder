@@ -4,7 +4,7 @@ import json
 import uuid
 
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 
 from langchain.chat_models import init_chat_model
 from langchain_core.language_models import BaseChatModel
@@ -113,6 +113,19 @@ def renumber_components(items: list[Dict[str, Any]]) -> None:
         item["orderIndex"] = idx
         if item.get("items"):
             renumber_components(item["items"])
+
+
+def find_component_by_id(
+    items: list[Dict[str, Any]], component_id: str
+) -> Optional[Dict[str, Any]]:
+    """Depth-first search for a component by id."""
+    for item in items:
+        if item.get("id") == component_id:
+            return item
+        child = find_component_by_id(item.get("items", []), component_id)
+        if child:
+            return child
+    return None
 
 
 def insert_component(
