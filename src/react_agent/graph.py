@@ -13,11 +13,11 @@ from langchain_anthropic import convert_to_anthropic_tool
 
 from react_agent.context import Context
 from react_agent.state import InputState, State
-from react_agent.tools import TOOLS
+from react_agent.tools_v2 import TOOLS_V2
 from react_agent.utils import load_chat_model
 
 _ANTHROPIC_TOOLS_CACHED = None
-_CACHEABLE_TOOL_NAMES = {"create", "edit"}
+_CACHEABLE_TOOL_NAMES = {"mutate_components", "get_components"}
 
 def _get_anthropic_tools():
     """Get cached Anthropic tool schemas with prompt caching enabled.
@@ -28,7 +28,7 @@ def _get_anthropic_tools():
     global _ANTHROPIC_TOOLS_CACHED
 
     if _ANTHROPIC_TOOLS_CACHED is None:
-        _ANTHROPIC_TOOLS_CACHED = [convert_to_anthropic_tool(tool) for tool in TOOLS]
+        _ANTHROPIC_TOOLS_CACHED = [convert_to_anthropic_tool(tool) for tool in TOOLS_V2]
 
         for tool in _ANTHROPIC_TOOLS_CACHED:
             if tool.get("name") in _CACHEABLE_TOOL_NAMES:
@@ -58,7 +58,7 @@ async def call_model(
         anthropic_tools = _get_anthropic_tools()
         model = model.bind_tools(anthropic_tools, parallel_tool_calls=False)
     else:
-        model = model.bind_tools(TOOLS, parallel_tool_calls=False)
+        model = model.bind_tools(TOOLS_V2, parallel_tool_calls=False)
 
     system_message = runtime.context.system_prompt
 
@@ -95,7 +95,7 @@ async def call_model(
 builder = StateGraph(State, input_schema=InputState, context_schema=Context)
 
 builder.add_node(call_model)
-builder.add_node("tools", ToolNode(TOOLS, handle_tool_errors=True))
+builder.add_node("tools", ToolNode(TOOLS_V2, handle_tool_errors=True))
 
 builder.add_edge("__start__", "call_model")
 

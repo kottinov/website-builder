@@ -322,7 +322,9 @@ class FullWidthOption(BaseModel):
 class Style(BaseModel):
     """Style wrapper used on sections/buttons/etc."""
     border: Optional[LooseJSON] = Field(default=None, description="Border definition.")
-    background: Optional[Background] = Field(default=None, description="Background settings.")
+    background: Optional[Union[Background, LooseJSON]] = Field(default=None, description="Background settings (dict or raw).")
+    color: Optional[LooseJSON] = Field(default=None, description="Text/foreground color.")
+    borderRadius: Optional[LooseJSON] = Field(default=None, description="Corner radius (number or object).")
     globalId: Optional[str] = Field(default=None, description="Global style id.")
     globalName: Optional[str] = Field(default=None, description="Global style name.")
     type: Optional[str] = Field(default=None, description="Style type identifier.")
@@ -486,7 +488,7 @@ class CreateInput(BaseModel):
     border: Optional[LooseJSON] = Field(default=None, description="Border properties.")
     corners: Optional[LooseJSON] = Field(default=None, description="Corner radius properties.")
     padding: Optional[LooseJSON] = Field(default=None, description="Padding properties.")
-    background: Optional[str] = Field(default=None, description="Background color or gradient.")
+    background: Optional[LooseJSON] = Field(default=None, description="Background color or gradient.")
     backgroundColor: Optional[LooseJSON] = Field(default=None, description="Background color object/array.")
     backgroundSize: Optional[str] = Field(default=None, description="Background size.")
     backgroundRepeat: Optional[str] = Field(default=None, description="Background repeat.")
@@ -680,8 +682,9 @@ class CreateInput(BaseModel):
                     "Use list() to find section IDs, then set relIn={\"id\": \"<section-uuid>\", \"left\": N, \"top\": N, \"bottom\": N}"
                 )
             if self.relIn and self.relIn.id:
-                placeholder_patterns = ["PARENT", "parent", "SECTION", "section", "placeholder", "temp", "TODO"]
-                if any(p in self.relIn.id for p in placeholder_patterns):
+                placeholder_patterns = ["parent-id", "placeholder", "temp-", "TODO", "FIXME", "<", ">"]
+                relIn_id_lower = self.relIn.id.lower()
+                if any(p.lower() in relIn_id_lower for p in placeholder_patterns):
                     raise ValueError(
                         f"relIn.id '{self.relIn.id}' looks like a placeholder. "
                         f"Use list() to get REAL section UUIDs, then use that actual UUID."
@@ -735,3 +738,100 @@ class EditInput(CreateInput):
         if provided:
             raise ValueError(f"These fields are not editable: {provided}")
         return self
+
+
+class AutoPosition(BaseModel):
+    """Automatic positioning helper for component creation."""
+    parent_id: str = Field(description="Parent component ID to position within.")
+    strategy: Literal["below_last_child", "above_first_child", "centered", "fill_width", "stack_below"] = Field(
+        default="below_last_child",
+        description="Positioning strategy: below_last_child, above_first_child, centered, fill_width, or stack_below (requires sibling_id)."
+    )
+    sibling_id: Optional[str] = Field(default=None, description="Required for stack_below strategy - ID of sibling to position below.")
+    gap_px: int = Field(default=0, description="Gap in pixels between components (for stacking strategies).")
+
+    class Config:
+        extra = "forbid"
+
+
+class GetComponentsInput(BaseModel):
+    """Input schema for querying components with flexible filtering."""
+    file_path: Optional[str] = Field(
+        default=None,
+        description="Optional path to the page JSON; defaults to static/wsb/page.json."
+    )
+    ids: Optional[List[str]] = Field(
+        default=None,
+        description="Filter by specific component IDs."
+    )
+    parent_id: Optional[str] = Field(
+        default=None,
+        description="Filter by parent component ID (null for top-level components)."
+    )
+    kinds: Optional[List[str]] = Field(
+        default=None,
+        description="Filter by component kinds (e.g., ['SECTION', 'TEXT'])."
+    )
+    text_contains: Optional[str] = Field(
+        default=None,
+        description="Filter by text content (searches text/content/title/name fields)."
+    )
+    response_format: Literal["concise", "detailed"] = Field(
+        default="concise",
+        description="Response verbosity: 'concise' returns id/kind/orderIndex/parentId/title, 'detailed' returns full component JSON."
+    )
+    fields: Optional[List[str]] = Field(
+        default=None,
+        description="Specific fields to return (overrides response_format). E.g., ['id', 'kind', 'title']."
+    )
+
+    class Config:
+        extra = "forbid"
+
+
+class MutateOperation(BaseModel):
+    """Single mutation operation for batch processing."""
+    op: Literal["create", "edit", "remove", "reorder"] = Field(
+        description="Operation type: create, edit, remove, or reorder."
+    )
+    payload: Optional[Dict[str, Any]] = Field(
+        default=None,
+        description="Operation payload (for create: CreateInput fields, for edit: component fields to update)."
+    )
+    auto_position: Optional[AutoPosition] = Field(
+        default=None,
+        description="Automatic positioning helper (for create operations only)."
+    )
+    id: Optional[str] = Field(
+        default=None,
+        description="Component ID (required for edit/remove operations)."
+    )
+    parent_id: Optional[str] = Field(
+        default=None,
+        description="Parent component ID (for reorder operations)."
+    )
+    order_ids: Optional[List[str]] = Field(
+        default=None,
+        description="Ordered list of component IDs (for reorder operations)."
+    )
+
+    class Config:
+        extra = "forbid"
+
+
+class MutateComponentsInput(BaseModel):
+    """Input schema for batch component mutations."""
+    file_path: Optional[str] = Field(
+        default=None,
+        description="Optional path to the page JSON; defaults to static/wsb/page.json."
+    )
+    operations: List[MutateOperation] = Field(
+        description="List of mutation operations to apply in sequence."
+    )
+    response_format: Literal["concise", "detailed"] = Field(
+        default="concise",
+        description="Response verbosity: 'concise' returns minimal summaries, 'detailed' returns full component data."
+    )
+
+    class Config:
+        extra = "forbid"
