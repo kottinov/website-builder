@@ -286,3 +286,25 @@ def test_error_handling_missing_required_field(temp_page_file: Path):
 
     assert len(result) == 1
     assert "error" in result[0]
+
+
+def test_failed_edit_does_not_mutate_page(temp_page_file: Path):
+    """Failed edits should not persist invalid changes to disk."""
+    before = json.loads(temp_page_file.read_text())
+
+    result = mutate_components.invoke({
+        "file_path": str(temp_page_file),
+        "operations": [
+            {
+                "op": "edit",
+                "id": "TEXT-001",
+                "payload": {"relIn": {"id": "BAD-PARENT"}},  # missing offsets triggers validation
+            }
+        ],
+    })
+
+    after = json.loads(temp_page_file.read_text())
+
+    assert len(result) == 1
+    assert "error" in result[0]
+    assert after == before

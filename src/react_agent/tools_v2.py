@@ -5,6 +5,7 @@ This module provides two main tools following Codex's design:
 2. mutate_components: Batch mutations (create/edit/remove/reorder)
 """
 
+from copy import deepcopy
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
@@ -332,19 +333,24 @@ def _execute_edit(
 
     updates = dict(op.payload)
     normalize_style_fields(updates)
-    target.update(updates)
-    normalize_style_fields(target)
 
-    # Validate edited component against create schema to avoid drift
+    # Validate on a copy first so we don't persist bad edits when validation fails.
+    candidate = deepcopy(target)
+    candidate.update(updates)
+    normalize_style_fields(candidate)
+
     validation_payload = {
         key: value
-        for key, value in target.items()
+        for key, value in candidate.items()
         if key in CreateInput.model_fields and value is not None
     }
     validation_payload["kind"] = kind_value
     CreateInput(**validation_payload)
 
-    return _format_component(target, response_format)
+    target.clear()
+    target.update(candidate)
+
+    return _format_component(candidate, response_format)
 
 
 def _execute_remove(
