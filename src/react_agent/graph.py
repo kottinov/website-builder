@@ -18,7 +18,6 @@ from react_agent.tools import TOOLS
 from react_agent.utils import load_chat_model
 
 
-
 async def call_model(
     state: State, runtime: Runtime[Context]
 ) -> Dict[str, List[AIMessage]]:
@@ -40,15 +39,9 @@ async def call_model(
         anthropic_tools = [convert_to_anthropic_tool(tool) for tool in TOOLS]
         anthropic_tools[-1]["cache_control"] = {"type": "ephemeral"}
 
-        model = model.bind_tools(
-            anthropic_tools,
-            parallel_tool_calls=False
-        )
+        model = model.bind_tools(anthropic_tools, parallel_tool_calls=False)
     else:
-        model = model.bind_tools(
-            TOOLS,
-            parallel_tool_calls=False
-        )
+        model = model.bind_tools(TOOLS, parallel_tool_calls=False)
 
     system_message = runtime.context.system_prompt.format(
         system_time=datetime.now(tz=UTC).isoformat()
@@ -59,7 +52,7 @@ async def call_model(
             {
                 "type": "text",
                 "text": system_message,
-                "cache_control": {"type": "ephemeral"} 
+                "cache_control": {"type": "ephemeral"},
             }
         ]
         messages = [{"role": "system", "content": system_content}, *state.messages]
@@ -82,7 +75,6 @@ async def call_model(
         }
 
     return {"messages": [response]}
-
 
 
 builder = StateGraph(State, input_schema=InputState, context_schema=Context)

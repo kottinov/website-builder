@@ -93,9 +93,88 @@ def create(**kwargs) -> Dict[str, Any]:
     Raises:
         ValueError: If the component type is missing.
     """
+    page_path = Path(kwargs.get("file_path")) if kwargs.get("file_path") else get_default_page_path()
+    page = load_page(page_path)
+
+    rel_in_kw = kwargs.get("relIn")
+    if kwargs.get("parent_id") is None and isinstance(rel_in_kw, dict) and rel_in_kw.get("id"):
+        kwargs["parent_id"] = rel_in_kw["id"]
+
+    # default header id for wsb templates ( first section )
+    DEFAULT_HEADER_ID = "22FC8C5B-CD71-42B7-9DF2-486F577581A9"
+
+    if kwargs.get("kind") == "SECTION":
+        kwargs["relIn"] = None
+
+        if kwargs.get("relTo") is None:
+            existing_sections = [
+                item for item in page.get("items", [])
+                if (item.get("kind") or item.get("type")) == "SECTION"
+            ]
+            if existing_sections:
+                last_section = sorted(
+                    existing_sections,
+                    key=lambda s: s.get("orderIndex", -1),
+                )[-1]
+                gap = 0
+                if last_section.get("top") is not None and last_section.get("height") is not None and kwargs.get("top") is not None:
+                    gap = kwargs["top"] - (last_section["top"] + last_section["height"])
+                kwargs["relTo"] = {"id": last_section.get("id"), "below": gap}
+            else:
+                kwargs["relTo"] = {"id": DEFAULT_HEADER_ID, "below": 0}
+        else:
+            rel_to_provided = kwargs.get("relTo")
+            if isinstance(rel_to_provided, dict):
+                rel_to_id = rel_to_provided.get("id", "")
+                fake_patterns = ["temp", "anchor", "placeholder", "dummy", "fake", "mock"]
+                if any(p in rel_to_id.lower() for p in fake_patterns) and rel_to_id != DEFAULT_HEADER_ID:
+                    kwargs["relTo"] = {"id": DEFAULT_HEADER_ID, "below": rel_to_provided.get("below", 0)}
+
+    parent = None
+    parent_id = kwargs.get("parent_id") or (rel_in_kw.get("id") if isinstance(rel_in_kw, dict) else None)
+
+    if parent_id:
+        parent = find_component_by_id(page.get("items", []), parent_id)
+        if parent is None:
+            raise ValueError(f"relIn/parent_id references unknown id '{parent_id}'. Use list() to pick an existing parent id.")
+
+    if parent:
+        rel_in = dict(rel_in_kw) if isinstance(rel_in_kw, dict) else (rel_in_kw.model_dump() if rel_in_kw else {})
+
+        if rel_in.get("id") is None:
+            rel_in["id"] = parent.get("id")
+
+        left = kwargs.get("left")
+        top = kwargs.get("top")
+        width = kwargs.get("width")
+        height = kwargs.get("height")
+
+        if rel_in.get("left") is None and left is not None and parent.get("left") is not None:
+            rel_in["left"] = left - parent["left"]
+
+        if rel_in.get("top") is None and top is not None and parent.get("top") is not None:
+            rel_in["top"] = top - parent["top"]
+
+        if rel_in.get("right") is None and width is not None and parent.get("width") is not None and rel_in.get("left") is not None:
+            rel_in["right"] = -(parent["width"] - (rel_in["left"] + width))
+
+        if rel_in.get("bottom") is None and height is not None and parent.get("height") is not None and rel_in.get("top") is not None:
+            rel_in["bottom"] = -(parent["height"] - (rel_in["top"] + height))
+
+        kwargs["relIn"] = rel_in
+
+    rel_to_kw = kwargs.get("relTo")
+    if rel_to_kw and isinstance(rel_to_kw, dict):
+        rel_to_target = rel_to_kw.get("id")
+        is_section = kwargs.get("kind") == "SECTION"
+        is_template_id = rel_to_target == DEFAULT_HEADER_ID
+
+        if rel_to_target and not is_section and not is_template_id:
+            if find_component_by_id(page.get("items", []), rel_to_target) is None:
+                raise ValueError(f"relTo references unknown id '{rel_to_target}'. Use list() to pick an existing sibling/section id.")
+
     payload = CreateInput(**kwargs)
     updates: Dict[str, Any] = {}
-
     if payload.parent_id and payload.relIn is None:
         updates["relIn"] = RelIn(id=payload.parent_id)
 
@@ -108,9 +187,6 @@ def create(**kwargs) -> Dict[str, Any]:
     if updates:
         payload = payload.model_copy(update=updates)
 
-    page_path = Path(payload.file_path) if payload.file_path else get_default_page_path()
-    
-    page = load_page(page_path)
     new_id = payload.id or generate_id()
 
     new_component = build_component(payload, new_id)
@@ -119,7 +195,7 @@ def create(**kwargs) -> Dict[str, Any]:
     insert_component(
         new_component,
         page_items,
-        parent_id=payload.parent_id,
+        parent_id=None,
         before_id=payload.before_id,
         after_id=payload.after_id,
     )

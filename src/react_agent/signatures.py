@@ -10,7 +10,7 @@ from typing import Any, Dict, List, Optional, Union
 
 from pydantic import BaseModel, Field, model_validator
 
-# Generic JSON-friendly type to allow structured data without fully untyped schemas.
+# because there is no specified documentation on what keys are supported
 LooseJSON = Union[str, int, float, bool, None, Dict[str, Any], List[Any]]
 
 
@@ -584,6 +584,56 @@ class CreateComponent(BaseModel):
     smallHeader: Optional[bool] = Field(default=None, description="Use small header in embeds.")
     adaptContainerWidth: Optional[bool] = Field(default=None, description="Adapt container width for embeds.")
 
+    @model_validator(mode="after")
+    def _require_layout_fields(self) -> "CreateInput":
+        """Ensure created components always carry concrete layout data."""
+        if getattr(self, "component_id", None) is not None:
+            return self
+
+        missing_layout = [
+            field for field in ("left", "top", "width", "height")
+            if getattr(self, field) is None
+        ]
+        if missing_layout:
+            raise ValueError(
+                f"Missing required layout fields {missing_layout}; provide numeric left/top/width/height for every component."
+            )
+
+        if self.items:
+            raise ValueError("Do not nest child items inside the payload; create siblings with relIn/relTo in the flat list instead.")
+
+        if self.kind == "SECTION":
+            if self.relIn is not None:
+                raise ValueError(
+                    "Sections must NOT have relIn (sections have no parent). Set relIn=null for sections."
+                )
+        elif self.kind:
+            if self.relIn is None or self.relIn.id is None:
+                raise ValueError(
+                    "Non-section components must include relIn with a parent section id. "
+                    "Use list() to find existing section IDs, then set relIn={\"id\": \"<section-id>\", \"left\": ..., \"top\": ..., \"bottom\": ...}"
+                )
+
+        if self.parent_id and self.relIn is None:
+            raise ValueError("When parent_id is provided, relIn with parent-relative offsets must also be provided.")
+
+        if self.relIn is not None:
+            rel_offsets = [getattr(self.relIn, key) for key in ("left", "top", "right", "bottom")]
+            if all(offset is None for offset in rel_offsets):
+                raise ValueError(
+                    "relIn must include at least one numeric offset (left/top/right/bottom). "
+                    "Calculate: relIn.left = child.left - parent.left, relIn.top = child.top - parent.top, "
+                    "relIn.bottom = -(parent.height - (relIn.top + child.height))"
+                )
+
+        if self.relTo is not None and self.relTo.below is None:
+            raise ValueError(
+                "relTo.below must be a number (use 0 when stacking directly below a sibling). "
+                "Example: relTo={\"id\": \"<sibling-id>\", \"below\": 30}"
+            )
+
+        return self
+
     class Config:
         extra = "forbid"
 
@@ -851,6 +901,65 @@ class CreateInput(BaseModel):
     verticalAlign: Optional[str] = Field(default=None, description="Vertical alignment for menu/logo components.")
     zoom: Optional[int] = Field(default=None, description="Map zoom level.")
 
+    @model_validator(mode="after")
+    def _validate_create_input(self) -> "CreateInput":
+        """Validate CreateInput constraints for proper WSB component structure."""
+        if getattr(self, "component_id", None) is not None:
+            return self
+
+        missing_layout = [
+            field for field in ("left", "top", "width", "height")
+            if getattr(self, field) is None
+        ]
+        if missing_layout:
+            raise ValueError(
+                f"Missing required layout fields {missing_layout}; "
+                f"provide numeric left/top/width/height for every component."
+            )
+
+        if self.items:
+            raise ValueError(
+                "NESTED ITEMS NOT ALLOWED. Do not pass 'items' array inside a component. "
+                "Create each child component separately using the create() tool with relIn to link to parent. "
+                "The page structure must be FLAT - all components at root level with relIn.id referencing their parent."
+            )
+
+        if self.kind == "SECTION":
+            if self.relIn is not None:
+                raise ValueError(
+                    "Sections must NOT have relIn (sections have no parent). "
+                    "Sections only use relTo to chain to previous section/header."
+                )
+        elif self.kind:
+            if self.relIn is None or self.relIn.id is None:
+                raise ValueError(
+                    "Non-section components MUST include relIn with parent section id. "
+                    "Use list() to find section IDs, then set relIn={\"id\": \"<section-uuid>\", \"left\": N, \"top\": N, \"bottom\": N}"
+                )
+            if self.relIn and self.relIn.id:
+                placeholder_patterns = ["PARENT", "parent", "SECTION", "section", "placeholder", "temp", "TODO"]
+                if any(p in self.relIn.id for p in placeholder_patterns):
+                    raise ValueError(
+                        f"relIn.id '{self.relIn.id}' looks like a placeholder. "
+                        f"Use list() to get REAL section UUIDs, then use that actual UUID."
+                    )
+
+        if self.relIn is not None:
+            rel_offsets = [getattr(self.relIn, key) for key in ("left", "top", "right", "bottom")]
+            if all(offset is None for offset in rel_offsets):
+                raise ValueError(
+                    "relIn must include numeric offsets (left/top/right/bottom). "
+                    "Calculate: relIn.left = child.left - parent.left, relIn.top = child.top - parent.top"
+                )
+
+        if self.relTo is not None and self.relTo.below is None:
+            raise ValueError(
+                "relTo.below must be a number (use 0 for direct stacking). "
+                "Example: relTo={\"id\": \"<sibling-id>\", \"below\": 30}"
+            )
+
+        return self
+
     class Config:
         extra = "forbid"
 
@@ -884,51 +993,3 @@ class EditInput(CreateInput):
             raise ValueError(f"These fields are not editable: {provided}")
         return self
 
-
-# Ensure gallery/slider extra fields are registered on CreateInput (py right now misses them in __annotations__).
-_gallery_extra_annotations: Dict[str, Any] = {
-    "captionsPlacement": Optional[str],
-    "delay": Optional[int],
-    "autoNext": Optional[bool],
-    "indicator": Optional[str],
-    "navigator": Optional[str],
-    "transition": Optional[str],
-    "originalSize": Optional[bool],
-    "columnCount": Optional[int],
-    "showBackground": Optional[bool],
-}
-CreateInput.__annotations__.update(_gallery_extra_annotations)
-for _field in _gallery_extra_annotations:
-    setattr(CreateInput, _field, None)
-CreateInput.model_rebuild(force=True)
-
-# Rebuild CreateInput with gallery/slider extras to ensure model_fields include them.
-from pydantic import create_model
-CreateInput = create_model(
-    "CreateInput",
-    captionsPlacement=(Optional[str], None),
-    delay=(Optional[int], None),
-    autoNext=(Optional[bool], None),
-    indicator=(Optional[str], None),
-    navigator=(Optional[str], None),
-    transition=(Optional[str], None),
-    originalSize=(Optional[bool], None),
-    columnCount=(Optional[int], None),
-    showBackground=(Optional[bool], None),
-    pageURL=(Optional[str], None),
-    tabs=(Optional[List[str]], None),
-    hideCover=(Optional[bool], None),
-    showFacepile=(Optional[bool], None),
-    showCTA=(Optional[bool], None),
-    smallHeader=(Optional[bool], None),
-    adaptContainerWidth=(Optional[bool], None),
-    timelineLink=(Optional[str], None),
-    listLink=(Optional[str], None),
-    tweetHTML=(Optional[str], None),
-    theme=(Optional[str], None),
-    doNotTrack=(Optional[bool], None),
-    direction=(Optional[str], None),
-    cells=(Optional[List[Any]], None),
-    commonCellsData=(Optional[Dict[str, Any]], None),
-    __base__=CreateInput,
-)

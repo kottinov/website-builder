@@ -7,25 +7,211 @@ to the LLM on how to use them correctly.
 CREATE_TOOL_DESCRIPTION = """Create WSB components using the full schema from components-map.json, with smart defaults and flat relIn/relTo layout.
 
 CORE KINDS & DEFAULTS
-- SECTION: stretch=true, pin=0, selectedTheme="White", mobileSettings.size="cover"
+- SECTION: stretch=true, pin=0, selectedTheme="White", selectedGradientTheme=null, mobileSettings.size="cover", wrap=false
 - CONTAINER: wrap=false by default
-- TEXT: fontSize=16, lineHeight=1.5
-- BUTTON: bold=true, corners.radius=5, fontSize=16
+- TEXT: fontSize=16, lineHeight=1.5, text="", styles=[], paras=[], links=[], mobileDown=false, mobileHide=false, onHover=null, verticalAlignment="bottom" or "top", mobileSettings={"align": null, "font": 0}
+- BUTTON: bold=true, corners.radius=5, fontSize=16, mobileDown=false, mobileHide=false, onHover=null, mobileSettings={"align": "justify"}
 - IMAGE/SVG/LOGO/MENU/FORM/MAP/etc. supported; pass required style/data as below.
 
-LAYOUT (FLAT STRUCTURE)
-- parent_id sets relIn.id automatically; children stay in the root list.
-- relTo stacks siblings: e.g., relTo={"id": "<prev-section>", "below": 0}. after_id/before_id auto-add relTo with below=0.
-- Position with left/top/width/height; verticalAlignment/horizontalAlignment optional; bbox can hold bounding box ints.
-- For precise placement, set relIn offsets (e.g., {"id": "<section>", "left": 120, "top": 80}); use relTo only for stacking relative to a sibling.
-- Sections: always give relTo to stack them; inner blocks: give relIn with numeric offsets or alignment plus width/height.
+CRITICAL REQUIRED FIELDS FOR ALL COMPONENTS:
+- inTemplate: false (default for non-template components)
+- wrap: false (default for most components)
+- mobileDown: false (unless specifically required)
+- mobileHide: false (unless specifically required)
+- onHover: null (unless hover effects are needed)
+- relPage: null (always null in flat structure)
+- relPara: null (always null unless text in paragraph flow)
+
+LAYOUT (ABSOLUTE + RELATIVE, FLAT STRUCTURE)
+All components live in a flat items[] array. Position is controlled by absolute coordinates (left/top/width/height) plus relIn/relTo for parent and sibling relationships.
+
+CRITICAL RULES FOR relIn AND relTo:
+
+1. SECTIONS:
+   - relIn: MUST be null (sections have no parent)
+   - relTo: CRITICAL - Each section must chain to the previous section/header
+     * First section: relTo = {"id": "22FC8C5B-CD71-42B7-9DF2-486F577581A9", "below": 0}
+     * Subsequent sections: relTo = {"id": "<previous-section-id>", "below": 0}
+   - relPage: null, relPara: null
+   - top: MUST be calculated precisely: previous_section.top + previous_section.height
+   - IMPORTANT: Use list() to get the REAL previous section ID, never use placeholders
+   - You can omit relTo for "SECTION" - it will be auto-populated, but providing it is safer
+
+2. CHILDREN (TEXT, BUTTON, IMAGE, etc. inside a section):
+   - relIn: REQUIRED - positions child relative to parent section
+   - relTo: null for the FIRST child; subsequent children CAN chain to siblings
+   - relPage: null, relPara: null
+
+3. relIn MATH (for children inside a parent):
+   - relIn.id = parent component ID
+   - relIn.left = child.left - parent.left
+   - relIn.top = child.top - parent.top
+   - relIn.bottom = -(parent.height - (relIn.top + child.height))
+   - relIn.right = -(parent.width - (relIn.left + child.width)) OR null
+
+   EXAMPLE: Parent section at (left=0, top=90, width=1300, height=760)
+            Child text at (left=185, top=250, width=680, height=260)
+            relIn = {
+              "id": "<section-id>",
+              "left": 185,        // 185 - 0 = 185
+              "top": 160,         // 250 - 90 = 160
+              "right": null,
+              "bottom": -340      // -(760 - (160 + 260)) = -340
+            }
+
+4. relTo for SIBLING CHAINING (optional, for children):
+   - First child in section: relTo = null
+   - To stack below a sibling: relTo = {"id": "<sibling-id>", "below": <gap_px>}
+   - below MUST be a number (0, 10, 30, etc.), never null
+
+   EXAMPLE: Button below a text block with 30px gap:
+            relTo = {"id": "<text-component-id>", "below": 30}
+
+5. COMPLETE COMPONENT EXAMPLES:
+
+   SECTION (first or only section - needs existing anchor):
+   {
+     "kind": "SECTION",
+     "inTemplate": false,
+     "orderIndex": 0,
+     "stretch": true,
+     "wrap": false,
+     "left": 0, "top": 90, "width": 1300, "height": 760,
+     "relIn": null,
+     "relTo": {"id": "<existing-header-or-section-id>", "below": 0},
+     "relPage": null, "relPara": null,
+     "style": {
+       "border": null,
+       "background": {
+         "colorData": {
+           "color": ["HSL", 0.5644999999999936, 0, 0.16820000000000002, 1],
+           "gradient": null
+         }
+       }
+     },
+     "mobileSettings": {"size": "cover"},
+     "pin": 0,
+     "title": "Section1",
+     "selectedTheme": "Black",
+     "selectedGradientTheme": null
+   }
+
+   TEXT (first child - no sibling stacking):
+   {
+     "kind": "TEXT",
+     "inTemplate": false,
+     "orderIndex": 0,
+     "wrap": false,
+     "mobileDown": false,
+     "onHover": null,
+     "left": 185, "top": 250, "width": 680, "height": 260,
+     "parent_id": "<section-id>",
+     "relIn": {"id": "<section-id>", "left": 185, "top": 160, "right": null, "bottom": -340},
+     "relTo": null,
+     "relPage": null, "relPara": null,
+     "verticalAlignment": "bottom",
+     "mobileHide": false,
+     "mobileSettings": {"align": null, "font": 0},
+     "content": "<p>Your text here</p>",
+     "text": "",
+     "styles": [],
+     "paras": [],
+     "links": [],
+     "themeOverrideColor": null,
+     "themeHighlightColor": null,
+     "themeShadowBlurRadius": 3,
+     "themeShadowColor": null,
+     "themeShadowOffsetX": 3,
+     "themeShadowOffsetY": 3,
+     "globalStyleId": "EAEA20A6-C03E-4C8C-ADA5-43EBBEF4CD23"
+   }
+
+   BUTTON (stacked below text with 30px gap):
+   {
+     "kind": "BUTTON",
+     "inTemplate": false,
+     "orderIndex": 1,
+     "wrap": false,
+     "mobileDown": false,
+     "onHover": null,
+     "left": 375, "top": 580, "width": 300, "height": 60,
+     "parent_id": "<section-id>",
+     "relIn": {"id": "<section-id>", "left": 375, "top": 490, "right": null, "bottom": -210},
+     "relTo": {"id": "<text-id>", "below": 30},
+     "relPage": null, "relPara": null,
+     "text": "Click me",
+     "mobileHide": false,
+     "mobileSettings": {"align": "justify"},
+     "style": {
+       "globalId": "0E6D94E7-D717-487F-B936-712CA4C430AA",
+       "globalName": "[button.1]",
+       "type": "web.data.styles.StyleButton",
+       "text": {"size": null}
+     },
+     "buttonThemeSelected": "primary"
+   }
+
+WORKFLOW:
+1. ALWAYS call list() first to get existing component IDs
+2. For sections: find an existing section/header ID to chain relTo
+   - When adding multiple sections, calculate each section's top: prev.top + prev.height
+   - Always chain sections: section2.relTo.id = section1.id, section3.relTo.id = section2.id, etc.
+3. For children: use parent section ID for relIn.id
+4. Calculate relIn offsets using the math above
+5. Set relTo=null for first child, or chain to sibling with {"below": N}
+
+MULTIPLE SECTIONS EXAMPLE:
+  First call list() to see existing sections. Suppose the last section is at top=90 with height=600.
+
+  Second section should be:
+  {
+    "kind": "SECTION",
+    "top": 690,  // 90 + 600 = 690
+    "height": 500,
+    "relTo": {"id": "<first-section-id-from-list>", "below": 0},
+    "selectedGradientTheme": null
+  }
+
+  Third section should be:
+  {
+    "kind": "SECTION",
+    "top": 1190,  // 690 + 500 = 1190
+    "height": 400,
+    "relTo": {"id": "<second-section-id>", "below": 0},
+    "selectedGradientTheme": null
+  }
+
+COMMON MISTAKES TO AVOID:
+- Using "header" as an ID (not a real ID - use list() to find real IDs)
+- Missing relIn/relTo/relPage/relPara fields (always include them, even if null)
+- Setting relTo.below to null (must be a number)
+- Forgetting relIn for non-section components
+- Missing required fields: inTemplate, wrap, mobileDown, mobileHide, onHover (see examples above)
+- Missing empty arrays for TEXT: styles=[], paras=[], links=[]
+- Missing text="" field for TEXT components with content
+- Missing verticalAlignment for TEXT components
+- Missing complete mobileSettings objects
+- Wrapping content in CDATA tags (use plain HTML instead)
+- Missing theme shadow properties for TEXT components
+- Missing globalStyleId for styled components
+- Missing style object with globalId/globalName/type for BUTTON components
+- **CRITICAL FOR SECTIONS:**
+  * Missing selectedGradientTheme: null (MUST be present for all sections)
+  * Wrong top calculation (must be prev.top + prev.height)
+  * Wrong relTo.id (must reference actual previous section ID from list())
+  * Not chaining sections properly (each section must link to the previous one)
 
 CONTENT/STYLES
-- content/text/title/name plus paras/links/globalStyleId for rich text.
+- content: HTML content for TEXT components (do NOT wrap in CDATA, use plain HTML)
+- text: Empty string "" for TEXT components with content, or plain text for BUTTON/simple text
+- styles: Empty array [] for TEXT components unless custom styles needed
+- paras: Empty array [] for TEXT components unless paragraph metadata needed
+- links: Empty array [] for TEXT components unless link metadata needed
+- globalStyleId: Reference to global style (e.g., "EAEA20A6-C03E-4C8C-ADA5-43EBBEF4CD23")
 - style/background: background.colorData.color=[\"HSL\", h,s,l,a], background.assetData.asset={url,width,height,etag,...}, repeat/position/size/scrollEffect/opacity supported.
-- style/global refs: globalId, globalName, type, text={size: int}.
-- styles accepts mixed Style or raw JSON fragments (as seen in components-map).
+- style/global refs: globalId, globalName, type, text={size: int or null}.
 - Theming: selectedTheme/selectedGradientTheme, themeColorType, themeOverrideColor/themeHighlightColor/themeShadow*.
+- Theme shadows: themeShadowBlurRadius=3, themeShadowColor=null, themeShadowOffsetX=3, themeShadowOffsetY=3 (defaults)
 - Border/corners/padding accept structured data; gradient/seo/hover/onHover/press/svgJson allow JSON blobs.
 
 MOBILE & VISIBILITY

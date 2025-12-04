@@ -11,8 +11,9 @@ from react_agent.signatures import CreateInput
 def get_component_defaults(kind: str) -> Dict[str, Any]:
     """Get smart defaults based on component kind.
 
-    Returns professional defaults that match official WSB design patterns.
-    These can be overridden by explicitly provided values.
+    Returns minimal sensible defaults for basic functionality.
+    The LLM is responsible for providing complete component specifications
+    based on the tool descriptions and examples.
 
     Args:
         kind: Component kind (SECTION, CONTAINER, TEXT, BUTTON, etc.)
@@ -27,6 +28,7 @@ def get_component_defaults(kind: str) -> Dict[str, Any]:
             "stretch": True,
             "pin": 0,
             "selectedTheme": "White",
+            "selectedGradientTheme": None,
             "mobileSettings": {"size": "cover"}
         })
 
@@ -151,6 +153,8 @@ class WSBComponentBuilder:
         """Add relational positioning fields.
 
         Converts Pydantic models to dicts for JSON serialization.
+        ALWAYS includes all four fields (relIn, relTo, relPage, relPara),
+        setting them to null if not provided - this matches WSB's expected format.
 
         Args:
             rel_in: Relative positioning to parent
@@ -161,25 +165,21 @@ class WSBComponentBuilder:
         Returns:
             Self for method chaining
         """
-        if rel_in is not None:
-            self._component["relIn"] = (
-                rel_in if isinstance(rel_in, dict) else rel_in.model_dump(mode="json")
-            )
+        self._component["relIn"] = (
+            rel_in if isinstance(rel_in, dict) else (rel_in.model_dump(mode="json") if rel_in else None)
+        )
 
-        if rel_to is not None:
-            self._component["relTo"] = (
-                rel_to if isinstance(rel_to, dict) else rel_to.model_dump(mode="json")
-            )
+        self._component["relTo"] = (
+            rel_to if isinstance(rel_to, dict) else (rel_to.model_dump(mode="json") if rel_to else None)
+        )
 
-        if rel_page is not None:
-            self._component["relPage"] = (
-                rel_page if isinstance(rel_page, dict) else rel_page.model_dump(mode="json")
-            )
+        self._component["relPage"] = (
+            rel_page if isinstance(rel_page, dict) else (rel_page.model_dump(mode="json") if rel_page else None)
+        )
 
-        if rel_para is not None:
-            self._component["relPara"] = (
-                rel_para if isinstance(rel_para, dict) else rel_para.model_dump(mode="json")
-            )
+        self._component["relPara"] = (
+            rel_para if isinstance(rel_para, dict) else (rel_para.model_dump(mode="json") if rel_para else None)
+        )
 
         return self
 
@@ -354,7 +354,7 @@ def build_component(payload: CreateInput, component_id: str) -> Dict[str, Any]:
             "content", "text", "title", "name",
             "items",
         },
-        exclude_none=True,
+        exclude_unset=True,
         mode="json",
     )
 
