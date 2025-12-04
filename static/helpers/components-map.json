@@ -1,0 +1,4378 @@
+[
+    {
+        "id": "211A136B-D822-4418-B98F-77D10768F1FF",
+        "inTemplate": false,
+        "orderIndex": 0,
+        "stretch": true,
+        "wrap": false,
+        "kind": "SECTION",
+        "left": 0,
+        "top": 80,
+        "width": 1878,
+        "height": 760,
+        "relIn": null,
+        "relTo": {
+            "below": 0,
+            "id": "22FC8C5B-CD71-42B7-9DF2-486F577581A9"
+        },
+        "relPage": null,
+        "relPara": null,
+        "style": {
+            "border": null,
+            "background": {
+                "colorData": {
+                    "color": [
+                        "HSL",
+                        0.5644999999999936,
+                        0,
+                        0.16820000000000002,
+                        1
+                    ],
+                    "gradient": null
+                },
+                "assetData": {
+                    "asset": {
+                        "alpha": null,
+                        "animated": false,
+                        "bpp": null,
+                        "contentType": "image/jpeg",
+                        "etag": "\"31343-5fc848a346a51\"",
+                        "filesize": 201539,
+                        "height": 1275,
+                        "image": null,
+                        "recommendedFormat": null,
+                        "url": "repository:/design-universal-template-unsplash-fPcB3Km7PyE.jpg",
+                        "width": 1920
+                    },
+                    "repeat": [
+                        false,
+                        false
+                    ],
+                    "position": [
+                        "50%",
+                        "50%"
+                    ],
+                    "size": "cover",
+                    "scrollEffect": "parallax",
+                    "opacity": 0.6
+                }
+            }
+        },
+        "mobileSettings": {
+            "size": "cover"
+        },
+        "pin": 0,
+        "title": "Section1",
+        "selectedTheme": "Black",
+        "selectedGradientTheme": null
+    },
+    {
+        "id": "0D85237F-41FE-4643-9444-A7D69C04C4B0",
+        "inTemplate": false,
+        "orderIndex": 2,
+        "stretch": true,
+        "wrap": false,
+        "kind": "SECTION",
+        "left": 0,
+        "top": 840,
+        "width": 1878,
+        "height": 832,
+        "relIn": null,
+        "relTo": {
+            "below": 0,
+            "id": "211A136B-D822-4418-B98F-77D10768F1FF"
+        },
+        "relPage": null,
+        "relPara": null,
+        "style": {
+            "border": null,
+            "background": {
+                "colorData": {
+                    "color": [
+                        "HSL",
+                        0,
+                        0,
+                        1,
+                        1
+                    ],
+                    "gradient": null
+                },
+                "assetData": null
+            }
+        },
+        "mobileSettings": {
+            "size": "cover"
+        },
+        "pin": 0,
+        "title": "Section2",
+        "selectedTheme": "White"
+    },
+    {
+        "id": "EDEE30C2-6E5B-4BB6-9039-4C2D094B0CE0",
+        "inTemplate": false,
+        "orderIndex": 4,
+        "stretch": true,
+        "wrap": false,
+        "kind": "SECTION",
+        "left": 0,
+        "top": 1672,
+        "width": 1878,
+        "height": 700,
+        "relIn": null,
+        "relTo": {
+            "below": 0,
+            "id": "0D85237F-41FE-4643-9444-A7D69C04C4B0"
+        },
+        "relPage": null,
+        "relPara": null,
+        "style": {
+            "border": null,
+            "background": {
+                "colorData": {
+                    "color": [
+                        "HSL",
+                        0.08558558558558559,
+                        0.15102040816326534,
+                        0.4803921568627451,
+                        0.3
+                    ],
+                    "gradient": null
+                },
+                "assetData": null
+            }
+        },
+        "mobileSettings": {
+            "size": "cover"
+        },
+        "pin": 0,
+        "title": "Section3",
+        "selectedTheme": "Main"
+    },
+    {
+        "id": "6FC2976F-28D0-436C-8310-33B4146B251D",
+        "inTemplate": false,
+        "orderIndex": 5,
+        "stretch": true,
+        "wrap": false,
+        "kind": "SECTION",
+        "left": 0,
+        "top": 2372,
+        "width": 1878,
+        "height": 536,
+        "relIn": null,
+        "relTo": {
+            "below": 0,
+            "id": "EDEE30C2-6E5B-4BB6-9039-4C2D094B0CE0"
+        },
+        "relPage": null,
+        "relPara": null,
+        "style": {
+            "border": null,
+            "background": {
+                "colorData": {
+                    "color": [
+                        "HSL",
+                        0,
+                        0,
+                        1,
+                        1
+                    ],
+                    "gradient": null
+                },
+                "assetData": null
+            }
+        },
+        "mobileSettings": {
+            "size": "cover"
+        },
+        "pin": 0,
+        "title": "Section4",
+        "selectedTheme": "White"
+    },
+    {
+        "id": "01396C5D-3328-426C-AC1A-EEA1CDFB5369",
+        "inTemplate": false,
+        "orderIndex": 6,
+        "stretch": true,
+        "wrap": false,
+        "kind": "SECTION",
+        "left": 0,
+        "top": 2908,
+        "width": 1878,
+        "height": 502,
+        "relIn": null,
+        "relTo": {
+            "below": 0,
+            "id": "6FC2976F-28D0-436C-8310-33B4146B251D"
+        },
+        "relPage": null,
+        "relPara": null,
+        "style": {
+            "border": {
+                "style": null,
+                "corners": [
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            "background": {
+                "colorData": {
+                    "color": [
+                        "HSL",
+                        0.5644999999999936,
+                        0,
+                        0.16820000000000002,
+                        1
+                    ],
+                    "gradient": null
+                },
+                "assetData": {
+                    "asset": {
+                        "alpha": null,
+                        "animated": false,
+                        "bpp": null,
+                        "contentType": "image/jpeg",
+                        "etag": "\"58d4d-5fc848a3ff371\"",
+                        "filesize": 363853,
+                        "height": 1280,
+                        "image": null,
+                        "recommendedFormat": null,
+                        "url": "repository:/design-universal-template-unsplash-5eI8S6kE_9w.jpg",
+                        "width": 1920
+                    },
+                    "repeat": [
+                        false,
+                        false
+                    ],
+                    "position": [
+                        "50%",
+                        "50%"
+                    ],
+                    "size": "cover",
+                    "scrollEffect": "reveal",
+                    "opacity": 0.4
+                }
+            }
+        },
+        "mobileSettings": {
+            "size": "cover"
+        },
+        "pin": 0,
+        "title": "Section5",
+        "selectedTheme": "Black",
+        "selectedGradientTheme": null
+    },
+    {
+        "id": "ACB77BBE-929A-4B55-9063-6C8CB018323E",
+        "inTemplate": false,
+        "orderIndex": 7,
+        "stretch": true,
+        "wrap": false,
+        "kind": "SECTION",
+        "left": 0,
+        "top": 3410,
+        "width": 1878,
+        "height": 1201,
+        "relIn": null,
+        "relTo": {
+            "below": 0,
+            "id": "01396C5D-3328-426C-AC1A-EEA1CDFB5369"
+        },
+        "relPage": null,
+        "relPara": null,
+        "style": {
+            "border": null,
+            "background": {
+                "colorData": {
+                    "color": [
+                        "HSL",
+                        0.5644999999999936,
+                        0,
+                        0.16820000000000002,
+                        0.04
+                    ],
+                    "gradient": null
+                },
+                "assetData": null
+            }
+        },
+        "mobileSettings": {
+            "size": "cover"
+        },
+        "pin": 0,
+        "title": "Section6",
+        "selectedTheme": "Black"
+    },
+    {
+        "id": "8890BE15-150A-4F8C-BD86-8C7B7ECDFFF0",
+        "inTemplate": true,
+        "orderIndex": 1,
+        "stretch": true,
+        "wrap": false,
+        "kind": "SECTION",
+        "left": -563,
+        "top": 4611,
+        "width": 2176,
+        "height": 70,
+        "relIn": null,
+        "relTo": {
+            "below": 1629,
+            "id": "7DE28574-B1AD-4286-98D1-173A257BE890"
+        },
+        "relPage": null,
+        "relPara": null,
+        "style": {
+            "border": null,
+            "background": {
+                "colorData": {
+                    "color": [
+                        "HSL",
+                        0.5644999999999936,
+                        0,
+                        0.16820000000000002,
+                        1
+                    ],
+                    "gradient": null
+                },
+                "assetData": null
+            }
+        },
+        "mobileSettings": {
+            "size": "cover"
+        },
+        "pin": 0,
+        "title": "Footer",
+        "selectedTheme": "Black"
+    },
+    {
+        "id": "7DE28574-B1AD-4286-98D1-173A257BE890",
+        "inTemplate": true,
+        "orderIndex": 3,
+        "stretch": true,
+        "wrap": false,
+        "kind": "SECTION",
+        "left": -563,
+        "top": 0,
+        "width": 2176,
+        "height": 80,
+        "relIn": null,
+        "relTo": null,
+        "relPage": null,
+        "relPara": null,
+        "style": {
+            "border": {
+                "style": "none",
+                "color": [
+                    "HSL",
+                    0,
+                    0,
+                    0,
+                    1
+                ],
+                "width": [
+                    0,
+                    0,
+                    1,
+                    0
+                ]
+            },
+            "background": {
+                "colorData": {
+                    "color": [
+                        "HSL",
+                        0,
+                        0,
+                        1,
+                        1
+                    ],
+                    "gradient": null
+                },
+                "assetData": null
+            }
+        },
+        "mobileHide": true,
+        "mobileSettings": {
+            "size": "cover"
+        },
+        "pin": 1,
+        "title": "Header",
+        "selectedTheme": "White"
+    },
+    {
+        "id": "F1405080-55C1-4DF8-8213-F2F96374C27B",
+        "inTemplate": false,
+        "orderIndex": 0,
+        "stretch": true,
+        "wrap": false,
+        "onHover": null,
+        "kind": "WIDGETS_GOOGLEMAPS",
+        "left": 0,
+        "top": 4181,
+        "width": 1050,
+        "height": 430,
+        "relIn": {
+            "id": "ACB77BBE-929A-4B55-9063-6C8CB018323E",
+            "top": 771,
+            "left": 0,
+            "right": null,
+            "bottom": 0
+        },
+        "relTo": {
+            "below": 80,
+            "id": "77E268C2-8853-4596-A569-7D7FEC413A09"
+        },
+        "relPage": null,
+        "relPara": null,
+        "addressLocation": {
+            "lat": 55.6760968,
+            "lng": 12.5683371
+        },
+        "addressText": "Copenhagen, Denmark",
+        "addressUrl": "https://maps.google.com/?q=Copenhagen,+Denmark&ftid=0x4652533c5c803d23:0x4dd7edde69467b8",
+        "locale": "en",
+        "zoom": 14,
+        "source": "input",
+        "mobileHide": false
+    },
+    {
+        "id": "712D1EA8-BC37-483B-B862-42392EA7E254",
+        "inTemplate": true,
+        "orderIndex": 0,
+        "wrap": false,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "LOGO",
+        "left": 0,
+        "top": 20,
+        "width": 300,
+        "height": 40,
+        "relIn": {
+            "id": "7DE28574-B1AD-4286-98D1-173A257BE890",
+            "top": 20,
+            "left": 0,
+            "right": null,
+            "bottom": -20
+        },
+        "relTo": null,
+        "relPage": null,
+        "relPara": null,
+        "title": "",
+        "scale": 1,
+        "logoTitleScale": 0.8,
+        "rotation": 0,
+        "mobileHide": false,
+        "scaleStrategy": "logo",
+        "cropTop": 0,
+        "cropLeft": 0,
+        "asset": {
+            "etag": "",
+            "height": 1,
+            "id": "",
+            "url": "",
+            "width": 1
+        },
+        "style": null,
+        "linkAction": null,
+        "lightBoxEnabled": false,
+        "openLink": false,
+        "logoHorizontalAlignment": "left",
+        "isDecorative": false
+    },
+    {
+        "id": "4C17F8D9-8324-4144-9E37-B220AC141FFD",
+        "inTemplate": true,
+        "orderIndex": 1,
+        "wrap": false,
+        "kind": "MENU",
+        "left": 490,
+        "top": 20,
+        "width": 560,
+        "height": 40,
+        "relIn": {
+            "id": "7DE28574-B1AD-4286-98D1-173A257BE890",
+            "top": 20,
+            "left": 490,
+            "right": null,
+            "bottom": -20
+        },
+        "relTo": null,
+        "relPage": null,
+        "relPara": null,
+        "layoutType": "HORIZONTAL_DROPDOWN",
+        "horizontalAlign": "right",
+        "verticalAlign": "middle",
+        "startLevel": 1,
+        "style": {
+            "globalId": "755F9D89-D780-4F40-BE71-5C92AAA88C0E",
+            "globalName": "[menu.1]",
+            "type": "web.data.styles.StyleMenu"
+        },
+        "moreButtonEnabled": true,
+        "moreText": "More",
+        "themeStyles": {
+            "mainMenu": {
+                "id": "3FFF339A-CBF8-494E-81F2-CF72CE9F7A05",
+                "name": "[ThemeMenu.1]"
+            },
+            "submenu": {
+                "id": "89609121-2A21-497B-90C1-6287443D6DA5",
+                "name": "[ThemeMenu.2]"
+            }
+        },
+        "isStickyToHeader": false,
+        "subStyle": {
+            "globalId": "755F9D89-D780-4F40-BE71-5C92AAA88C0E",
+            "globalName": "[ThemeMenu.2]",
+            "type": "web.data.styles.StyleMenu"
+        }
+    },
+    {
+        "id": "042C22C5-2C2E-4179-95AA-DE0E833F2BC4",
+        "inTemplate": true,
+        "orderIndex": 2,
+        "wrap": false,
+        "onHover": null,
+        "kind": "SOCIAL_LINKS",
+        "left": 920,
+        "top": 4631,
+        "width": 130,
+        "height": 30,
+        "relIn": {
+            "id": "8890BE15-150A-4F8C-BD86-8C7B7ECDFFF0",
+            "top": 20,
+            "left": 920,
+            "right": null,
+            "bottom": -20
+        },
+        "relTo": null,
+        "relPage": null,
+        "relPara": null,
+        "colorType": "LIGHT",
+        "themeColorType": "THEME_DEFAULT",
+        "size": 30,
+        "spacing": 20,
+        "mobileSize": 32,
+        "mobileHorizontalAlignment": "center",
+        "styleType": "CIRCLE_KNOCKOUT",
+        "links": [
+            {
+                "id": "92A149A0B02C41E39CD18F4EB4192BD0$",
+                "kind": "FACEBOOK"
+            },
+            {
+                "id": "BE5E5D1DA8314BEB9342778148B9D3B1$",
+                "kind": "TWITTER"
+            },
+            {
+                "id": "F2A0527EF355499393555E2B501071CD$",
+                "kind": "INSTAGRAM"
+            }
+        ]
+    },
+    {
+        "id": "C5CD5118-E9E6-43F6-9C8E-DB52802B0B82",
+        "inTemplate": true,
+        "orderIndex": 3,
+        "wrap": false,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "LOGO",
+        "left": 0,
+        "top": 4626,
+        "width": 300,
+        "height": 40,
+        "relIn": {
+            "id": "8890BE15-150A-4F8C-BD86-8C7B7ECDFFF0",
+            "top": 15,
+            "left": 0,
+            "right": null,
+            "bottom": -15
+        },
+        "relTo": null,
+        "relPage": null,
+        "relPara": null,
+        "title": "",
+        "scale": 1,
+        "logoTitleScale": 0.8,
+        "rotation": 0,
+        "mobileHide": false,
+        "scaleStrategy": "logo",
+        "cropTop": 0,
+        "cropLeft": 0,
+        "asset": {
+            "etag": "",
+            "height": 1,
+            "id": "",
+            "url": "",
+            "width": 1
+        },
+        "style": null,
+        "linkAction": null,
+        "lightBoxEnabled": false,
+        "openLink": false,
+        "logoHorizontalAlignment": "left",
+        "isDecorative": false
+    },
+    {
+        "id": "349C29CD-DB8A-44DA-A5BD-F590D534090F",
+        "inTemplate": true,
+        "orderIndex": 4,
+        "wrap": false,
+        "onHover": null,
+        "kind": "PHONE",
+        "left": 400,
+        "top": 4634,
+        "width": 250,
+        "height": 24,
+        "relIn": {
+            "id": "8890BE15-150A-4F8C-BD86-8C7B7ECDFFF0",
+            "top": 23,
+            "left": 400,
+            "right": null,
+            "bottom": -23
+        },
+        "relTo": null,
+        "relPage": null,
+        "relPara": null,
+        "generic": {
+            "customPrefixText": "Phone",
+            "horizontalAlignment": "center",
+            "iconSize": 30,
+            "iconTextSpacing": 11,
+            "mobileFontSize": null,
+            "mobileHorizontalAlignment": null,
+            "mobileIconSize": null,
+            "showCustomTitleFirst": false,
+            "showIcon": false,
+            "showOnOneLine": true,
+            "textStyle": {
+                "bold": null,
+                "color": [
+                    "HSL",
+                    0,
+                    0,
+                    1,
+                    1
+                ],
+                "fontFamily": null,
+                "fontSize": null,
+                "italic": null,
+                "letterSpacing": 0,
+                "lineHeight": null,
+                "prefixBold": true,
+                "prefixCase": null,
+                "prefixItalic": null,
+                "prefixUnderline": null,
+                "underline": null,
+                "valueCase": null
+            },
+            "themeOverrideColor": null
+        },
+        "specific": {
+            "placeholderText": "+44 1234 567890"
+        }
+    },
+    {
+        "id": "2E7CA4B4-1809-4DDF-BBCB-F489C54C941F",
+        "inTemplate": false,
+        "orderIndex": 0,
+        "wrap": false,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "TEXT",
+        "left": 185,
+        "top": 240,
+        "width": 680,
+        "height": 260,
+        "relIn": {
+            "id": "211A136B-D822-4418-B98F-77D10768F1FF",
+            "top": 160,
+            "left": 185,
+            "right": null,
+            "bottom": -340
+        },
+        "relTo": null,
+        "relPage": null,
+        "relPara": null,
+        "verticalAlignment": "bottom",
+        "mobileHide": false,
+        "mobileSettings": {
+            "align": null,
+            "font": 0
+        },
+        "content": "<p class=\"textheading1\" style=\"text-align: center;\"><span class=\"textheading1\"><span style=\"color: #ffffff;\">GREAT SERVICE AND EXPERTISE</span></span><span class=\"textnormal\"></span></p>",
+        "text": "",
+        "styles": [],
+        "paras": [],
+        "links": [],
+        "themeOverrideColor": null,
+        "themeHighlightColor": null,
+        "themeShadowBlurRadius": 3,
+        "themeShadowColor": null,
+        "themeShadowOffsetX": 3,
+        "themeShadowOffsetY": 3,
+        "globalStyleId": "EAEA20A6-C03E-4C8C-ADA5-43EBBEF4CD23"
+    },
+    {
+        "id": "CEB4B29C-474D-42D6-B69B-AD8519AF6DCC",
+        "inTemplate": false,
+        "orderIndex": 1,
+        "wrap": false,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "BUTTON",
+        "left": 375,
+        "top": 570,
+        "width": 300,
+        "height": 60,
+        "relIn": {
+            "id": "211A136B-D822-4418-B98F-77D10768F1FF",
+            "top": 490,
+            "left": 375,
+            "right": null,
+            "bottom": -210
+        },
+        "relTo": {
+            "below": 30,
+            "id": "744A58E4-FCFE-410C-9041-9206E6D00397"
+        },
+        "relPage": null,
+        "relPara": null,
+        "text": "Book a consultation",
+        "mobileHide": false,
+        "mobileSettings": {
+            "align": "justify"
+        },
+        "style": {
+            "globalId": "7153EA6D-1B73-43C6-A5B6-F712CE8CF705",
+            "globalName": "[button.1]",
+            "type": "web.data.styles.StyleButton",
+            "text": {
+                "size": null
+            }
+        },
+        "linkAction": {
+            "link": {
+                "type": "page",
+                "value": "FD90B0D2-DF24-4135-AA5C-A25A71A7C680"
+            },
+            "openInNewWindow": false
+        },
+        "buttonThemeSelected": "primary"
+    },
+    {
+        "id": "744A58E4-FCFE-410C-9041-9206E6D00397",
+        "inTemplate": false,
+        "orderIndex": 2,
+        "wrap": false,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "TEXT",
+        "left": 150,
+        "top": 510,
+        "width": 750,
+        "height": 30,
+        "relIn": {
+            "id": "211A136B-D822-4418-B98F-77D10768F1FF",
+            "top": 430,
+            "left": 150,
+            "right": null,
+            "bottom": -300
+        },
+        "relTo": {
+            "below": 10,
+            "id": "2E7CA4B4-1809-4DDF-BBCB-F489C54C941F"
+        },
+        "relPage": null,
+        "relPara": null,
+        "verticalAlignment": "top",
+        "mobileHide": false,
+        "mobileSettings": {
+            "align": null,
+            "font": 0
+        },
+        "content": "<p class=\"textheading3\" style=\"text-align: center;\"><span class=\"textheading3\"><span style=\"color: #ffffff;\">Inspired by years of industry experience</span></span></p>",
+        "text": "",
+        "styles": [],
+        "paras": [],
+        "links": [],
+        "themeOverrideColor": null,
+        "themeHighlightColor": null,
+        "themeShadowBlurRadius": 3,
+        "themeShadowColor": null,
+        "themeShadowOffsetX": 3,
+        "themeShadowOffsetY": 3,
+        "globalStyleId": "EAEA20A6-C03E-4C8C-ADA5-43EBBEF4CD23"
+    },
+    {
+        "id": "342B5AAC-5D9E-40F3-B8B6-3A6D4E3CF134",
+        "inTemplate": false,
+        "orderIndex": 3,
+        "wrap": false,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "TEXT",
+        "left": 0,
+        "top": 940,
+        "width": 1050,
+        "height": 56,
+        "relIn": {
+            "id": "0D85237F-41FE-4643-9444-A7D69C04C4B0",
+            "top": 100,
+            "left": 0,
+            "right": null,
+            "bottom": -676
+        },
+        "relTo": null,
+        "relPage": null,
+        "relPara": null,
+        "verticalAlignment": "top",
+        "mobileHide": false,
+        "mobileSettings": {
+            "align": null,
+            "font": 0
+        },
+        "content": "<p class=\"textheading2\" style=\"text-align: center;\">Services Offered</p>",
+        "text": "",
+        "styles": [],
+        "paras": [],
+        "links": [],
+        "themeOverrideColor": null,
+        "themeHighlightColor": null,
+        "themeShadowBlurRadius": 3,
+        "themeShadowColor": null,
+        "themeShadowOffsetX": 3,
+        "themeShadowOffsetY": 3,
+        "globalStyleId": "EAEA20A6-C03E-4C8C-ADA5-43EBBEF4CD23"
+    },
+    {
+        "id": "95E09576-22B8-4222-AF28-554B8C5D54D6",
+        "inTemplate": false,
+        "orderIndex": 4,
+        "wrap": false,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "TEXT",
+        "left": 0,
+        "top": 1056,
+        "width": 310,
+        "height": 228,
+        "relIn": {
+            "id": "0D85237F-41FE-4643-9444-A7D69C04C4B0",
+            "top": 216,
+            "left": 0,
+            "right": null,
+            "bottom": -388
+        },
+        "relTo": {
+            "below": 60,
+            "id": "342B5AAC-5D9E-40F3-B8B6-3A6D4E3CF134"
+        },
+        "relPage": null,
+        "relPara": null,
+        "verticalAlignment": "top",
+        "mobileHide": false,
+        "mobileSettings": {
+            "align": null,
+            "font": 0
+        },
+        "content": "<div class=\"mceNonEditable center\" style=\"width: 50px;\">\n<div style=\"margin-left: auto; margin-right: auto; width: 50px; min-height: 50px; font-size: 0px;\" data-wrap-id=\"3AE8AF14-6954-4B57-8B28-88847E841FD2\"></div>\n</div>\n<p class=\"textheading3\" style=\"text-align: center;\"><span class=\"textheading3\"><br></span></p>\n<p class=\"textheading3\" style=\"text-align: center;\"><span class=\"textheading3\">Item Name</span></p>\n<p style=\"text-align: center;\"><br></p>\n<p style=\"text-align: center;\">Paragraphs are the main building blocks of web pages. To change what this one says, just double-click here or hit Edit text. You can change the style here, too.</p>",
+        "text": "\n\n\n\n\n",
+        "styles": [
+            [
+                1,
+                1,
+                {
+                    "globalId": "8CD5B980-3863-473E-8C51-F1E68486FE75",
+                    "globalName": "[heading.3]",
+                    "type": "web.data.styles.StyleText"
+                }
+            ]
+        ],
+        "paras": [
+            [
+                1,
+                2,
+                {
+                    "align": "center",
+                    "type": "web.data.styles.StylePara"
+                }
+            ],
+            [
+                4,
+                5,
+                {
+                    "align": "center",
+                    "type": "web.data.styles.StylePara"
+                }
+            ]
+        ],
+        "links": [],
+        "themeOverrideColor": null,
+        "themeHighlightColor": null,
+        "themeShadowBlurRadius": 3,
+        "themeShadowColor": null,
+        "themeShadowOffsetX": 3,
+        "themeShadowOffsetY": 3,
+        "globalStyleId": "EAEA20A6-C03E-4C8C-ADA5-43EBBEF4CD23"
+    },
+    {
+        "id": "3AE8AF14-6954-4B57-8B28-88847E841FD2",
+        "inTemplate": false,
+        "orderIndex": 5,
+        "wrap": true,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "SVG",
+        "left": 130,
+        "top": 1056,
+        "width": 50,
+        "height": 50,
+        "relIn": {
+            "id": "95E09576-22B8-4222-AF28-554B8C5D54D6",
+            "top": 0,
+            "left": 130,
+            "right": -130,
+            "bottom": -178
+        },
+        "relTo": null,
+        "relPage": null,
+        "relPara": {
+            "index": 0,
+            "offset": 0
+        },
+        "asset": {
+            "alpha": null,
+            "animated": false,
+            "bpp": null,
+            "contentType": "image/svg",
+            "etag": "\"22e-5fc848b79e723\"",
+            "filesize": 558,
+            "height": 60,
+            "image": null,
+            "recommendedFormat": null,
+            "url": "repository:/repository-icon-squares-outlined-2.svg",
+            "width": 60
+        },
+        "colors": [
+            {
+                "fromColor": "rgba(0,0,0,1)",
+                "toColor": "#8d7b68",
+                "toThemeColor": "mainColor"
+            },
+            {
+                "fromColor": "rgba(255,255,255,1)",
+                "toColor": "rgba(255,255,255,1)"
+            }
+        ],
+        "defaultFillColor": "rgba(0,0,0,1)",
+        "linkAction": null,
+        "opacity": 100,
+        "seo": "",
+        "rawSvg": "<svg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<g clip-path=\"url(#clip0_21_40)\">\n<circle cx=\"30\" cy=\"30\" r=\"29\" stroke=\"black\" stroke-width=\"2\"/>\n<rect x=\"16\" y=\"16\" width=\"12\" height=\"12\" rx=\"1\" stroke=\"black\" stroke-width=\"2\"/>\n<rect x=\"16\" y=\"32\" width=\"12\" height=\"12\" rx=\"1\" stroke=\"black\" stroke-width=\"2\"/>\n<rect x=\"32\" y=\"32\" width=\"12\" height=\"12\" rx=\"1\" stroke=\"black\" stroke-width=\"2\"/>\n</g>\n<defs>\n<clipPath id=\"clip0_21_40\">\n<rect width=\"60\" height=\"60\" fill=\"white\"/>\n</clipPath>\n</defs>\n</svg>\n",
+        "useOriginalColors": false,
+        "svgJson": {
+            "name": "svg",
+            "type": "element",
+            "value": "",
+            "attributes": {
+                "width": "60",
+                "height": "60",
+                "viewBox": "0 0 60 60",
+                "fill": "none",
+                "xmlns": "http://www.w3.org/2000/svg"
+            },
+            "children": [
+                {
+                    "name": "g",
+                    "type": "element",
+                    "value": "",
+                    "attributes": {
+                        "clip-path": "url(#clip0_21_40)"
+                    },
+                    "children": [
+                        {
+                            "name": "circle",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "cx": "30",
+                                "cy": "30",
+                                "r": "29",
+                                "stroke": "black",
+                                "stroke-width": "2"
+                            },
+                            "children": []
+                        },
+                        {
+                            "name": "rect",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "x": "16",
+                                "y": "16",
+                                "width": "12",
+                                "height": "12",
+                                "rx": "1",
+                                "stroke": "black",
+                                "stroke-width": "2"
+                            },
+                            "children": []
+                        },
+                        {
+                            "name": "rect",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "x": "16",
+                                "y": "32",
+                                "width": "12",
+                                "height": "12",
+                                "rx": "1",
+                                "stroke": "black",
+                                "stroke-width": "2"
+                            },
+                            "children": []
+                        },
+                        {
+                            "name": "rect",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "x": "32",
+                                "y": "32",
+                                "width": "12",
+                                "height": "12",
+                                "rx": "1",
+                                "stroke": "black",
+                                "stroke-width": "2"
+                            },
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "name": "defs",
+                    "type": "element",
+                    "value": "",
+                    "attributes": {},
+                    "children": [
+                        {
+                            "name": "clipPath",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "id": "clip0_21_40"
+                            },
+                            "children": [
+                                {
+                                    "name": "rect",
+                                    "type": "element",
+                                    "value": "",
+                                    "attributes": {
+                                        "width": "60",
+                                        "height": "60",
+                                        "fill": "white"
+                                    },
+                                    "children": []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": "E0794464-61D3-40D0-A564-8E0A2A22D3B2",
+        "inTemplate": false,
+        "orderIndex": 6,
+        "wrap": false,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "IMAGE",
+        "left": 470,
+        "top": 1672,
+        "width": 580,
+        "height": 700,
+        "relIn": {
+            "id": "EDEE30C2-6E5B-4BB6-9039-4C2D094B0CE0",
+            "top": 0,
+            "left": 470,
+            "right": null,
+            "bottom": 0
+        },
+        "relTo": null,
+        "relPage": null,
+        "relPara": null,
+        "title": "",
+        "scale": 0.3020833333333333,
+        "logoTitleScale": 1,
+        "rotation": 0,
+        "mobileHide": false,
+        "scaleStrategy": "crop",
+        "cropTop": 170,
+        "cropLeft": 0,
+        "asset": {
+            "alpha": null,
+            "animated": false,
+            "bpp": null,
+            "contentType": "image/jpeg",
+            "etag": "\"17b373-5fc848a46a261\"",
+            "filesize": 1553267,
+            "height": 2883,
+            "image": null,
+            "recommendedFormat": null,
+            "url": "repository:/design-universal-template-unsplash-vjlJBOedSWw.jpg",
+            "width": 1920
+        },
+        "style": null,
+        "linkAction": null,
+        "lightBoxEnabled": false,
+        "openLink": true,
+        "logoHorizontalAlignment": "left",
+        "isDecorative": false
+    },
+    {
+        "id": "29DE8340-B2A5-4DAB-B737-4FC6E9E6C39C",
+        "inTemplate": false,
+        "orderIndex": 7,
+        "wrap": false,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "TEXT",
+        "left": 0,
+        "top": 1722,
+        "width": 400,
+        "height": 600,
+        "relIn": {
+            "id": "EDEE30C2-6E5B-4BB6-9039-4C2D094B0CE0",
+            "top": 50,
+            "left": 0,
+            "right": null,
+            "bottom": -50
+        },
+        "relTo": null,
+        "relPage": null,
+        "relPara": null,
+        "verticalAlignment": "middle",
+        "mobileHide": false,
+        "mobileSettings": {
+            "align": null,
+            "font": 0
+        },
+        "content": "<p class=\"textheading2\" style=\"text-align: left;\"><span class=\"textheading2\">About Us</span></p>\n<p style=\"text-align: left;\"><br></p>\n<p style=\"text-align: left;\">Paragraphs are the main building blocks of web pages. To change what this one says, just double-click here or hit Edit text. You can change the style here, too. Of course, dragging the text will move the paragraph on the page.</p>\n<p style=\"text-align: left;\"><br></p>\n<p style=\"text-align: left;\">Paragraphs are the main building blocks of web pages. To change what this one says, just double-click here or hit Edit text. You can change the style here, too. Of course, dragging the text will move the paragraph on the page. One paragraph may be enough to introduce your project. If it gets too long, break up the text into several paragraphs. Long text is perfect for explaining what's unique about your website.</p>",
+        "text": "\n\n\n\n\n",
+        "styles": [],
+        "paras": [],
+        "links": [],
+        "themeOverrideColor": null,
+        "themeHighlightColor": null,
+        "themeShadowBlurRadius": 3,
+        "themeShadowColor": null,
+        "themeShadowOffsetX": 3,
+        "themeShadowOffsetY": 3,
+        "globalStyleId": "EAEA20A6-C03E-4C8C-ADA5-43EBBEF4CD23"
+    },
+    {
+        "id": "82242CA8-0A6F-4F81-A8AF-EF620BE3D8DD",
+        "inTemplate": false,
+        "orderIndex": 8,
+        "wrap": false,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "TEXT",
+        "left": 0,
+        "top": 2580,
+        "width": 310,
+        "height": 278,
+        "relIn": {
+            "id": "6FC2976F-28D0-436C-8310-33B4146B251D",
+            "top": 208,
+            "left": 0,
+            "right": null,
+            "bottom": -50
+        },
+        "relTo": {
+            "below": 60,
+            "id": "C8223025-7BE0-46A8-A21C-F139AEC16486"
+        },
+        "relPage": null,
+        "relPara": null,
+        "verticalAlignment": "top",
+        "mobileHide": false,
+        "mobileSettings": {
+            "align": null,
+            "font": 0
+        },
+        "content": "<div class=\"mceNonEditable center\" style=\"width: 50px;\">\n<div style=\"margin-left: auto; margin-right: auto; width: 50px; min-height: 50px; font-size: 0px;\" data-wrap-id=\"B9230F80-62A2-4AC3-9E2C-3AD25DB8D043\"></div>\n</div>\n<p class=\"textheading3\" style=\"text-align: center;\"><span class=\"textheading3\"><br></span></p>\n<p class=\"textheading3\" style=\"text-align: center;\"><span class=\"textheading3\">Quality Craftmanship</span></p>\n<p style=\"text-align: center;\"><br></p>\n<p style=\"text-align: center;\">Paragraphs are the main building blocks of web pages. To change what this one says, just double-click here or hit Edit text. You can change the style here, too.</p>",
+        "text": "\n\n\n\n\n",
+        "styles": [
+            [
+                1,
+                1,
+                {
+                    "globalId": "8CD5B980-3863-473E-8C51-F1E68486FE75",
+                    "globalName": "[heading.3]",
+                    "type": "web.data.styles.StyleText"
+                }
+            ]
+        ],
+        "paras": [
+            [
+                1,
+                2,
+                {
+                    "align": "center",
+                    "type": "web.data.styles.StylePara"
+                }
+            ],
+            [
+                4,
+                5,
+                {
+                    "align": "center",
+                    "type": "web.data.styles.StylePara"
+                }
+            ]
+        ],
+        "links": [],
+        "themeOverrideColor": null,
+        "themeHighlightColor": null,
+        "themeShadowBlurRadius": 3,
+        "themeShadowColor": null,
+        "themeShadowOffsetX": 3,
+        "themeShadowOffsetY": 3,
+        "globalStyleId": "EAEA20A6-C03E-4C8C-ADA5-43EBBEF4CD23"
+    },
+    {
+        "id": "CF1048F0-16AF-4C72-AAFC-5F20B42516A1",
+        "inTemplate": false,
+        "orderIndex": 9,
+        "wrap": false,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "TEXT",
+        "left": 370,
+        "top": 2580,
+        "width": 310,
+        "height": 278,
+        "relIn": {
+            "id": "6FC2976F-28D0-436C-8310-33B4146B251D",
+            "top": 208,
+            "left": 370,
+            "right": null,
+            "bottom": -50
+        },
+        "relTo": {
+            "below": 60,
+            "id": "C8223025-7BE0-46A8-A21C-F139AEC16486"
+        },
+        "relPage": null,
+        "relPara": null,
+        "verticalAlignment": "top",
+        "mobileHide": false,
+        "mobileSettings": {
+            "align": null,
+            "font": 0
+        },
+        "content": "<div class=\"mceNonEditable center\" style=\"width: 50px;\">\n<div style=\"margin-left: auto; margin-right: auto; width: 50px; min-height: 50px; font-size: 0px;\" data-wrap-id=\"B186BF68-267F-40A4-88EA-67076777BCB7\"></div>\n</div>\n<p class=\"textheading3\" style=\"text-align: center;\"><span class=\"textheading3\"><br></span></p>\n<p class=\"textheading3\" style=\"text-align: center;\"><span class=\"textheading3\">Excellent Service</span></p>\n<p style=\"text-align: center;\"><span class=\"textnormal\"><br></span></p>\n<p style=\"text-align: center;\">Paragraphs are the main building blocks of web pages. To change what this one says, just double-click here or hit Edit text. You can change the style here, too.</p>",
+        "text": "\n\n\n\n\n",
+        "styles": [
+            [
+                1,
+                1,
+                {
+                    "globalId": "8CD5B980-3863-473E-8C51-F1E68486FE75",
+                    "globalName": "[heading.3]",
+                    "type": "web.data.styles.StyleText"
+                }
+            ]
+        ],
+        "paras": [
+            [
+                1,
+                2,
+                {
+                    "align": "center",
+                    "type": "web.data.styles.StylePara"
+                }
+            ],
+            [
+                4,
+                5,
+                {
+                    "align": "center",
+                    "type": "web.data.styles.StylePara"
+                }
+            ]
+        ],
+        "links": [],
+        "themeOverrideColor": null,
+        "themeHighlightColor": null,
+        "themeShadowBlurRadius": 3,
+        "themeShadowColor": null,
+        "themeShadowOffsetX": 3,
+        "themeShadowOffsetY": 3,
+        "globalStyleId": "EAEA20A6-C03E-4C8C-ADA5-43EBBEF4CD23"
+    },
+    {
+        "id": "447B70C1-2530-498D-9148-06F620F7DD87",
+        "inTemplate": false,
+        "orderIndex": 10,
+        "wrap": false,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "TEXT",
+        "left": 740,
+        "top": 2580,
+        "width": 310,
+        "height": 278,
+        "relIn": {
+            "id": "6FC2976F-28D0-436C-8310-33B4146B251D",
+            "top": 208,
+            "left": 740,
+            "right": null,
+            "bottom": -50
+        },
+        "relTo": {
+            "below": 60,
+            "id": "C8223025-7BE0-46A8-A21C-F139AEC16486"
+        },
+        "relPage": null,
+        "relPara": null,
+        "verticalAlignment": "top",
+        "mobileHide": false,
+        "mobileSettings": {
+            "align": null,
+            "font": 0
+        },
+        "content": "<div class=\"mceNonEditable center\" style=\"width: 50px;\">\n<div style=\"margin-left: auto; margin-right: auto; width: 50px; min-height: 50px; font-size: 0px;\" data-wrap-id=\"AA36EE59-0B62-4DC0-8B3D-F7EA3600F98F\"></div>\n</div>\n<p class=\"textheading3\" style=\"text-align: center;\"><span class=\"textheading3\"><br></span></p>\n<p class=\"textheading3\" style=\"text-align: center;\"><span class=\"textheading3\">Free Quotation</span></p>\n<p style=\"text-align: center;\"><span class=\"textnormal\"><br></span></p>\n<p style=\"text-align: center;\">Paragraphs are the main building blocks of web pages. To change what this one says, just double-click here or hit Edit text. You can change the style here, too.</p>",
+        "text": "\n\n\n\n\n",
+        "styles": [
+            [
+                1,
+                1,
+                {
+                    "globalId": "8CD5B980-3863-473E-8C51-F1E68486FE75",
+                    "globalName": "[heading.3]",
+                    "type": "web.data.styles.StyleText"
+                }
+            ]
+        ],
+        "paras": [
+            [
+                1,
+                2,
+                {
+                    "align": "center",
+                    "type": "web.data.styles.StylePara"
+                }
+            ],
+            [
+                4,
+                5,
+                {
+                    "align": "center",
+                    "type": "web.data.styles.StylePara"
+                }
+            ]
+        ],
+        "links": [],
+        "themeOverrideColor": null,
+        "themeHighlightColor": null,
+        "themeShadowBlurRadius": 3,
+        "themeShadowColor": null,
+        "themeShadowOffsetX": 3,
+        "themeShadowOffsetY": 3,
+        "globalStyleId": "EAEA20A6-C03E-4C8C-ADA5-43EBBEF4CD23"
+    },
+    {
+        "id": "C8223025-7BE0-46A8-A21C-F139AEC16486",
+        "inTemplate": false,
+        "orderIndex": 11,
+        "wrap": false,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "TEXT",
+        "left": 0,
+        "top": 2472,
+        "width": 1050,
+        "height": 48,
+        "relIn": {
+            "id": "6FC2976F-28D0-436C-8310-33B4146B251D",
+            "top": 100,
+            "left": 0,
+            "right": null,
+            "bottom": -388
+        },
+        "relTo": null,
+        "relPage": null,
+        "relPara": null,
+        "verticalAlignment": "top",
+        "mobileHide": false,
+        "mobileSettings": {
+            "align": null,
+            "font": 0
+        },
+        "content": "<p class=\"textheading2\" style=\"text-align: center;\">Why Choose Us</p>",
+        "text": "",
+        "styles": [],
+        "paras": [],
+        "links": [],
+        "themeOverrideColor": null,
+        "themeHighlightColor": null,
+        "themeShadowBlurRadius": 3,
+        "themeShadowColor": null,
+        "themeShadowOffsetX": 3,
+        "themeShadowOffsetY": 3,
+        "globalStyleId": "EAEA20A6-C03E-4C8C-ADA5-43EBBEF4CD23"
+    },
+    {
+        "id": "B9230F80-62A2-4AC3-9E2C-3AD25DB8D043",
+        "inTemplate": false,
+        "orderIndex": 12,
+        "wrap": true,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "SVG",
+        "left": 130,
+        "top": 2580,
+        "width": 50,
+        "height": 50,
+        "relIn": {
+            "id": "82242CA8-0A6F-4F81-A8AF-EF620BE3D8DD",
+            "top": 0,
+            "left": 130,
+            "right": -130,
+            "bottom": -178
+        },
+        "relTo": null,
+        "relPage": null,
+        "relPara": {
+            "index": 0,
+            "offset": 0
+        },
+        "asset": {
+            "alpha": null,
+            "animated": false,
+            "bpp": null,
+            "contentType": "image/svg",
+            "etag": "\"1b7-5fc848b78aabb\"",
+            "filesize": 439,
+            "height": 60,
+            "image": null,
+            "recommendedFormat": null,
+            "url": "repository:/repository-icon-check-mark-circle-outlined.svg",
+            "width": 60
+        },
+        "colors": [
+            {
+                "fromColor": "rgba(0,0,0,1)",
+                "toColor": "#8d7b68",
+                "toThemeColor": "mainColor"
+            },
+            {
+                "fromColor": "rgba(255,255,255,1)",
+                "toColor": "rgba(255,255,255,1)"
+            }
+        ],
+        "defaultFillColor": "rgba(0,0,0,1)",
+        "linkAction": null,
+        "opacity": 100,
+        "seo": "",
+        "rawSvg": "<svg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<g clip-path=\"url(#clip0_1_3)\">\n<circle cx=\"30\" cy=\"30\" r=\"29\" stroke=\"black\" stroke-width=\"2\"/>\n<path d=\"M44.2843 20.0711L23.0711 41.2843L16 34.2132\" stroke=\"black\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</g>\n<defs>\n<clipPath id=\"clip0_1_3\">\n<rect width=\"60\" height=\"60\" fill=\"white\"/>\n</clipPath>\n</defs>\n</svg>\n",
+        "useOriginalColors": false,
+        "svgJson": {
+            "name": "svg",
+            "type": "element",
+            "value": "",
+            "attributes": {
+                "width": "60",
+                "height": "60",
+                "viewBox": "0 0 60 60",
+                "fill": "none",
+                "xmlns": "http://www.w3.org/2000/svg"
+            },
+            "children": [
+                {
+                    "name": "g",
+                    "type": "element",
+                    "value": "",
+                    "attributes": {
+                        "clip-path": "url(#clip0_1_3)"
+                    },
+                    "children": [
+                        {
+                            "name": "circle",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "cx": "30",
+                                "cy": "30",
+                                "r": "29",
+                                "stroke": "black",
+                                "stroke-width": "2"
+                            },
+                            "children": []
+                        },
+                        {
+                            "name": "path",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "d": "M44.2843 20.0711L23.0711 41.2843L16 34.2132",
+                                "stroke": "black",
+                                "stroke-width": "2.5",
+                                "stroke-linecap": "round",
+                                "stroke-linejoin": "round"
+                            },
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "name": "defs",
+                    "type": "element",
+                    "value": "",
+                    "attributes": {},
+                    "children": [
+                        {
+                            "name": "clipPath",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "id": "clip0_1_3"
+                            },
+                            "children": [
+                                {
+                                    "name": "rect",
+                                    "type": "element",
+                                    "value": "",
+                                    "attributes": {
+                                        "width": "60",
+                                        "height": "60",
+                                        "fill": "white"
+                                    },
+                                    "children": []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": "B186BF68-267F-40A4-88EA-67076777BCB7",
+        "inTemplate": false,
+        "orderIndex": 13,
+        "wrap": true,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "SVG",
+        "left": 500,
+        "top": 2580,
+        "width": 50,
+        "height": 50,
+        "relIn": {
+            "id": "CF1048F0-16AF-4C72-AAFC-5F20B42516A1",
+            "top": 0,
+            "left": 130,
+            "right": -130,
+            "bottom": -178
+        },
+        "relTo": null,
+        "relPage": null,
+        "relPara": {
+            "index": 0,
+            "offset": 0
+        },
+        "asset": {
+            "alpha": null,
+            "animated": false,
+            "bpp": null,
+            "contentType": "image/svg",
+            "etag": "\"208-5fc848b7add3b\"",
+            "filesize": 520,
+            "height": 60,
+            "image": null,
+            "recommendedFormat": null,
+            "url": "repository:/repository-icon-star-circle.svg",
+            "width": 60
+        },
+        "colors": [
+            {
+                "fromColor": "rgba(0,0,0,1)",
+                "toColor": "#8d7b68",
+                "toThemeColor": "mainColor"
+            },
+            {
+                "fromColor": "rgba(255,255,255,1)",
+                "toColor": "rgba(255,255,255,1)"
+            }
+        ],
+        "defaultFillColor": "rgba(0,0,0,1)",
+        "linkAction": null,
+        "opacity": 100,
+        "seo": "",
+        "rawSvg": "<svg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<g clip-path=\"url(#clip0_1_4)\">\n<circle cx=\"30\" cy=\"30\" r=\"29\" stroke=\"black\" stroke-width=\"2\"/>\n<path d=\"M30 15L33.3677 25.3647H44.2658L35.4491 31.7705L38.8168 42.1353L30 35.7295L21.1832 42.1353L24.5509 31.7705L15.7342 25.3647H26.6323L30 15Z\" fill=\"black\" stroke=\"black\" stroke-width=\"2\" stroke-linejoin=\"round\"/>\n</g>\n<defs>\n<clipPath id=\"clip0_1_4\">\n<rect width=\"60\" height=\"60\" fill=\"white\"/>\n</clipPath>\n</defs>\n</svg>\n",
+        "useOriginalColors": false,
+        "svgJson": {
+            "name": "svg",
+            "type": "element",
+            "value": "",
+            "attributes": {
+                "width": "60",
+                "height": "60",
+                "viewBox": "0 0 60 60",
+                "fill": "none",
+                "xmlns": "http://www.w3.org/2000/svg"
+            },
+            "children": [
+                {
+                    "name": "g",
+                    "type": "element",
+                    "value": "",
+                    "attributes": {
+                        "clip-path": "url(#clip0_1_4)"
+                    },
+                    "children": [
+                        {
+                            "name": "circle",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "cx": "30",
+                                "cy": "30",
+                                "r": "29",
+                                "stroke": "black",
+                                "stroke-width": "2"
+                            },
+                            "children": []
+                        },
+                        {
+                            "name": "path",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "d": "M30 15L33.3677 25.3647H44.2658L35.4491 31.7705L38.8168 42.1353L30 35.7295L21.1832 42.1353L24.5509 31.7705L15.7342 25.3647H26.6323L30 15Z",
+                                "fill": "black",
+                                "stroke": "black",
+                                "stroke-width": "2",
+                                "stroke-linejoin": "round"
+                            },
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "name": "defs",
+                    "type": "element",
+                    "value": "",
+                    "attributes": {},
+                    "children": [
+                        {
+                            "name": "clipPath",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "id": "clip0_1_4"
+                            },
+                            "children": [
+                                {
+                                    "name": "rect",
+                                    "type": "element",
+                                    "value": "",
+                                    "attributes": {
+                                        "width": "60",
+                                        "height": "60",
+                                        "fill": "white"
+                                    },
+                                    "children": []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": "AA36EE59-0B62-4DC0-8B3D-F7EA3600F98F",
+        "inTemplate": false,
+        "orderIndex": 14,
+        "wrap": true,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "SVG",
+        "left": 870,
+        "top": 2580,
+        "width": 50,
+        "height": 50,
+        "relIn": {
+            "id": "447B70C1-2530-498D-9148-06F620F7DD87",
+            "top": 0,
+            "left": 130,
+            "right": -130,
+            "bottom": -178
+        },
+        "relTo": null,
+        "relPage": null,
+        "relPara": {
+            "index": 0,
+            "offset": 0
+        },
+        "asset": {
+            "alpha": null,
+            "animated": false,
+            "bpp": null,
+            "contentType": "image/svg",
+            "etag": "\"6c3-5fc848b77a11b\"",
+            "filesize": 1731,
+            "height": 60,
+            "image": null,
+            "recommendedFormat": null,
+            "url": "repository:/repository-icon-calculator-circle-outlined.svg",
+            "width": 60
+        },
+        "colors": [
+            {
+                "fromColor": "rgba(0,0,0,1)",
+                "toColor": "#8d7b68",
+                "toThemeColor": "mainColor"
+            },
+            {
+                "fromColor": "rgba(255,255,255,1)",
+                "toColor": "rgba(255,255,255,1)"
+            }
+        ],
+        "defaultFillColor": "rgba(0,0,0,1)",
+        "linkAction": null,
+        "opacity": 100,
+        "seo": "",
+        "rawSvg": "<svg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<g clip-path=\"url(#clip0_1_5)\">\n<circle cx=\"30\" cy=\"30\" r=\"29\" stroke=\"black\" stroke-width=\"2\"/>\n<rect x=\"16\" y=\"16\" width=\"28\" height=\"28\" rx=\"2\" stroke=\"black\" stroke-width=\"2\" stroke-linejoin=\"round\"/>\n<rect x=\"36\" y=\"27\" width=\"8\" height=\"2\" rx=\"1\" transform=\"rotate(-90 36 27)\" fill=\"black\"/>\n<rect width=\"8\" height=\"2\" rx=\"1\" transform=\"matrix(1 0 0 -1 33 24)\" fill=\"black\"/>\n<rect width=\"8\" height=\"2\" rx=\"1\" transform=\"matrix(1 0 0 -1 33 38)\" fill=\"black\"/>\n<rect width=\"2\" height=\"2\" rx=\"1\" transform=\"matrix(1 0 0 -1 36 35)\" fill=\"black\"/>\n<rect width=\"2\" height=\"2\" rx=\"1\" transform=\"matrix(1 0 0 -1 36 41)\" fill=\"black\"/>\n<rect x=\"27\" y=\"39.5\" width=\"8\" height=\"2\" rx=\"1\" transform=\"rotate(180 27 39.5)\" fill=\"black\"/>\n<rect width=\"8\" height=\"2\" rx=\"1\" transform=\"matrix(1 0 0 -1 19 36.5)\" fill=\"black\"/>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M21.7071 25.9497C21.3166 26.3403 20.6834 26.3403 20.2929 25.9497C19.9024 25.5592 19.9024 24.9261 20.2929 24.5355L21.7071 23.1213L20.2929 21.7071C19.9024 21.3166 19.9024 20.6834 20.2929 20.2929C20.6834 19.9024 21.3166 19.9024 21.7071 20.2929L23.1213 21.7071L24.5355 20.2929C24.9261 19.9024 25.5592 19.9024 25.9497 20.2929C26.3403 20.6834 26.3403 21.3166 25.9497 21.7071L24.5355 23.1213L25.9498 24.5355C26.3403 24.9261 26.3403 25.5592 25.9498 25.9497C25.5592 26.3403 24.9261 26.3403 24.5355 25.9497L23.1213 24.5355L21.7071 25.9497Z\" fill=\"black\"/>\n<rect x=\"29\" y=\"17\" width=\"2\" height=\"26\" fill=\"black\"/>\n<rect x=\"17\" y=\"29\" width=\"26\" height=\"2\" fill=\"black\"/>\n</g>\n<defs>\n<clipPath id=\"clip0_1_5\">\n<rect width=\"60\" height=\"60\" fill=\"white\"/>\n</clipPath>\n</defs>\n</svg>\n",
+        "useOriginalColors": false,
+        "svgJson": {
+            "name": "svg",
+            "type": "element",
+            "value": "",
+            "attributes": {
+                "width": "60",
+                "height": "60",
+                "viewBox": "0 0 60 60",
+                "fill": "none",
+                "xmlns": "http://www.w3.org/2000/svg"
+            },
+            "children": [
+                {
+                    "name": "g",
+                    "type": "element",
+                    "value": "",
+                    "attributes": {
+                        "clip-path": "url(#clip0_1_5)"
+                    },
+                    "children": [
+                        {
+                            "name": "circle",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "cx": "30",
+                                "cy": "30",
+                                "r": "29",
+                                "stroke": "black",
+                                "stroke-width": "2"
+                            },
+                            "children": []
+                        },
+                        {
+                            "name": "rect",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "x": "16",
+                                "y": "16",
+                                "width": "28",
+                                "height": "28",
+                                "rx": "2",
+                                "stroke": "black",
+                                "stroke-width": "2",
+                                "stroke-linejoin": "round"
+                            },
+                            "children": []
+                        },
+                        {
+                            "name": "rect",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "x": "36",
+                                "y": "27",
+                                "width": "8",
+                                "height": "2",
+                                "rx": "1",
+                                "transform": "rotate(-90 36 27)",
+                                "fill": "black"
+                            },
+                            "children": []
+                        },
+                        {
+                            "name": "rect",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "width": "8",
+                                "height": "2",
+                                "rx": "1",
+                                "transform": "matrix(1 0 0 -1 33 24)",
+                                "fill": "black"
+                            },
+                            "children": []
+                        },
+                        {
+                            "name": "rect",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "width": "8",
+                                "height": "2",
+                                "rx": "1",
+                                "transform": "matrix(1 0 0 -1 33 38)",
+                                "fill": "black"
+                            },
+                            "children": []
+                        },
+                        {
+                            "name": "rect",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "width": "2",
+                                "height": "2",
+                                "rx": "1",
+                                "transform": "matrix(1 0 0 -1 36 35)",
+                                "fill": "black"
+                            },
+                            "children": []
+                        },
+                        {
+                            "name": "rect",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "width": "2",
+                                "height": "2",
+                                "rx": "1",
+                                "transform": "matrix(1 0 0 -1 36 41)",
+                                "fill": "black"
+                            },
+                            "children": []
+                        },
+                        {
+                            "name": "rect",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "x": "27",
+                                "y": "39.5",
+                                "width": "8",
+                                "height": "2",
+                                "rx": "1",
+                                "transform": "rotate(180 27 39.5)",
+                                "fill": "black"
+                            },
+                            "children": []
+                        },
+                        {
+                            "name": "rect",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "width": "8",
+                                "height": "2",
+                                "rx": "1",
+                                "transform": "matrix(1 0 0 -1 19 36.5)",
+                                "fill": "black"
+                            },
+                            "children": []
+                        },
+                        {
+                            "name": "path",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "fill-rule": "evenodd",
+                                "clip-rule": "evenodd",
+                                "d": "M21.7071 25.9497C21.3166 26.3403 20.6834 26.3403 20.2929 25.9497C19.9024 25.5592 19.9024 24.9261 20.2929 24.5355L21.7071 23.1213L20.2929 21.7071C19.9024 21.3166 19.9024 20.6834 20.2929 20.2929C20.6834 19.9024 21.3166 19.9024 21.7071 20.2929L23.1213 21.7071L24.5355 20.2929C24.9261 19.9024 25.5592 19.9024 25.9497 20.2929C26.3403 20.6834 26.3403 21.3166 25.9497 21.7071L24.5355 23.1213L25.9498 24.5355C26.3403 24.9261 26.3403 25.5592 25.9498 25.9497C25.5592 26.3403 24.9261 26.3403 24.5355 25.9497L23.1213 24.5355L21.7071 25.9497Z",
+                                "fill": "black"
+                            },
+                            "children": []
+                        },
+                        {
+                            "name": "rect",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "x": "29",
+                                "y": "17",
+                                "width": "2",
+                                "height": "26",
+                                "fill": "black"
+                            },
+                            "children": []
+                        },
+                        {
+                            "name": "rect",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "x": "17",
+                                "y": "29",
+                                "width": "26",
+                                "height": "2",
+                                "fill": "black"
+                            },
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "name": "defs",
+                    "type": "element",
+                    "value": "",
+                    "attributes": {},
+                    "children": [
+                        {
+                            "name": "clipPath",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "id": "clip0_1_5"
+                            },
+                            "children": [
+                                {
+                                    "name": "rect",
+                                    "type": "element",
+                                    "value": "",
+                                    "attributes": {
+                                        "width": "60",
+                                        "height": "60",
+                                        "fill": "white"
+                                    },
+                                    "children": []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": "DEFDB9FD-0A71-4933-946C-D4AF19F042AD",
+        "inTemplate": false,
+        "orderIndex": 15,
+        "wrap": false,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "TEXT",
+        "left": 0,
+        "top": 3008,
+        "width": 1050,
+        "height": 48,
+        "relIn": {
+            "id": "01396C5D-3328-426C-AC1A-EEA1CDFB5369",
+            "top": 100,
+            "left": 0,
+            "right": null,
+            "bottom": -354
+        },
+        "relTo": null,
+        "relPage": null,
+        "relPara": null,
+        "verticalAlignment": "top",
+        "mobileHide": false,
+        "mobileSettings": {
+            "align": "center",
+            "font": 0
+        },
+        "content": "<p class=\"textheading2\" style=\"text-align: center;\"><span class=\"textheading2\" style=\"color: #ffffff;\">Success Stories</span></p>",
+        "text": "",
+        "styles": [],
+        "paras": [],
+        "links": [],
+        "themeOverrideColor": null,
+        "themeHighlightColor": null,
+        "themeShadowBlurRadius": 3,
+        "themeShadowColor": null,
+        "themeShadowOffsetX": 3,
+        "themeShadowOffsetY": 3,
+        "globalStyleId": "EAEA20A6-C03E-4C8C-ADA5-43EBBEF4CD23"
+    },
+    {
+        "id": "11BAB275-9620-4827-AE5A-21008C9FFBA4",
+        "inTemplate": false,
+        "orderIndex": 16,
+        "wrap": false,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "TEXT",
+        "left": 0,
+        "top": 3510,
+        "width": 1050,
+        "height": 56,
+        "relIn": {
+            "id": "ACB77BBE-929A-4B55-9063-6C8CB018323E",
+            "top": 100,
+            "left": 0,
+            "right": null,
+            "bottom": -1045
+        },
+        "relTo": null,
+        "relPage": null,
+        "relPara": null,
+        "verticalAlignment": "top",
+        "mobileHide": false,
+        "mobileSettings": {
+            "align": null,
+            "font": 0
+        },
+        "content": "<p class=\"textheading2\" style=\"text-align: center;\">Get in Touch</p>",
+        "text": "",
+        "styles": [],
+        "paras": [],
+        "links": [],
+        "themeOverrideColor": null,
+        "themeHighlightColor": null,
+        "themeShadowBlurRadius": 3,
+        "themeShadowColor": null,
+        "themeShadowOffsetX": 3,
+        "themeShadowOffsetY": 3,
+        "globalStyleId": "EAEA20A6-C03E-4C8C-ADA5-43EBBEF4CD23"
+    },
+    {
+        "id": "711F8FA5-D498-408F-AB37-F98B81E02A73",
+        "inTemplate": false,
+        "orderIndex": 17,
+        "wrap": false,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "TEXT",
+        "left": 0,
+        "top": 3626,
+        "width": 470,
+        "height": 86,
+        "relIn": {
+            "id": "ACB77BBE-929A-4B55-9063-6C8CB018323E",
+            "top": 216,
+            "left": 0,
+            "right": null,
+            "bottom": -899
+        },
+        "relTo": {
+            "below": 60,
+            "id": "11BAB275-9620-4827-AE5A-21008C9FFBA4"
+        },
+        "relPage": null,
+        "relPara": null,
+        "verticalAlignment": "top",
+        "mobileHide": false,
+        "mobileSettings": {
+            "align": null,
+            "font": 0
+        },
+        "content": "<p class=\"textheading3\"><span class=\"textheading3\">If you have any questions or concerns, we're always ready to help!</span></p>",
+        "text": "",
+        "styles": [],
+        "paras": [],
+        "links": [],
+        "themeOverrideColor": null,
+        "themeHighlightColor": null,
+        "themeShadowBlurRadius": 3,
+        "themeShadowColor": null,
+        "themeShadowOffsetX": 3,
+        "themeShadowOffsetY": 3,
+        "globalStyleId": "EAEA20A6-C03E-4C8C-ADA5-43EBBEF4CD23"
+    },
+    {
+        "id": "DB243BE3-7FB3-43FA-A899-3113F366BC84",
+        "inTemplate": false,
+        "orderIndex": 18,
+        "wrap": false,
+        "onHover": null,
+        "kind": "ADDRESS",
+        "left": 0,
+        "top": 3742,
+        "width": 420,
+        "height": 24,
+        "relIn": {
+            "id": "ACB77BBE-929A-4B55-9063-6C8CB018323E",
+            "top": 332,
+            "left": 0,
+            "right": null,
+            "bottom": -845
+        },
+        "relTo": {
+            "below": 30,
+            "id": "711F8FA5-D498-408F-AB37-F98B81E02A73"
+        },
+        "relPage": null,
+        "relPara": null,
+        "generic": {
+            "customPrefixText": "Address",
+            "horizontalAlignment": "left",
+            "iconSize": 30,
+            "iconTextSpacing": 11,
+            "mobileFontSize": null,
+            "mobileHorizontalAlignment": null,
+            "mobileIconSize": null,
+            "showCustomTitleFirst": false,
+            "showIcon": false,
+            "showOnOneLine": true,
+            "textStyle": {
+                "bold": null,
+                "color": null,
+                "fontFamily": null,
+                "fontSize": null,
+                "italic": null,
+                "letterSpacing": 0,
+                "lineHeight": null,
+                "prefixBold": true,
+                "prefixCase": null,
+                "prefixItalic": null,
+                "prefixUnderline": null,
+                "underline": null,
+                "valueCase": null
+            },
+            "themeOverrideColor": null
+        },
+        "specific": {
+            "placeholder": {
+                "addressName": "Business title",
+                "addressStreetAddress": "Street address",
+                "addressCity": "City",
+                "addressZip": "Zip code",
+                "addressAreaState": "State",
+                "addressAreaProvince": "Province",
+                "addressCountry": "Country"
+            },
+            "showCountry": false,
+            "showWebsiteTitleBeforeAddress": true
+        }
+    },
+    {
+        "id": "F6FDAC4C-93AB-4EE1-9148-14AFF368E910",
+        "inTemplate": false,
+        "orderIndex": 19,
+        "wrap": false,
+        "onHover": null,
+        "kind": "PHONE",
+        "left": 0,
+        "top": 3796,
+        "width": 250,
+        "height": 24,
+        "relIn": {
+            "id": "ACB77BBE-929A-4B55-9063-6C8CB018323E",
+            "top": 386,
+            "left": 0,
+            "right": null,
+            "bottom": -791
+        },
+        "relTo": {
+            "below": 30,
+            "id": "DB243BE3-7FB3-43FA-A899-3113F366BC84"
+        },
+        "relPage": null,
+        "relPara": null,
+        "generic": {
+            "customPrefixText": "Phone",
+            "horizontalAlignment": "left",
+            "iconSize": 30,
+            "iconTextSpacing": 11,
+            "mobileFontSize": null,
+            "mobileHorizontalAlignment": null,
+            "mobileIconSize": null,
+            "showCustomTitleFirst": false,
+            "showIcon": false,
+            "showOnOneLine": true,
+            "textStyle": {
+                "bold": null,
+                "color": null,
+                "fontFamily": null,
+                "fontSize": null,
+                "italic": null,
+                "letterSpacing": 0,
+                "lineHeight": null,
+                "prefixBold": true,
+                "prefixCase": null,
+                "prefixItalic": null,
+                "prefixUnderline": null,
+                "underline": null,
+                "valueCase": null
+            },
+            "themeOverrideColor": null
+        },
+        "specific": {
+            "placeholderText": "+44 1234 567890"
+        }
+    },
+    {
+        "id": "5F969917-BAF2-4755-9DA2-38CC2E7C964F",
+        "inTemplate": false,
+        "orderIndex": 20,
+        "wrap": false,
+        "onHover": null,
+        "kind": "EMAIL",
+        "left": 0,
+        "top": 3850,
+        "width": 250,
+        "height": 24,
+        "relIn": {
+            "id": "ACB77BBE-929A-4B55-9063-6C8CB018323E",
+            "top": 440,
+            "left": 0,
+            "right": null,
+            "bottom": -737
+        },
+        "relTo": {
+            "below": 30,
+            "id": "F6FDAC4C-93AB-4EE1-9148-14AFF368E910"
+        },
+        "relPage": null,
+        "relPara": null,
+        "generic": {
+            "customPrefixText": "Email",
+            "horizontalAlignment": "left",
+            "iconSize": 30,
+            "iconTextSpacing": 11,
+            "mobileFontSize": null,
+            "mobileHorizontalAlignment": null,
+            "mobileIconSize": null,
+            "showCustomTitleFirst": false,
+            "showIcon": false,
+            "showOnOneLine": true,
+            "textStyle": {
+                "bold": null,
+                "color": null,
+                "fontFamily": null,
+                "fontSize": null,
+                "italic": null,
+                "letterSpacing": 0,
+                "lineHeight": null,
+                "prefixBold": true,
+                "prefixCase": null,
+                "prefixItalic": null,
+                "prefixUnderline": null,
+                "underline": null,
+                "valueCase": null
+            },
+            "themeOverrideColor": null
+        },
+        "specific": {
+            "placeholderText": "your@email.com"
+        }
+    },
+    {
+        "id": "77E268C2-8853-4596-A569-7D7FEC413A09",
+        "inTemplate": false,
+        "orderIndex": 21,
+        "stretch": null,
+        "wrap": false,
+        "onHover": null,
+        "kind": "CONTACTFORM",
+        "left": 550,
+        "top": 3626,
+        "width": 500,
+        "height": 475,
+        "relIn": {
+            "id": "ACB77BBE-929A-4B55-9063-6C8CB018323E",
+            "top": 216,
+            "left": 550,
+            "right": null,
+            "bottom": -510
+        },
+        "relTo": {
+            "below": 60,
+            "id": "11BAB275-9620-4827-AE5A-21008C9FFBA4"
+        },
+        "relPage": null,
+        "relPara": null,
+        "subject": "",
+        "formElements": {
+            "email": {
+                "errorMessage": "Please enter a valid email address",
+                "inputType": "email",
+                "isRequired": true,
+                "name": "Email",
+                "values": null
+            },
+            "message": {
+                "errorMessage": "Please enter a valid message",
+                "inputType": "textarea",
+                "isRequired": true,
+                "name": "Message",
+                "values": null
+            },
+            "name": {
+                "errorMessage": "Please enter a valid name",
+                "inputType": "text",
+                "isRequired": true,
+                "name": "Name",
+                "values": null
+            }
+        },
+        "mobileSettings": {
+            "align": "justify"
+        },
+        "submitBtn": "Send",
+        "successMessage": "Thank you for your message",
+        "formElementsOrder": [
+            "name",
+            "email",
+            "message"
+        ],
+        "recipientEmail": "",
+        "styleButton": {
+            "globalId": "7153EA6D-1B73-43C6-A5B6-F712CE8CF705",
+            "globalName": "[button.1]",
+            "type": "web.data.styles.StyleButton",
+            "text": {
+                "size": 15
+            }
+        },
+        "styleForm": {
+            "font": "Open Sans",
+            "fontSize": null,
+            "fontColor": [
+                "HSL",
+                0.5644999999999936,
+                0,
+                0.16820000000000002,
+                1
+            ]
+        },
+        "buttonThemeSelected": "primary",
+        "fuButtonThemeSelected": null,
+        "isCaptchaEnabled": true,
+        "captchaLang": "en_gb",
+        "isMarketingConsentEnabled": true,
+        "marketingConsentCheckBoxText": "Yes, I want to receive news about promotions.",
+        "readPrivacyPolicyText": "Read Privacy policy"
+    },
+    {
+        "id": "DEE4839D-A40D-4444-9028-017F52E8A5CB",
+        "inTemplate": false,
+        "orderIndex": 22,
+        "wrap": false,
+        "onHover": null,
+        "kind": "SOCIAL_LINKS",
+        "left": 0,
+        "top": 3904,
+        "width": 136,
+        "height": 32,
+        "relIn": {
+            "id": "ACB77BBE-929A-4B55-9063-6C8CB018323E",
+            "top": 494,
+            "left": 0,
+            "right": null,
+            "bottom": -675
+        },
+        "relTo": {
+            "below": 30,
+            "id": "5F969917-BAF2-4755-9DA2-38CC2E7C964F"
+        },
+        "relPage": null,
+        "relPara": null,
+        "colorType": "DARK",
+        "themeColorType": "THEME_DEFAULT",
+        "size": 32,
+        "spacing": 20,
+        "mobileSize": 32,
+        "mobileHorizontalAlignment": "left",
+        "styleType": "CIRCLE_KNOCKOUT",
+        "links": [
+            {
+                "id": "92A149A0B02C41E39CD18F4EB4192BD0$",
+                "kind": "FACEBOOK"
+            },
+            {
+                "id": "BE5E5D1DA8314BEB9342778148B9D3B1$",
+                "kind": "TWITTER"
+            },
+            {
+                "id": "F2A0527EF355499393555E2B501071CD$",
+                "kind": "INSTAGRAM"
+            }
+        ]
+    },
+    {
+        "id": "CB0BA8B1-2DAF-4C9D-AE24-9A4462604F72",
+        "inTemplate": false,
+        "orderIndex": 23,
+        "wrap": false,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "TEXT",
+        "left": 0,
+        "top": 3116,
+        "width": 310,
+        "height": 194,
+        "relIn": {
+            "id": "01396C5D-3328-426C-AC1A-EEA1CDFB5369",
+            "top": 208,
+            "left": 0,
+            "right": null,
+            "bottom": -100
+        },
+        "relTo": {
+            "below": 60,
+            "id": "DEFDB9FD-0A71-4933-946C-D4AF19F042AD"
+        },
+        "relPage": null,
+        "relPara": null,
+        "verticalAlignment": "top",
+        "mobileHide": false,
+        "mobileSettings": {
+            "align": null,
+            "font": 0
+        },
+        "content": "<div class=\"mceNonEditable center\" style=\"width: 50px;\">\n<div style=\"margin-left: auto; margin-right: auto; width: 50px; min-height: 50px; font-size: 0px;\" data-wrap-id=\"9E13AEFF-9D07-404C-9526-5E88D4E208F1\"></div>\n</div>\n<p class=\"textnormal\"><span style=\"color: #ffffff; font-weight: normal;\"><span style=\"color: #ffffff;\"><br></span></span></p>\n<p class=\"textnormal\" style=\"text-align: center;\"><span style=\"color: #ffffff;\">Someone saying something nice about what you do is priceless. Click here to add a quote from a customer or a fan.</span></p>\n<p class=\"textnormal\"><span style=\"font-weight: bold; color: #ffffff;\"><br></span></p>\n<p class=\"textnormal\" style=\"text-align: center;\"><span style=\"font-weight: bold; color: #ffffff;\">― Anne Smith</span></p>",
+        "text": "\n\n\n\n\n\n― ",
+        "styles": [
+            [
+                1,
+                1,
+                {
+                    "bold": false,
+                    "color": [
+                        "HSL",
+                        0,
+                        0,
+                        1,
+                        1
+                    ],
+                    "type": "web.data.styles.StyleText"
+                }
+            ],
+            [
+                4,
+                4,
+                {
+                    "bold": true,
+                    "color": [
+                        "HSL",
+                        0,
+                        0,
+                        1,
+                        1
+                    ],
+                    "type": "web.data.styles.StyleText"
+                }
+            ],
+            [
+                6,
+                8,
+                {
+                    "bold": true,
+                    "color": [
+                        "HSL",
+                        0,
+                        0,
+                        1,
+                        1
+                    ],
+                    "type": "web.data.styles.StyleText"
+                }
+            ]
+        ],
+        "paras": [
+            [
+                6,
+                8,
+                {
+                    "align": "center",
+                    "type": "web.data.styles.StylePara"
+                }
+            ]
+        ],
+        "links": [],
+        "themeOverrideColor": null,
+        "themeHighlightColor": null,
+        "themeShadowBlurRadius": 3,
+        "themeShadowColor": null,
+        "themeShadowOffsetX": 3,
+        "themeShadowOffsetY": 3,
+        "globalStyleId": "EAEA20A6-C03E-4C8C-ADA5-43EBBEF4CD23"
+    },
+    {
+        "id": "9E13AEFF-9D07-404C-9526-5E88D4E208F1",
+        "inTemplate": false,
+        "orderIndex": 25,
+        "wrap": true,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "SVG",
+        "left": 130,
+        "top": 3116,
+        "width": 50,
+        "height": 50,
+        "relIn": {
+            "id": "CB0BA8B1-2DAF-4C9D-AE24-9A4462604F72",
+            "top": 0,
+            "left": 130,
+            "right": -130,
+            "bottom": -144
+        },
+        "relTo": null,
+        "relPage": null,
+        "relPara": {
+            "index": 0,
+            "offset": 0
+        },
+        "asset": {
+            "alpha": null,
+            "animated": false,
+            "bpp": null,
+            "contentType": "image/svg",
+            "etag": "\"ca9-5fc848b7c63db\"",
+            "filesize": 3241,
+            "height": 54,
+            "image": null,
+            "recommendedFormat": null,
+            "url": "repository:/repository-quote.svg",
+            "width": 54
+        },
+        "colors": [
+            {
+                "fromColor": "rgba(105,105,104,1)",
+                "toColor": "#ffffff"
+            }
+        ],
+        "defaultFillColor": "",
+        "linkAction": null,
+        "opacity": 100,
+        "seo": "",
+        "rawSvg": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg width=\"54px\" height=\"54px\" viewBox=\"0 0 54 54\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n    <title>img-quote</title>\n    <g id=\"Page-1\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\">\n        <g id=\"Painters---02\" transform=\"translate(-934.000000, -1405.000000)\" fill=\"#696968\" fill-rule=\"nonzero\">\n            <g id=\"img-quote\" transform=\"translate(934.000000, 1405.000000)\">\n                <path d=\"M27,0 C12.0810811,0 0,12.0629685 0,26.9595202 C0,31.4122939 1.05405405,35.6221889 3,39.3463268 L0,54 L14.5945946,51.0044978 C18.3243243,52.9475262 22.5405405,54 27,54 C41.9189189,54 54,41.9370315 54,27.0404798 C54,11.982009 41.9189189,0 27,0 Z M27,52.2188906 C22.9459459,52.2188906 19.0540541,51.2473763 15.4864865,49.3853073 L14.9189189,49.0614693 L14.3513514,49.1424288 L2.35135135,51.5712144 L4.78378378,39.6701649 L4.86486486,39.1034483 L4.54054054,38.5367316 C2.67567568,34.8935532 1.7027027,31.0074963 1.7027027,26.9595202 C1.7027027,13.0344828 12.972973,1.78067842 26.9189189,1.78067842 C40.8648649,1.70014993 52.1355699,13.0344828 52.1355699,26.9595202 C52.2162162,40.8845577 40.9459459,52.2188906 27,52.2188906 Z\" id=\"Shape\"></path>\n                <g id=\"Group\" transform=\"translate(18.000000, 20.000000)\">\n                    <path d=\"M8,1.65745856 C7.11111111,2.15469613 6.46464646,2.56906077 5.8989899,2.98342541 C5.41414141,3.31491713 4.84848485,3.8121547 4.28282828,4.39226519 C3.7979798,4.88950276 3.39393939,5.46961326 3.15151515,6.13259669 C2.90909091,6.71270718 2.66666667,7.54143646 2.58585859,8.5359116 L3.87878788,8.5359116 C5.01010101,8.5359116 5.8989899,8.78453039 6.54545455,9.36464088 C7.19191919,9.94475138 7.51515152,10.7734807 7.51515152,11.8508287 C7.51515152,12.5966851 7.19191919,13.3425414 6.62626263,14.0055249 C6.06060606,14.6685083 5.25252525,15 4.28282828,15 C2.74747475,15 1.61616162,14.5027624 0.96969697,13.4254144 C0.323232323,12.3480663 0,11.0220994 0,9.28176796 C0,8.03867403 0.242424242,6.96132597 0.727272727,5.96685083 C1.21212121,4.97237569 1.85858586,4.06077348 2.58585859,3.31491713 C3.31313131,2.48618785 4.12121212,1.82320442 4.92929293,1.32596685 C5.73737374,0.745856354 6.46464646,0.331491713 7.03030303,0 L8,1.65745856 Z\" id=\"Shape\"></path>\n                    <path d=\"M19,1.58333333 C18.1111111,2.08333333 17.4646465,2.5 16.8989899,2.91666667 C16.4141414,3.25 15.8484848,3.75 15.2828283,4.33333333 C14.7979798,4.83333333 14.3939394,5.41666667 14.1515152,6.08333333 C13.9090909,6.66666667 13.6666667,7.5 13.5858586,8.5 L14.8787879,8.5 C16.010101,8.5 16.8989899,8.75 17.5454545,9.33333333 C18.1919192,9.91666667 18.5151515,10.75 18.5151515,11.8333333 C18.5151515,12.5833333 18.1919192,13.3333333 17.6262626,14 C17.0606061,14.6666667 16.2525253,15 15.2828283,15 C13.7474747,15 12.6161616,14.5 11.969697,13.4166667 C11.3232323,12.3333333 11,11 11,9.25 C11,8 11.2424242,6.91666667 11.7272727,5.91666667 C12.2121212,5 12.7777778,4.16666667 13.5050505,3.33333333 C14.2323232,2.5 15.040404,1.83333333 15.8484848,1.33333333 C16.6565657,0.75 17.3838384,0.333333333 17.9494949,0 L19,1.58333333 Z\" id=\"Shape\"></path>\n                </g>\n            </g>\n        </g>\n    </g>\n</svg>",
+        "useOriginalColors": false,
+        "svgJson": {
+            "name": "svg",
+            "type": "element",
+            "value": "",
+            "attributes": {
+                "width": "54px",
+                "height": "54px",
+                "viewBox": "0 0 54 54",
+                "version": "1.1",
+                "xmlns": "http://www.w3.org/2000/svg",
+                "xmlns:xlink": "http://www.w3.org/1999/xlink"
+            },
+            "children": [
+                {
+                    "name": "title",
+                    "type": "element",
+                    "value": "",
+                    "attributes": {},
+                    "children": [
+                        {
+                            "name": "",
+                            "type": "text",
+                            "value": "img-quote",
+                            "attributes": {},
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "name": "g",
+                    "type": "element",
+                    "value": "",
+                    "attributes": {
+                        "id": "Page-1",
+                        "stroke": "none",
+                        "stroke-width": "1",
+                        "fill": "none",
+                        "fill-rule": "evenodd"
+                    },
+                    "children": [
+                        {
+                            "name": "g",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "id": "Painters---02",
+                                "transform": "translate(-934.000000, -1405.000000)",
+                                "fill": "#696968",
+                                "fill-rule": "nonzero"
+                            },
+                            "children": [
+                                {
+                                    "name": "g",
+                                    "type": "element",
+                                    "value": "",
+                                    "attributes": {
+                                        "id": "img-quote",
+                                        "transform": "translate(934.000000, 1405.000000)"
+                                    },
+                                    "children": [
+                                        {
+                                            "name": "path",
+                                            "type": "element",
+                                            "value": "",
+                                            "attributes": {
+                                                "d": "M27,0 C12.0810811,0 0,12.0629685 0,26.9595202 C0,31.4122939 1.05405405,35.6221889 3,39.3463268 L0,54 L14.5945946,51.0044978 C18.3243243,52.9475262 22.5405405,54 27,54 C41.9189189,54 54,41.9370315 54,27.0404798 C54,11.982009 41.9189189,0 27,0 Z M27,52.2188906 C22.9459459,52.2188906 19.0540541,51.2473763 15.4864865,49.3853073 L14.9189189,49.0614693 L14.3513514,49.1424288 L2.35135135,51.5712144 L4.78378378,39.6701649 L4.86486486,39.1034483 L4.54054054,38.5367316 C2.67567568,34.8935532 1.7027027,31.0074963 1.7027027,26.9595202 C1.7027027,13.0344828 12.972973,1.78067842 26.9189189,1.78067842 C40.8648649,1.70014993 52.1355699,13.0344828 52.1355699,26.9595202 C52.2162162,40.8845577 40.9459459,52.2188906 27,52.2188906 Z",
+                                                "id": "Shape"
+                                            },
+                                            "children": []
+                                        },
+                                        {
+                                            "name": "g",
+                                            "type": "element",
+                                            "value": "",
+                                            "attributes": {
+                                                "id": "Group",
+                                                "transform": "translate(18.000000, 20.000000)"
+                                            },
+                                            "children": [
+                                                {
+                                                    "name": "path",
+                                                    "type": "element",
+                                                    "value": "",
+                                                    "attributes": {
+                                                        "d": "M8,1.65745856 C7.11111111,2.15469613 6.46464646,2.56906077 5.8989899,2.98342541 C5.41414141,3.31491713 4.84848485,3.8121547 4.28282828,4.39226519 C3.7979798,4.88950276 3.39393939,5.46961326 3.15151515,6.13259669 C2.90909091,6.71270718 2.66666667,7.54143646 2.58585859,8.5359116 L3.87878788,8.5359116 C5.01010101,8.5359116 5.8989899,8.78453039 6.54545455,9.36464088 C7.19191919,9.94475138 7.51515152,10.7734807 7.51515152,11.8508287 C7.51515152,12.5966851 7.19191919,13.3425414 6.62626263,14.0055249 C6.06060606,14.6685083 5.25252525,15 4.28282828,15 C2.74747475,15 1.61616162,14.5027624 0.96969697,13.4254144 C0.323232323,12.3480663 0,11.0220994 0,9.28176796 C0,8.03867403 0.242424242,6.96132597 0.727272727,5.96685083 C1.21212121,4.97237569 1.85858586,4.06077348 2.58585859,3.31491713 C3.31313131,2.48618785 4.12121212,1.82320442 4.92929293,1.32596685 C5.73737374,0.745856354 6.46464646,0.331491713 7.03030303,0 L8,1.65745856 Z",
+                                                        "id": "Shape"
+                                                    },
+                                                    "children": []
+                                                },
+                                                {
+                                                    "name": "path",
+                                                    "type": "element",
+                                                    "value": "",
+                                                    "attributes": {
+                                                        "d": "M19,1.58333333 C18.1111111,2.08333333 17.4646465,2.5 16.8989899,2.91666667 C16.4141414,3.25 15.8484848,3.75 15.2828283,4.33333333 C14.7979798,4.83333333 14.3939394,5.41666667 14.1515152,6.08333333 C13.9090909,6.66666667 13.6666667,7.5 13.5858586,8.5 L14.8787879,8.5 C16.010101,8.5 16.8989899,8.75 17.5454545,9.33333333 C18.1919192,9.91666667 18.5151515,10.75 18.5151515,11.8333333 C18.5151515,12.5833333 18.1919192,13.3333333 17.6262626,14 C17.0606061,14.6666667 16.2525253,15 15.2828283,15 C13.7474747,15 12.6161616,14.5 11.969697,13.4166667 C11.3232323,12.3333333 11,11 11,9.25 C11,8 11.2424242,6.91666667 11.7272727,5.91666667 C12.2121212,5 12.7777778,4.16666667 13.5050505,3.33333333 C14.2323232,2.5 15.040404,1.83333333 15.8484848,1.33333333 C16.6565657,0.75 17.3838384,0.333333333 17.9494949,0 L19,1.58333333 Z",
+                                                        "id": "Shape"
+                                                    },
+                                                    "children": []
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": "B223F264-1671-43E4-8B2C-F718665CBEC4",
+        "inTemplate": false,
+        "orderIndex": 24,
+        "wrap": false,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "TEXT",
+        "left": 370,
+        "top": 3116,
+        "width": 310,
+        "height": 194,
+        "relIn": {
+            "id": "01396C5D-3328-426C-AC1A-EEA1CDFB5369",
+            "top": 208,
+            "left": 370,
+            "right": null,
+            "bottom": -100
+        },
+        "relTo": {
+            "below": 60,
+            "id": "DEFDB9FD-0A71-4933-946C-D4AF19F042AD"
+        },
+        "relPage": null,
+        "relPara": null,
+        "verticalAlignment": "top",
+        "mobileHide": false,
+        "mobileSettings": {
+            "align": null,
+            "font": 0
+        },
+        "content": "<div class=\"mceNonEditable center\" style=\"width: 50px;\">\n<div style=\"margin-left: auto; margin-right: auto; width: 50px; min-height: 50px; font-size: 0px;\" data-wrap-id=\"89825C19-A452-4036-A600-730D99EF2C98\"></div>\n</div>\n<p class=\"textnormal\"><span style=\"color: #ffffff; font-weight: normal;\"><span style=\"color: #ffffff;\"><br></span></span></p>\n<p class=\"textnormal\" style=\"text-align: center;\"><span style=\"color: #ffffff;\">Someone saying something nice about what you do is priceless. Click here to add a quote from a customer or a fan.</span></p>\n<p class=\"textnormal\"><span style=\"font-weight: bold; color: #ffffff;\"><br></span></p>\n<p class=\"textnormal\" style=\"text-align: center;\"><span style=\"font-weight: bold; color: #ffffff;\">― Laura Mattis</span></p>",
+        "text": "\n\n\n\n\n\n― ",
+        "styles": [
+            [
+                1,
+                1,
+                {
+                    "bold": false,
+                    "color": [
+                        "HSL",
+                        0,
+                        0,
+                        1,
+                        1
+                    ],
+                    "type": "web.data.styles.StyleText"
+                }
+            ],
+            [
+                4,
+                4,
+                {
+                    "bold": true,
+                    "color": [
+                        "HSL",
+                        0,
+                        0,
+                        1,
+                        1
+                    ],
+                    "type": "web.data.styles.StyleText"
+                }
+            ],
+            [
+                6,
+                8,
+                {
+                    "bold": true,
+                    "color": [
+                        "HSL",
+                        0,
+                        0,
+                        1,
+                        1
+                    ],
+                    "type": "web.data.styles.StyleText"
+                }
+            ]
+        ],
+        "paras": [
+            [
+                6,
+                8,
+                {
+                    "align": "center",
+                    "type": "web.data.styles.StylePara"
+                }
+            ]
+        ],
+        "links": [],
+        "themeOverrideColor": null,
+        "themeHighlightColor": null,
+        "themeShadowBlurRadius": 3,
+        "themeShadowColor": null,
+        "themeShadowOffsetX": 3,
+        "themeShadowOffsetY": 3,
+        "globalStyleId": "EAEA20A6-C03E-4C8C-ADA5-43EBBEF4CD23"
+    },
+    {
+        "id": "89825C19-A452-4036-A600-730D99EF2C98",
+        "inTemplate": false,
+        "orderIndex": 27,
+        "wrap": true,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "SVG",
+        "left": 500,
+        "top": 3116,
+        "width": 50,
+        "height": 50,
+        "relIn": {
+            "id": "B223F264-1671-43E4-8B2C-F718665CBEC4",
+            "top": 0,
+            "left": 130,
+            "right": -130,
+            "bottom": -144
+        },
+        "relTo": null,
+        "relPage": null,
+        "relPara": {
+            "index": 0,
+            "offset": 0
+        },
+        "asset": {
+            "alpha": null,
+            "animated": false,
+            "bpp": null,
+            "contentType": "image/svg",
+            "etag": "\"ca9-5fc848b7c63db\"",
+            "filesize": 3241,
+            "height": 54,
+            "image": null,
+            "recommendedFormat": null,
+            "url": "repository:/repository-quote.svg",
+            "width": 54
+        },
+        "colors": [
+            {
+                "fromColor": "rgba(105,105,104,1)",
+                "toColor": "#ffffff"
+            }
+        ],
+        "defaultFillColor": "",
+        "linkAction": null,
+        "opacity": 100,
+        "seo": "",
+        "rawSvg": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg width=\"54px\" height=\"54px\" viewBox=\"0 0 54 54\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n    <title>img-quote</title>\n    <g id=\"Page-1\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\">\n        <g id=\"Painters---02\" transform=\"translate(-934.000000, -1405.000000)\" fill=\"#696968\" fill-rule=\"nonzero\">\n            <g id=\"img-quote\" transform=\"translate(934.000000, 1405.000000)\">\n                <path d=\"M27,0 C12.0810811,0 0,12.0629685 0,26.9595202 C0,31.4122939 1.05405405,35.6221889 3,39.3463268 L0,54 L14.5945946,51.0044978 C18.3243243,52.9475262 22.5405405,54 27,54 C41.9189189,54 54,41.9370315 54,27.0404798 C54,11.982009 41.9189189,0 27,0 Z M27,52.2188906 C22.9459459,52.2188906 19.0540541,51.2473763 15.4864865,49.3853073 L14.9189189,49.0614693 L14.3513514,49.1424288 L2.35135135,51.5712144 L4.78378378,39.6701649 L4.86486486,39.1034483 L4.54054054,38.5367316 C2.67567568,34.8935532 1.7027027,31.0074963 1.7027027,26.9595202 C1.7027027,13.0344828 12.972973,1.78067842 26.9189189,1.78067842 C40.8648649,1.70014993 52.1355699,13.0344828 52.1355699,26.9595202 C52.2162162,40.8845577 40.9459459,52.2188906 27,52.2188906 Z\" id=\"Shape\"></path>\n                <g id=\"Group\" transform=\"translate(18.000000, 20.000000)\">\n                    <path d=\"M8,1.65745856 C7.11111111,2.15469613 6.46464646,2.56906077 5.8989899,2.98342541 C5.41414141,3.31491713 4.84848485,3.8121547 4.28282828,4.39226519 C3.7979798,4.88950276 3.39393939,5.46961326 3.15151515,6.13259669 C2.90909091,6.71270718 2.66666667,7.54143646 2.58585859,8.5359116 L3.87878788,8.5359116 C5.01010101,8.5359116 5.8989899,8.78453039 6.54545455,9.36464088 C7.19191919,9.94475138 7.51515152,10.7734807 7.51515152,11.8508287 C7.51515152,12.5966851 7.19191919,13.3425414 6.62626263,14.0055249 C6.06060606,14.6685083 5.25252525,15 4.28282828,15 C2.74747475,15 1.61616162,14.5027624 0.96969697,13.4254144 C0.323232323,12.3480663 0,11.0220994 0,9.28176796 C0,8.03867403 0.242424242,6.96132597 0.727272727,5.96685083 C1.21212121,4.97237569 1.85858586,4.06077348 2.58585859,3.31491713 C3.31313131,2.48618785 4.12121212,1.82320442 4.92929293,1.32596685 C5.73737374,0.745856354 6.46464646,0.331491713 7.03030303,0 L8,1.65745856 Z\" id=\"Shape\"></path>\n                    <path d=\"M19,1.58333333 C18.1111111,2.08333333 17.4646465,2.5 16.8989899,2.91666667 C16.4141414,3.25 15.8484848,3.75 15.2828283,4.33333333 C14.7979798,4.83333333 14.3939394,5.41666667 14.1515152,6.08333333 C13.9090909,6.66666667 13.6666667,7.5 13.5858586,8.5 L14.8787879,8.5 C16.010101,8.5 16.8989899,8.75 17.5454545,9.33333333 C18.1919192,9.91666667 18.5151515,10.75 18.5151515,11.8333333 C18.5151515,12.5833333 18.1919192,13.3333333 17.6262626,14 C17.0606061,14.6666667 16.2525253,15 15.2828283,15 C13.7474747,15 12.6161616,14.5 11.969697,13.4166667 C11.3232323,12.3333333 11,11 11,9.25 C11,8 11.2424242,6.91666667 11.7272727,5.91666667 C12.2121212,5 12.7777778,4.16666667 13.5050505,3.33333333 C14.2323232,2.5 15.040404,1.83333333 15.8484848,1.33333333 C16.6565657,0.75 17.3838384,0.333333333 17.9494949,0 L19,1.58333333 Z\" id=\"Shape\"></path>\n                </g>\n            </g>\n        </g>\n    </g>\n</svg>",
+        "useOriginalColors": false,
+        "svgJson": {
+            "name": "svg",
+            "type": "element",
+            "value": "",
+            "attributes": {
+                "width": "54px",
+                "height": "54px",
+                "viewBox": "0 0 54 54",
+                "version": "1.1",
+                "xmlns": "http://www.w3.org/2000/svg",
+                "xmlns:xlink": "http://www.w3.org/1999/xlink"
+            },
+            "children": [
+                {
+                    "name": "title",
+                    "type": "element",
+                    "value": "",
+                    "attributes": {},
+                    "children": [
+                        {
+                            "name": "",
+                            "type": "text",
+                            "value": "img-quote",
+                            "attributes": {},
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "name": "g",
+                    "type": "element",
+                    "value": "",
+                    "attributes": {
+                        "id": "Page-1",
+                        "stroke": "none",
+                        "stroke-width": "1",
+                        "fill": "none",
+                        "fill-rule": "evenodd"
+                    },
+                    "children": [
+                        {
+                            "name": "g",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "id": "Painters---02",
+                                "transform": "translate(-934.000000, -1405.000000)",
+                                "fill": "#696968",
+                                "fill-rule": "nonzero"
+                            },
+                            "children": [
+                                {
+                                    "name": "g",
+                                    "type": "element",
+                                    "value": "",
+                                    "attributes": {
+                                        "id": "img-quote",
+                                        "transform": "translate(934.000000, 1405.000000)"
+                                    },
+                                    "children": [
+                                        {
+                                            "name": "path",
+                                            "type": "element",
+                                            "value": "",
+                                            "attributes": {
+                                                "d": "M27,0 C12.0810811,0 0,12.0629685 0,26.9595202 C0,31.4122939 1.05405405,35.6221889 3,39.3463268 L0,54 L14.5945946,51.0044978 C18.3243243,52.9475262 22.5405405,54 27,54 C41.9189189,54 54,41.9370315 54,27.0404798 C54,11.982009 41.9189189,0 27,0 Z M27,52.2188906 C22.9459459,52.2188906 19.0540541,51.2473763 15.4864865,49.3853073 L14.9189189,49.0614693 L14.3513514,49.1424288 L2.35135135,51.5712144 L4.78378378,39.6701649 L4.86486486,39.1034483 L4.54054054,38.5367316 C2.67567568,34.8935532 1.7027027,31.0074963 1.7027027,26.9595202 C1.7027027,13.0344828 12.972973,1.78067842 26.9189189,1.78067842 C40.8648649,1.70014993 52.1355699,13.0344828 52.1355699,26.9595202 C52.2162162,40.8845577 40.9459459,52.2188906 27,52.2188906 Z",
+                                                "id": "Shape"
+                                            },
+                                            "children": []
+                                        },
+                                        {
+                                            "name": "g",
+                                            "type": "element",
+                                            "value": "",
+                                            "attributes": {
+                                                "id": "Group",
+                                                "transform": "translate(18.000000, 20.000000)"
+                                            },
+                                            "children": [
+                                                {
+                                                    "name": "path",
+                                                    "type": "element",
+                                                    "value": "",
+                                                    "attributes": {
+                                                        "d": "M8,1.65745856 C7.11111111,2.15469613 6.46464646,2.56906077 5.8989899,2.98342541 C5.41414141,3.31491713 4.84848485,3.8121547 4.28282828,4.39226519 C3.7979798,4.88950276 3.39393939,5.46961326 3.15151515,6.13259669 C2.90909091,6.71270718 2.66666667,7.54143646 2.58585859,8.5359116 L3.87878788,8.5359116 C5.01010101,8.5359116 5.8989899,8.78453039 6.54545455,9.36464088 C7.19191919,9.94475138 7.51515152,10.7734807 7.51515152,11.8508287 C7.51515152,12.5966851 7.19191919,13.3425414 6.62626263,14.0055249 C6.06060606,14.6685083 5.25252525,15 4.28282828,15 C2.74747475,15 1.61616162,14.5027624 0.96969697,13.4254144 C0.323232323,12.3480663 0,11.0220994 0,9.28176796 C0,8.03867403 0.242424242,6.96132597 0.727272727,5.96685083 C1.21212121,4.97237569 1.85858586,4.06077348 2.58585859,3.31491713 C3.31313131,2.48618785 4.12121212,1.82320442 4.92929293,1.32596685 C5.73737374,0.745856354 6.46464646,0.331491713 7.03030303,0 L8,1.65745856 Z",
+                                                        "id": "Shape"
+                                                    },
+                                                    "children": []
+                                                },
+                                                {
+                                                    "name": "path",
+                                                    "type": "element",
+                                                    "value": "",
+                                                    "attributes": {
+                                                        "d": "M19,1.58333333 C18.1111111,2.08333333 17.4646465,2.5 16.8989899,2.91666667 C16.4141414,3.25 15.8484848,3.75 15.2828283,4.33333333 C14.7979798,4.83333333 14.3939394,5.41666667 14.1515152,6.08333333 C13.9090909,6.66666667 13.6666667,7.5 13.5858586,8.5 L14.8787879,8.5 C16.010101,8.5 16.8989899,8.75 17.5454545,9.33333333 C18.1919192,9.91666667 18.5151515,10.75 18.5151515,11.8333333 C18.5151515,12.5833333 18.1919192,13.3333333 17.6262626,14 C17.0606061,14.6666667 16.2525253,15 15.2828283,15 C13.7474747,15 12.6161616,14.5 11.969697,13.4166667 C11.3232323,12.3333333 11,11 11,9.25 C11,8 11.2424242,6.91666667 11.7272727,5.91666667 C12.2121212,5 12.7777778,4.16666667 13.5050505,3.33333333 C14.2323232,2.5 15.040404,1.83333333 15.8484848,1.33333333 C16.6565657,0.75 17.3838384,0.333333333 17.9494949,0 L19,1.58333333 Z",
+                                                        "id": "Shape"
+                                                    },
+                                                    "children": []
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": "83CF9DCF-0771-4F37-9BE4-66A93B14273E",
+        "inTemplate": false,
+        "orderIndex": 26,
+        "wrap": false,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "TEXT",
+        "left": 740,
+        "top": 3116,
+        "width": 310,
+        "height": 194,
+        "relIn": {
+            "id": "01396C5D-3328-426C-AC1A-EEA1CDFB5369",
+            "top": 208,
+            "left": 740,
+            "right": null,
+            "bottom": -100
+        },
+        "relTo": {
+            "below": 60,
+            "id": "DEFDB9FD-0A71-4933-946C-D4AF19F042AD"
+        },
+        "relPage": null,
+        "relPara": null,
+        "verticalAlignment": "top",
+        "mobileHide": false,
+        "mobileSettings": {
+            "align": null,
+            "font": 0
+        },
+        "content": "<div class=\"mceNonEditable center\" style=\"width: 50px;\">\n<div style=\"margin-left: auto; margin-right: auto; width: 50px; min-height: 50px; font-size: 0px;\" data-wrap-id=\"3A5EBBFB-C634-4CB7-9D87-2D8794CED6D3\"></div>\n</div>\n<p class=\"textnormal\"><span style=\"color: #ffffff; font-weight: normal;\"><span style=\"color: #ffffff;\"><br></span></span></p>\n<p class=\"textnormal\" style=\"text-align: center;\"><span style=\"color: #ffffff;\">Someone saying something nice about what you do is priceless. Click here to add a quote from a customer or a fan.</span></p>\n<p class=\"textnormal\"><span style=\"font-weight: bold; color: #ffffff;\"><br></span></p>\n<p class=\"textnormal\" style=\"text-align: center;\"><span style=\"font-weight: bold; color: #ffffff;\">― Victor Miller</span></p>",
+        "text": "\n\n\n\n\n\n― ",
+        "styles": [
+            [
+                1,
+                1,
+                {
+                    "bold": false,
+                    "color": [
+                        "HSL",
+                        0,
+                        0,
+                        1,
+                        1
+                    ],
+                    "type": "web.data.styles.StyleText"
+                }
+            ],
+            [
+                4,
+                4,
+                {
+                    "bold": true,
+                    "color": [
+                        "HSL",
+                        0,
+                        0,
+                        1,
+                        1
+                    ],
+                    "type": "web.data.styles.StyleText"
+                }
+            ],
+            [
+                6,
+                8,
+                {
+                    "bold": true,
+                    "color": [
+                        "HSL",
+                        0,
+                        0,
+                        1,
+                        1
+                    ],
+                    "type": "web.data.styles.StyleText"
+                }
+            ]
+        ],
+        "paras": [
+            [
+                6,
+                8,
+                {
+                    "align": "center",
+                    "type": "web.data.styles.StylePara"
+                }
+            ]
+        ],
+        "links": [],
+        "themeOverrideColor": null,
+        "themeHighlightColor": null,
+        "themeShadowBlurRadius": 3,
+        "themeShadowColor": null,
+        "themeShadowOffsetX": 3,
+        "themeShadowOffsetY": 3,
+        "globalStyleId": "EAEA20A6-C03E-4C8C-ADA5-43EBBEF4CD23"
+    },
+    {
+        "id": "3A5EBBFB-C634-4CB7-9D87-2D8794CED6D3",
+        "inTemplate": false,
+        "orderIndex": 38,
+        "wrap": true,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "SVG",
+        "left": 870,
+        "top": 3116,
+        "width": 50,
+        "height": 50,
+        "relIn": {
+            "id": "83CF9DCF-0771-4F37-9BE4-66A93B14273E",
+            "top": 0,
+            "left": 130,
+            "right": -130,
+            "bottom": -144
+        },
+        "relTo": null,
+        "relPage": null,
+        "relPara": {
+            "index": 0,
+            "offset": 0
+        },
+        "asset": {
+            "alpha": null,
+            "animated": false,
+            "bpp": null,
+            "contentType": "image/svg",
+            "etag": "\"ca9-5fc848b7c63db\"",
+            "filesize": 3241,
+            "height": 54,
+            "image": null,
+            "recommendedFormat": null,
+            "url": "repository:/repository-quote.svg",
+            "width": 54
+        },
+        "colors": [
+            {
+                "fromColor": "rgba(105,105,104,1)",
+                "toColor": "#ffffff"
+            }
+        ],
+        "defaultFillColor": "",
+        "linkAction": null,
+        "opacity": 100,
+        "seo": "",
+        "rawSvg": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg width=\"54px\" height=\"54px\" viewBox=\"0 0 54 54\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n    <title>img-quote</title>\n    <g id=\"Page-1\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\">\n        <g id=\"Painters---02\" transform=\"translate(-934.000000, -1405.000000)\" fill=\"#696968\" fill-rule=\"nonzero\">\n            <g id=\"img-quote\" transform=\"translate(934.000000, 1405.000000)\">\n                <path d=\"M27,0 C12.0810811,0 0,12.0629685 0,26.9595202 C0,31.4122939 1.05405405,35.6221889 3,39.3463268 L0,54 L14.5945946,51.0044978 C18.3243243,52.9475262 22.5405405,54 27,54 C41.9189189,54 54,41.9370315 54,27.0404798 C54,11.982009 41.9189189,0 27,0 Z M27,52.2188906 C22.9459459,52.2188906 19.0540541,51.2473763 15.4864865,49.3853073 L14.9189189,49.0614693 L14.3513514,49.1424288 L2.35135135,51.5712144 L4.78378378,39.6701649 L4.86486486,39.1034483 L4.54054054,38.5367316 C2.67567568,34.8935532 1.7027027,31.0074963 1.7027027,26.9595202 C1.7027027,13.0344828 12.972973,1.78067842 26.9189189,1.78067842 C40.8648649,1.70014993 52.1355699,13.0344828 52.1355699,26.9595202 C52.2162162,40.8845577 40.9459459,52.2188906 27,52.2188906 Z\" id=\"Shape\"></path>\n                <g id=\"Group\" transform=\"translate(18.000000, 20.000000)\">\n                    <path d=\"M8,1.65745856 C7.11111111,2.15469613 6.46464646,2.56906077 5.8989899,2.98342541 C5.41414141,3.31491713 4.84848485,3.8121547 4.28282828,4.39226519 C3.7979798,4.88950276 3.39393939,5.46961326 3.15151515,6.13259669 C2.90909091,6.71270718 2.66666667,7.54143646 2.58585859,8.5359116 L3.87878788,8.5359116 C5.01010101,8.5359116 5.8989899,8.78453039 6.54545455,9.36464088 C7.19191919,9.94475138 7.51515152,10.7734807 7.51515152,11.8508287 C7.51515152,12.5966851 7.19191919,13.3425414 6.62626263,14.0055249 C6.06060606,14.6685083 5.25252525,15 4.28282828,15 C2.74747475,15 1.61616162,14.5027624 0.96969697,13.4254144 C0.323232323,12.3480663 0,11.0220994 0,9.28176796 C0,8.03867403 0.242424242,6.96132597 0.727272727,5.96685083 C1.21212121,4.97237569 1.85858586,4.06077348 2.58585859,3.31491713 C3.31313131,2.48618785 4.12121212,1.82320442 4.92929293,1.32596685 C5.73737374,0.745856354 6.46464646,0.331491713 7.03030303,0 L8,1.65745856 Z\" id=\"Shape\"></path>\n                    <path d=\"M19,1.58333333 C18.1111111,2.08333333 17.4646465,2.5 16.8989899,2.91666667 C16.4141414,3.25 15.8484848,3.75 15.2828283,4.33333333 C14.7979798,4.83333333 14.3939394,5.41666667 14.1515152,6.08333333 C13.9090909,6.66666667 13.6666667,7.5 13.5858586,8.5 L14.8787879,8.5 C16.010101,8.5 16.8989899,8.75 17.5454545,9.33333333 C18.1919192,9.91666667 18.5151515,10.75 18.5151515,11.8333333 C18.5151515,12.5833333 18.1919192,13.3333333 17.6262626,14 C17.0606061,14.6666667 16.2525253,15 15.2828283,15 C13.7474747,15 12.6161616,14.5 11.969697,13.4166667 C11.3232323,12.3333333 11,11 11,9.25 C11,8 11.2424242,6.91666667 11.7272727,5.91666667 C12.2121212,5 12.7777778,4.16666667 13.5050505,3.33333333 C14.2323232,2.5 15.040404,1.83333333 15.8484848,1.33333333 C16.6565657,0.75 17.3838384,0.333333333 17.9494949,0 L19,1.58333333 Z\" id=\"Shape\"></path>\n                </g>\n            </g>\n        </g>\n    </g>\n</svg>",
+        "useOriginalColors": false,
+        "svgJson": {
+            "name": "svg",
+            "type": "element",
+            "value": "",
+            "attributes": {
+                "width": "54px",
+                "height": "54px",
+                "viewBox": "0 0 54 54",
+                "version": "1.1",
+                "xmlns": "http://www.w3.org/2000/svg",
+                "xmlns:xlink": "http://www.w3.org/1999/xlink"
+            },
+            "children": [
+                {
+                    "name": "title",
+                    "type": "element",
+                    "value": "",
+                    "attributes": {},
+                    "children": [
+                        {
+                            "name": "",
+                            "type": "text",
+                            "value": "img-quote",
+                            "attributes": {},
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "name": "g",
+                    "type": "element",
+                    "value": "",
+                    "attributes": {
+                        "id": "Page-1",
+                        "stroke": "none",
+                        "stroke-width": "1",
+                        "fill": "none",
+                        "fill-rule": "evenodd"
+                    },
+                    "children": [
+                        {
+                            "name": "g",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "id": "Painters---02",
+                                "transform": "translate(-934.000000, -1405.000000)",
+                                "fill": "#696968",
+                                "fill-rule": "nonzero"
+                            },
+                            "children": [
+                                {
+                                    "name": "g",
+                                    "type": "element",
+                                    "value": "",
+                                    "attributes": {
+                                        "id": "img-quote",
+                                        "transform": "translate(934.000000, 1405.000000)"
+                                    },
+                                    "children": [
+                                        {
+                                            "name": "path",
+                                            "type": "element",
+                                            "value": "",
+                                            "attributes": {
+                                                "d": "M27,0 C12.0810811,0 0,12.0629685 0,26.9595202 C0,31.4122939 1.05405405,35.6221889 3,39.3463268 L0,54 L14.5945946,51.0044978 C18.3243243,52.9475262 22.5405405,54 27,54 C41.9189189,54 54,41.9370315 54,27.0404798 C54,11.982009 41.9189189,0 27,0 Z M27,52.2188906 C22.9459459,52.2188906 19.0540541,51.2473763 15.4864865,49.3853073 L14.9189189,49.0614693 L14.3513514,49.1424288 L2.35135135,51.5712144 L4.78378378,39.6701649 L4.86486486,39.1034483 L4.54054054,38.5367316 C2.67567568,34.8935532 1.7027027,31.0074963 1.7027027,26.9595202 C1.7027027,13.0344828 12.972973,1.78067842 26.9189189,1.78067842 C40.8648649,1.70014993 52.1355699,13.0344828 52.1355699,26.9595202 C52.2162162,40.8845577 40.9459459,52.2188906 27,52.2188906 Z",
+                                                "id": "Shape"
+                                            },
+                                            "children": []
+                                        },
+                                        {
+                                            "name": "g",
+                                            "type": "element",
+                                            "value": "",
+                                            "attributes": {
+                                                "id": "Group",
+                                                "transform": "translate(18.000000, 20.000000)"
+                                            },
+                                            "children": [
+                                                {
+                                                    "name": "path",
+                                                    "type": "element",
+                                                    "value": "",
+                                                    "attributes": {
+                                                        "d": "M8,1.65745856 C7.11111111,2.15469613 6.46464646,2.56906077 5.8989899,2.98342541 C5.41414141,3.31491713 4.84848485,3.8121547 4.28282828,4.39226519 C3.7979798,4.88950276 3.39393939,5.46961326 3.15151515,6.13259669 C2.90909091,6.71270718 2.66666667,7.54143646 2.58585859,8.5359116 L3.87878788,8.5359116 C5.01010101,8.5359116 5.8989899,8.78453039 6.54545455,9.36464088 C7.19191919,9.94475138 7.51515152,10.7734807 7.51515152,11.8508287 C7.51515152,12.5966851 7.19191919,13.3425414 6.62626263,14.0055249 C6.06060606,14.6685083 5.25252525,15 4.28282828,15 C2.74747475,15 1.61616162,14.5027624 0.96969697,13.4254144 C0.323232323,12.3480663 0,11.0220994 0,9.28176796 C0,8.03867403 0.242424242,6.96132597 0.727272727,5.96685083 C1.21212121,4.97237569 1.85858586,4.06077348 2.58585859,3.31491713 C3.31313131,2.48618785 4.12121212,1.82320442 4.92929293,1.32596685 C5.73737374,0.745856354 6.46464646,0.331491713 7.03030303,0 L8,1.65745856 Z",
+                                                        "id": "Shape"
+                                                    },
+                                                    "children": []
+                                                },
+                                                {
+                                                    "name": "path",
+                                                    "type": "element",
+                                                    "value": "",
+                                                    "attributes": {
+                                                        "d": "M19,1.58333333 C18.1111111,2.08333333 17.4646465,2.5 16.8989899,2.91666667 C16.4141414,3.25 15.8484848,3.75 15.2828283,4.33333333 C14.7979798,4.83333333 14.3939394,5.41666667 14.1515152,6.08333333 C13.9090909,6.66666667 13.6666667,7.5 13.5858586,8.5 L14.8787879,8.5 C16.010101,8.5 16.8989899,8.75 17.5454545,9.33333333 C18.1919192,9.91666667 18.5151515,10.75 18.5151515,11.8333333 C18.5151515,12.5833333 18.1919192,13.3333333 17.6262626,14 C17.0606061,14.6666667 16.2525253,15 15.2828283,15 C13.7474747,15 12.6161616,14.5 11.969697,13.4166667 C11.3232323,12.3333333 11,11 11,9.25 C11,8 11.2424242,6.91666667 11.7272727,5.91666667 C12.2121212,5 12.7777778,4.16666667 13.5050505,3.33333333 C14.2323232,2.5 15.040404,1.83333333 15.8484848,1.33333333 C16.6565657,0.75 17.3838384,0.333333333 17.9494949,0 L19,1.58333333 Z",
+                                                        "id": "Shape"
+                                                    },
+                                                    "children": []
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": "8209FAC9-7397-40F1-9FCC-47CD5C93031C",
+        "inTemplate": false,
+        "orderIndex": 28,
+        "wrap": false,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "TEXT",
+        "left": 740,
+        "top": 1056,
+        "width": 310,
+        "height": 228,
+        "relIn": {
+            "id": "0D85237F-41FE-4643-9444-A7D69C04C4B0",
+            "top": 216,
+            "left": 740,
+            "right": null,
+            "bottom": -388
+        },
+        "relTo": {
+            "below": 60,
+            "id": "342B5AAC-5D9E-40F3-B8B6-3A6D4E3CF134"
+        },
+        "relPage": null,
+        "relPara": null,
+        "verticalAlignment": "top",
+        "mobileHide": false,
+        "mobileSettings": {
+            "align": null,
+            "font": 0
+        },
+        "content": "<div class=\"mceNonEditable center\" style=\"width: 50px;\">\n<div style=\"margin-left: auto; margin-right: auto; width: 50px; min-height: 50px; font-size: 0px;\" data-wrap-id=\"367C2FFF-0BAE-4534-90BC-038B4848063E\"></div>\n</div>\n<p class=\"textheading3\" style=\"text-align: center;\"><span class=\"textheading3\"><br></span></p>\n<p class=\"textheading3\" style=\"text-align: center;\"><span class=\"textheading3\">Item Name</span></p>\n<p style=\"text-align: center;\"><br></p>\n<p style=\"text-align: center;\">Paragraphs are the main building blocks of web pages. To change what this one says, just double-click here or hit Edit text. You can change the style here, too.</p>",
+        "text": "\n\n\n\n\n",
+        "styles": [
+            [
+                1,
+                1,
+                {
+                    "globalId": "8CD5B980-3863-473E-8C51-F1E68486FE75",
+                    "globalName": "[heading.3]",
+                    "type": "web.data.styles.StyleText"
+                }
+            ]
+        ],
+        "paras": [
+            [
+                1,
+                2,
+                {
+                    "align": "center",
+                    "type": "web.data.styles.StylePara"
+                }
+            ],
+            [
+                4,
+                5,
+                {
+                    "align": "center",
+                    "type": "web.data.styles.StylePara"
+                }
+            ]
+        ],
+        "links": [],
+        "themeOverrideColor": null,
+        "themeHighlightColor": null,
+        "themeShadowBlurRadius": 3,
+        "themeShadowColor": null,
+        "themeShadowOffsetX": 3,
+        "themeShadowOffsetY": 3,
+        "globalStyleId": "EAEA20A6-C03E-4C8C-ADA5-43EBBEF4CD23"
+    },
+    {
+        "id": "367C2FFF-0BAE-4534-90BC-038B4848063E",
+        "inTemplate": false,
+        "orderIndex": 31,
+        "wrap": true,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "SVG",
+        "left": 870,
+        "top": 1056,
+        "width": 50,
+        "height": 50,
+        "relIn": {
+            "id": "8209FAC9-7397-40F1-9FCC-47CD5C93031C",
+            "top": 0,
+            "left": 130,
+            "right": -130,
+            "bottom": -178
+        },
+        "relTo": null,
+        "relPage": null,
+        "relPara": {
+            "index": 0,
+            "offset": 0
+        },
+        "asset": {
+            "alpha": null,
+            "animated": false,
+            "bpp": null,
+            "contentType": "image/svg",
+            "etag": "\"22e-5fc848b79e723\"",
+            "filesize": 558,
+            "height": 60,
+            "image": null,
+            "recommendedFormat": null,
+            "url": "repository:/repository-icon-squares-outlined-2.svg",
+            "width": 60
+        },
+        "colors": [
+            {
+                "fromColor": "rgba(0,0,0,1)",
+                "toColor": "#8d7b68",
+                "toThemeColor": "mainColor"
+            },
+            {
+                "fromColor": "rgba(255,255,255,1)",
+                "toColor": "rgba(255,255,255,1)"
+            }
+        ],
+        "defaultFillColor": "rgba(0,0,0,1)",
+        "linkAction": null,
+        "opacity": 100,
+        "seo": "",
+        "rawSvg": "<svg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<g clip-path=\"url(#clip0_21_40)\">\n<circle cx=\"30\" cy=\"30\" r=\"29\" stroke=\"black\" stroke-width=\"2\"/>\n<rect x=\"16\" y=\"16\" width=\"12\" height=\"12\" rx=\"1\" stroke=\"black\" stroke-width=\"2\"/>\n<rect x=\"16\" y=\"32\" width=\"12\" height=\"12\" rx=\"1\" stroke=\"black\" stroke-width=\"2\"/>\n<rect x=\"32\" y=\"32\" width=\"12\" height=\"12\" rx=\"1\" stroke=\"black\" stroke-width=\"2\"/>\n</g>\n<defs>\n<clipPath id=\"clip0_21_40\">\n<rect width=\"60\" height=\"60\" fill=\"white\"/>\n</clipPath>\n</defs>\n</svg>\n",
+        "useOriginalColors": false,
+        "svgJson": {
+            "name": "svg",
+            "type": "element",
+            "value": "",
+            "attributes": {
+                "width": "60",
+                "height": "60",
+                "viewBox": "0 0 60 60",
+                "fill": "none",
+                "xmlns": "http://www.w3.org/2000/svg"
+            },
+            "children": [
+                {
+                    "name": "g",
+                    "type": "element",
+                    "value": "",
+                    "attributes": {
+                        "clip-path": "url(#clip0_21_40)"
+                    },
+                    "children": [
+                        {
+                            "name": "circle",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "cx": "30",
+                                "cy": "30",
+                                "r": "29",
+                                "stroke": "black",
+                                "stroke-width": "2"
+                            },
+                            "children": []
+                        },
+                        {
+                            "name": "rect",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "x": "16",
+                                "y": "16",
+                                "width": "12",
+                                "height": "12",
+                                "rx": "1",
+                                "stroke": "black",
+                                "stroke-width": "2"
+                            },
+                            "children": []
+                        },
+                        {
+                            "name": "rect",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "x": "16",
+                                "y": "32",
+                                "width": "12",
+                                "height": "12",
+                                "rx": "1",
+                                "stroke": "black",
+                                "stroke-width": "2"
+                            },
+                            "children": []
+                        },
+                        {
+                            "name": "rect",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "x": "32",
+                                "y": "32",
+                                "width": "12",
+                                "height": "12",
+                                "rx": "1",
+                                "stroke": "black",
+                                "stroke-width": "2"
+                            },
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "name": "defs",
+                    "type": "element",
+                    "value": "",
+                    "attributes": {},
+                    "children": [
+                        {
+                            "name": "clipPath",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "id": "clip0_21_40"
+                            },
+                            "children": [
+                                {
+                                    "name": "rect",
+                                    "type": "element",
+                                    "value": "",
+                                    "attributes": {
+                                        "width": "60",
+                                        "height": "60",
+                                        "fill": "white"
+                                    },
+                                    "children": []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": "8B7C9713-B196-4213-94B8-DF0ABCEE604B",
+        "inTemplate": false,
+        "orderIndex": 29,
+        "wrap": false,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "TEXT",
+        "left": 370,
+        "top": 1056,
+        "width": 310,
+        "height": 228,
+        "relIn": {
+            "id": "0D85237F-41FE-4643-9444-A7D69C04C4B0",
+            "top": 216,
+            "left": 370,
+            "right": null,
+            "bottom": -388
+        },
+        "relTo": {
+            "below": 60,
+            "id": "342B5AAC-5D9E-40F3-B8B6-3A6D4E3CF134"
+        },
+        "relPage": null,
+        "relPara": null,
+        "verticalAlignment": "top",
+        "mobileHide": false,
+        "mobileSettings": {
+            "align": null,
+            "font": 0
+        },
+        "content": "<div class=\"mceNonEditable center\" style=\"width: 50px;\">\n<div style=\"margin-left: auto; margin-right: auto; width: 50px; min-height: 50px; font-size: 0px;\" data-wrap-id=\"DDF1890F-58C9-401C-8CA9-91D746EBA36F\"></div>\n</div>\n<p class=\"textheading3\" style=\"text-align: center;\"><span class=\"textheading3\"><br></span></p>\n<p class=\"textheading3\" style=\"text-align: center;\"><span class=\"textheading3\">Item Name</span></p>\n<p style=\"text-align: center;\"><br></p>\n<p style=\"text-align: center;\">Paragraphs are the main building blocks of web pages. To change what this one says, just double-click here or hit Edit text. You can change the style here, too.</p>",
+        "text": "\n\n\n\n\n",
+        "styles": [
+            [
+                1,
+                1,
+                {
+                    "globalId": "8CD5B980-3863-473E-8C51-F1E68486FE75",
+                    "globalName": "[heading.3]",
+                    "type": "web.data.styles.StyleText"
+                }
+            ]
+        ],
+        "paras": [
+            [
+                1,
+                2,
+                {
+                    "align": "center",
+                    "type": "web.data.styles.StylePara"
+                }
+            ],
+            [
+                4,
+                5,
+                {
+                    "align": "center",
+                    "type": "web.data.styles.StylePara"
+                }
+            ]
+        ],
+        "links": [],
+        "themeOverrideColor": null,
+        "themeHighlightColor": null,
+        "themeShadowBlurRadius": 3,
+        "themeShadowColor": null,
+        "themeShadowOffsetX": 3,
+        "themeShadowOffsetY": 3,
+        "globalStyleId": "EAEA20A6-C03E-4C8C-ADA5-43EBBEF4CD23"
+    },
+    {
+        "id": "DDF1890F-58C9-401C-8CA9-91D746EBA36F",
+        "inTemplate": false,
+        "orderIndex": 30,
+        "wrap": true,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "SVG",
+        "left": 500,
+        "top": 1056,
+        "width": 50,
+        "height": 50,
+        "relIn": {
+            "id": "8B7C9713-B196-4213-94B8-DF0ABCEE604B",
+            "top": 0,
+            "left": 130,
+            "right": -130,
+            "bottom": -178
+        },
+        "relTo": null,
+        "relPage": null,
+        "relPara": {
+            "index": 0,
+            "offset": 0
+        },
+        "asset": {
+            "alpha": null,
+            "animated": false,
+            "bpp": null,
+            "contentType": "image/svg",
+            "etag": "\"22e-5fc848b79e723\"",
+            "filesize": 558,
+            "height": 60,
+            "image": null,
+            "recommendedFormat": null,
+            "url": "repository:/repository-icon-squares-outlined-2.svg",
+            "width": 60
+        },
+        "colors": [
+            {
+                "fromColor": "rgba(0,0,0,1)",
+                "toColor": "#8d7b68",
+                "toThemeColor": "mainColor"
+            },
+            {
+                "fromColor": "rgba(255,255,255,1)",
+                "toColor": "rgba(255,255,255,1)"
+            }
+        ],
+        "defaultFillColor": "rgba(0,0,0,1)",
+        "linkAction": null,
+        "opacity": 100,
+        "seo": "",
+        "rawSvg": "<svg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<g clip-path=\"url(#clip0_21_40)\">\n<circle cx=\"30\" cy=\"30\" r=\"29\" stroke=\"black\" stroke-width=\"2\"/>\n<rect x=\"16\" y=\"16\" width=\"12\" height=\"12\" rx=\"1\" stroke=\"black\" stroke-width=\"2\"/>\n<rect x=\"16\" y=\"32\" width=\"12\" height=\"12\" rx=\"1\" stroke=\"black\" stroke-width=\"2\"/>\n<rect x=\"32\" y=\"32\" width=\"12\" height=\"12\" rx=\"1\" stroke=\"black\" stroke-width=\"2\"/>\n</g>\n<defs>\n<clipPath id=\"clip0_21_40\">\n<rect width=\"60\" height=\"60\" fill=\"white\"/>\n</clipPath>\n</defs>\n</svg>\n",
+        "useOriginalColors": false,
+        "svgJson": {
+            "name": "svg",
+            "type": "element",
+            "value": "",
+            "attributes": {
+                "width": "60",
+                "height": "60",
+                "viewBox": "0 0 60 60",
+                "fill": "none",
+                "xmlns": "http://www.w3.org/2000/svg"
+            },
+            "children": [
+                {
+                    "name": "g",
+                    "type": "element",
+                    "value": "",
+                    "attributes": {
+                        "clip-path": "url(#clip0_21_40)"
+                    },
+                    "children": [
+                        {
+                            "name": "circle",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "cx": "30",
+                                "cy": "30",
+                                "r": "29",
+                                "stroke": "black",
+                                "stroke-width": "2"
+                            },
+                            "children": []
+                        },
+                        {
+                            "name": "rect",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "x": "16",
+                                "y": "16",
+                                "width": "12",
+                                "height": "12",
+                                "rx": "1",
+                                "stroke": "black",
+                                "stroke-width": "2"
+                            },
+                            "children": []
+                        },
+                        {
+                            "name": "rect",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "x": "16",
+                                "y": "32",
+                                "width": "12",
+                                "height": "12",
+                                "rx": "1",
+                                "stroke": "black",
+                                "stroke-width": "2"
+                            },
+                            "children": []
+                        },
+                        {
+                            "name": "rect",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "x": "32",
+                                "y": "32",
+                                "width": "12",
+                                "height": "12",
+                                "rx": "1",
+                                "stroke": "black",
+                                "stroke-width": "2"
+                            },
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "name": "defs",
+                    "type": "element",
+                    "value": "",
+                    "attributes": {},
+                    "children": [
+                        {
+                            "name": "clipPath",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "id": "clip0_21_40"
+                            },
+                            "children": [
+                                {
+                                    "name": "rect",
+                                    "type": "element",
+                                    "value": "",
+                                    "attributes": {
+                                        "width": "60",
+                                        "height": "60",
+                                        "fill": "white"
+                                    },
+                                    "children": []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": "75C46095-89F2-4937-B157-44BAB3558CB2",
+        "inTemplate": false,
+        "orderIndex": 32,
+        "wrap": false,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "TEXT",
+        "left": 0,
+        "top": 1344,
+        "width": 310,
+        "height": 228,
+        "relIn": {
+            "id": "0D85237F-41FE-4643-9444-A7D69C04C4B0",
+            "top": 504,
+            "left": 0,
+            "right": null,
+            "bottom": -100
+        },
+        "relTo": {
+            "below": 60,
+            "id": "95E09576-22B8-4222-AF28-554B8C5D54D6"
+        },
+        "relPage": null,
+        "relPara": null,
+        "verticalAlignment": "top",
+        "mobileHide": false,
+        "mobileSettings": {
+            "align": null,
+            "font": 0
+        },
+        "content": "<div class=\"mceNonEditable center\" style=\"width: 50px;\">\n<div style=\"margin-left: auto; margin-right: auto; width: 50px; min-height: 50px; font-size: 0px;\" data-wrap-id=\"79D80FA8-5F96-464F-904B-E10789D24749\"></div>\n</div>\n<p class=\"textheading3\" style=\"text-align: center;\"><span class=\"textheading3\"><br></span></p>\n<p class=\"textheading3\" style=\"text-align: center;\"><span class=\"textheading3\">Item Name</span></p>\n<p style=\"text-align: center;\"><br></p>\n<p style=\"text-align: center;\">Paragraphs are the main building blocks of web pages. To change what this one says, just double-click here or hit Edit text. You can change the style here, too.</p>",
+        "text": "\n\n\n\n\n",
+        "styles": [
+            [
+                1,
+                1,
+                {
+                    "globalId": "8CD5B980-3863-473E-8C51-F1E68486FE75",
+                    "globalName": "[heading.3]",
+                    "type": "web.data.styles.StyleText"
+                }
+            ]
+        ],
+        "paras": [
+            [
+                1,
+                2,
+                {
+                    "align": "center",
+                    "type": "web.data.styles.StylePara"
+                }
+            ],
+            [
+                4,
+                5,
+                {
+                    "align": "center",
+                    "type": "web.data.styles.StylePara"
+                }
+            ]
+        ],
+        "links": [],
+        "themeOverrideColor": null,
+        "themeHighlightColor": null,
+        "themeShadowBlurRadius": 3,
+        "themeShadowColor": null,
+        "themeShadowOffsetX": 3,
+        "themeShadowOffsetY": 3,
+        "globalStyleId": "EAEA20A6-C03E-4C8C-ADA5-43EBBEF4CD23"
+    },
+    {
+        "id": "79D80FA8-5F96-464F-904B-E10789D24749",
+        "inTemplate": false,
+        "orderIndex": 33,
+        "wrap": true,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "SVG",
+        "left": 130,
+        "top": 1344,
+        "width": 50,
+        "height": 50,
+        "relIn": {
+            "id": "75C46095-89F2-4937-B157-44BAB3558CB2",
+            "top": 0,
+            "left": 130,
+            "right": -130,
+            "bottom": -178
+        },
+        "relTo": null,
+        "relPage": null,
+        "relPara": {
+            "index": 0,
+            "offset": 0
+        },
+        "asset": {
+            "alpha": null,
+            "animated": false,
+            "bpp": null,
+            "contentType": "image/svg",
+            "etag": "\"22e-5fc848b79e723\"",
+            "filesize": 558,
+            "height": 60,
+            "image": null,
+            "recommendedFormat": null,
+            "url": "repository:/repository-icon-squares-outlined-2.svg",
+            "width": 60
+        },
+        "colors": [
+            {
+                "fromColor": "rgba(0,0,0,1)",
+                "toColor": "#8d7b68",
+                "toThemeColor": "mainColor"
+            },
+            {
+                "fromColor": "rgba(255,255,255,1)",
+                "toColor": "rgba(255,255,255,1)"
+            }
+        ],
+        "defaultFillColor": "rgba(0,0,0,1)",
+        "linkAction": null,
+        "opacity": 100,
+        "seo": "",
+        "rawSvg": "<svg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<g clip-path=\"url(#clip0_21_40)\">\n<circle cx=\"30\" cy=\"30\" r=\"29\" stroke=\"black\" stroke-width=\"2\"/>\n<rect x=\"16\" y=\"16\" width=\"12\" height=\"12\" rx=\"1\" stroke=\"black\" stroke-width=\"2\"/>\n<rect x=\"16\" y=\"32\" width=\"12\" height=\"12\" rx=\"1\" stroke=\"black\" stroke-width=\"2\"/>\n<rect x=\"32\" y=\"32\" width=\"12\" height=\"12\" rx=\"1\" stroke=\"black\" stroke-width=\"2\"/>\n</g>\n<defs>\n<clipPath id=\"clip0_21_40\">\n<rect width=\"60\" height=\"60\" fill=\"white\"/>\n</clipPath>\n</defs>\n</svg>\n",
+        "useOriginalColors": false,
+        "svgJson": {
+            "name": "svg",
+            "type": "element",
+            "value": "",
+            "attributes": {
+                "width": "60",
+                "height": "60",
+                "viewBox": "0 0 60 60",
+                "fill": "none",
+                "xmlns": "http://www.w3.org/2000/svg"
+            },
+            "children": [
+                {
+                    "name": "g",
+                    "type": "element",
+                    "value": "",
+                    "attributes": {
+                        "clip-path": "url(#clip0_21_40)"
+                    },
+                    "children": [
+                        {
+                            "name": "circle",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "cx": "30",
+                                "cy": "30",
+                                "r": "29",
+                                "stroke": "black",
+                                "stroke-width": "2"
+                            },
+                            "children": []
+                        },
+                        {
+                            "name": "rect",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "x": "16",
+                                "y": "16",
+                                "width": "12",
+                                "height": "12",
+                                "rx": "1",
+                                "stroke": "black",
+                                "stroke-width": "2"
+                            },
+                            "children": []
+                        },
+                        {
+                            "name": "rect",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "x": "16",
+                                "y": "32",
+                                "width": "12",
+                                "height": "12",
+                                "rx": "1",
+                                "stroke": "black",
+                                "stroke-width": "2"
+                            },
+                            "children": []
+                        },
+                        {
+                            "name": "rect",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "x": "32",
+                                "y": "32",
+                                "width": "12",
+                                "height": "12",
+                                "rx": "1",
+                                "stroke": "black",
+                                "stroke-width": "2"
+                            },
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "name": "defs",
+                    "type": "element",
+                    "value": "",
+                    "attributes": {},
+                    "children": [
+                        {
+                            "name": "clipPath",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "id": "clip0_21_40"
+                            },
+                            "children": [
+                                {
+                                    "name": "rect",
+                                    "type": "element",
+                                    "value": "",
+                                    "attributes": {
+                                        "width": "60",
+                                        "height": "60",
+                                        "fill": "white"
+                                    },
+                                    "children": []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": "30438050-DE46-465D-ABE2-14E72ECB7A89",
+        "inTemplate": false,
+        "orderIndex": 34,
+        "wrap": false,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "TEXT",
+        "left": 740,
+        "top": 1344,
+        "width": 310,
+        "height": 228,
+        "relIn": {
+            "id": "0D85237F-41FE-4643-9444-A7D69C04C4B0",
+            "top": 504,
+            "left": 740,
+            "right": null,
+            "bottom": -100
+        },
+        "relTo": {
+            "below": 60,
+            "id": "8209FAC9-7397-40F1-9FCC-47CD5C93031C"
+        },
+        "relPage": null,
+        "relPara": null,
+        "verticalAlignment": "top",
+        "mobileHide": false,
+        "mobileSettings": {
+            "align": null,
+            "font": 0
+        },
+        "content": "<div class=\"mceNonEditable center\" style=\"width: 50px;\">\n<div style=\"margin-left: auto; margin-right: auto; width: 50px; min-height: 50px; font-size: 0px;\" data-wrap-id=\"0BC5AD0E-416E-4FDC-99E7-C4BAE7F39044\"></div>\n</div>\n<p class=\"textheading3\" style=\"text-align: center;\"><span class=\"textheading3\"><br></span></p>\n<p class=\"textheading3\" style=\"text-align: center;\"><span class=\"textheading3\">Item Name</span></p>\n<p style=\"text-align: center;\"><br></p>\n<p style=\"text-align: center;\">Paragraphs are the main building blocks of web pages. To change what this one says, just double-click here or hit Edit text. You can change the style here, too.</p>",
+        "text": "\n\n\n\n\n",
+        "styles": [
+            [
+                1,
+                1,
+                {
+                    "globalId": "8CD5B980-3863-473E-8C51-F1E68486FE75",
+                    "globalName": "[heading.3]",
+                    "type": "web.data.styles.StyleText"
+                }
+            ]
+        ],
+        "paras": [
+            [
+                1,
+                2,
+                {
+                    "align": "center",
+                    "type": "web.data.styles.StylePara"
+                }
+            ],
+            [
+                4,
+                5,
+                {
+                    "align": "center",
+                    "type": "web.data.styles.StylePara"
+                }
+            ]
+        ],
+        "links": [],
+        "themeOverrideColor": null,
+        "themeHighlightColor": null,
+        "themeShadowBlurRadius": 3,
+        "themeShadowColor": null,
+        "themeShadowOffsetX": 3,
+        "themeShadowOffsetY": 3,
+        "globalStyleId": "EAEA20A6-C03E-4C8C-ADA5-43EBBEF4CD23"
+    },
+    {
+        "id": "2B9B2AC6-ABF2-4935-8113-AAFE210A775B",
+        "inTemplate": false,
+        "orderIndex": 35,
+        "wrap": false,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "TEXT",
+        "left": 370,
+        "top": 1344,
+        "width": 310,
+        "height": 228,
+        "relIn": {
+            "id": "0D85237F-41FE-4643-9444-A7D69C04C4B0",
+            "top": 504,
+            "left": 370,
+            "right": null,
+            "bottom": -100
+        },
+        "relTo": {
+            "below": 60,
+            "id": "8B7C9713-B196-4213-94B8-DF0ABCEE604B"
+        },
+        "relPage": null,
+        "relPara": null,
+        "verticalAlignment": "top",
+        "mobileHide": false,
+        "mobileSettings": {
+            "align": null,
+            "font": 0
+        },
+        "content": "<div class=\"mceNonEditable center\" style=\"width: 50px;\">\n<div style=\"margin-left: auto; margin-right: auto; width: 50px; min-height: 50px; font-size: 0px;\" data-wrap-id=\"DC152F8B-2075-431D-9F64-9397E06DDA4A\"></div>\n</div>\n<p class=\"textheading3\" style=\"text-align: center;\"><span class=\"textheading3\"><br></span></p>\n<p class=\"textheading3\" style=\"text-align: center;\"><span class=\"textheading3\">Item Name</span></p>\n<p style=\"text-align: center;\"><br></p>\n<p style=\"text-align: center;\">Paragraphs are the main building blocks of web pages. To change what this one says, just double-click here or hit Edit text. You can change the style here, too.</p>",
+        "text": "\n\n\n\n\n",
+        "styles": [
+            [
+                1,
+                1,
+                {
+                    "globalId": "8CD5B980-3863-473E-8C51-F1E68486FE75",
+                    "globalName": "[heading.3]",
+                    "type": "web.data.styles.StyleText"
+                }
+            ]
+        ],
+        "paras": [
+            [
+                1,
+                2,
+                {
+                    "align": "center",
+                    "type": "web.data.styles.StylePara"
+                }
+            ],
+            [
+                4,
+                5,
+                {
+                    "align": "center",
+                    "type": "web.data.styles.StylePara"
+                }
+            ]
+        ],
+        "links": [],
+        "themeOverrideColor": null,
+        "themeHighlightColor": null,
+        "themeShadowBlurRadius": 3,
+        "themeShadowColor": null,
+        "themeShadowOffsetX": 3,
+        "themeShadowOffsetY": 3,
+        "globalStyleId": "EAEA20A6-C03E-4C8C-ADA5-43EBBEF4CD23"
+    },
+    {
+        "id": "DC152F8B-2075-431D-9F64-9397E06DDA4A",
+        "inTemplate": false,
+        "orderIndex": 36,
+        "wrap": true,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "SVG",
+        "left": 500,
+        "top": 1344,
+        "width": 50,
+        "height": 50,
+        "relIn": {
+            "id": "2B9B2AC6-ABF2-4935-8113-AAFE210A775B",
+            "top": 0,
+            "left": 130,
+            "right": -130,
+            "bottom": -178
+        },
+        "relTo": null,
+        "relPage": null,
+        "relPara": {
+            "index": 0,
+            "offset": 0
+        },
+        "asset": {
+            "alpha": null,
+            "animated": false,
+            "bpp": null,
+            "contentType": "image/svg",
+            "etag": "\"22e-5fc848b79e723\"",
+            "filesize": 558,
+            "height": 60,
+            "image": null,
+            "recommendedFormat": null,
+            "url": "repository:/repository-icon-squares-outlined-2.svg",
+            "width": 60
+        },
+        "colors": [
+            {
+                "fromColor": "rgba(0,0,0,1)",
+                "toColor": "#8d7b68",
+                "toThemeColor": "mainColor"
+            },
+            {
+                "fromColor": "rgba(255,255,255,1)",
+                "toColor": "rgba(255,255,255,1)"
+            }
+        ],
+        "defaultFillColor": "rgba(0,0,0,1)",
+        "linkAction": null,
+        "opacity": 100,
+        "seo": "",
+        "rawSvg": "<svg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<g clip-path=\"url(#clip0_21_40)\">\n<circle cx=\"30\" cy=\"30\" r=\"29\" stroke=\"black\" stroke-width=\"2\"/>\n<rect x=\"16\" y=\"16\" width=\"12\" height=\"12\" rx=\"1\" stroke=\"black\" stroke-width=\"2\"/>\n<rect x=\"16\" y=\"32\" width=\"12\" height=\"12\" rx=\"1\" stroke=\"black\" stroke-width=\"2\"/>\n<rect x=\"32\" y=\"32\" width=\"12\" height=\"12\" rx=\"1\" stroke=\"black\" stroke-width=\"2\"/>\n</g>\n<defs>\n<clipPath id=\"clip0_21_40\">\n<rect width=\"60\" height=\"60\" fill=\"white\"/>\n</clipPath>\n</defs>\n</svg>\n",
+        "useOriginalColors": false,
+        "svgJson": {
+            "name": "svg",
+            "type": "element",
+            "value": "",
+            "attributes": {
+                "width": "60",
+                "height": "60",
+                "viewBox": "0 0 60 60",
+                "fill": "none",
+                "xmlns": "http://www.w3.org/2000/svg"
+            },
+            "children": [
+                {
+                    "name": "g",
+                    "type": "element",
+                    "value": "",
+                    "attributes": {
+                        "clip-path": "url(#clip0_21_40)"
+                    },
+                    "children": [
+                        {
+                            "name": "circle",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "cx": "30",
+                                "cy": "30",
+                                "r": "29",
+                                "stroke": "black",
+                                "stroke-width": "2"
+                            },
+                            "children": []
+                        },
+                        {
+                            "name": "rect",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "x": "16",
+                                "y": "16",
+                                "width": "12",
+                                "height": "12",
+                                "rx": "1",
+                                "stroke": "black",
+                                "stroke-width": "2"
+                            },
+                            "children": []
+                        },
+                        {
+                            "name": "rect",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "x": "16",
+                                "y": "32",
+                                "width": "12",
+                                "height": "12",
+                                "rx": "1",
+                                "stroke": "black",
+                                "stroke-width": "2"
+                            },
+                            "children": []
+                        },
+                        {
+                            "name": "rect",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "x": "32",
+                                "y": "32",
+                                "width": "12",
+                                "height": "12",
+                                "rx": "1",
+                                "stroke": "black",
+                                "stroke-width": "2"
+                            },
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "name": "defs",
+                    "type": "element",
+                    "value": "",
+                    "attributes": {},
+                    "children": [
+                        {
+                            "name": "clipPath",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "id": "clip0_21_40"
+                            },
+                            "children": [
+                                {
+                                    "name": "rect",
+                                    "type": "element",
+                                    "value": "",
+                                    "attributes": {
+                                        "width": "60",
+                                        "height": "60",
+                                        "fill": "white"
+                                    },
+                                    "children": []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "id": "0BC5AD0E-416E-4FDC-99E7-C4BAE7F39044",
+        "inTemplate": false,
+        "orderIndex": 37,
+        "wrap": true,
+        "mobileDown": false,
+        "onHover": null,
+        "kind": "SVG",
+        "left": 870,
+        "top": 1344,
+        "width": 50,
+        "height": 50,
+        "relIn": {
+            "id": "30438050-DE46-465D-ABE2-14E72ECB7A89",
+            "top": 0,
+            "left": 130,
+            "right": -130,
+            "bottom": -178
+        },
+        "relTo": null,
+        "relPage": null,
+        "relPara": {
+            "index": 0,
+            "offset": 0
+        },
+        "asset": {
+            "alpha": null,
+            "animated": false,
+            "bpp": null,
+            "contentType": "image/svg",
+            "etag": "\"22e-5fc848b79e723\"",
+            "filesize": 558,
+            "height": 60,
+            "image": null,
+            "recommendedFormat": null,
+            "url": "repository:/repository-icon-squares-outlined-2.svg",
+            "width": 60
+        },
+        "colors": [
+            {
+                "fromColor": "rgba(0,0,0,1)",
+                "toColor": "#8d7b68",
+                "toThemeColor": "mainColor"
+            },
+            {
+                "fromColor": "rgba(255,255,255,1)",
+                "toColor": "rgba(255,255,255,1)"
+            }
+        ],
+        "defaultFillColor": "rgba(0,0,0,1)",
+        "linkAction": null,
+        "opacity": 100,
+        "seo": "",
+        "rawSvg": "<svg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<g clip-path=\"url(#clip0_21_40)\">\n<circle cx=\"30\" cy=\"30\" r=\"29\" stroke=\"black\" stroke-width=\"2\"/>\n<rect x=\"16\" y=\"16\" width=\"12\" height=\"12\" rx=\"1\" stroke=\"black\" stroke-width=\"2\"/>\n<rect x=\"16\" y=\"32\" width=\"12\" height=\"12\" rx=\"1\" stroke=\"black\" stroke-width=\"2\"/>\n<rect x=\"32\" y=\"32\" width=\"12\" height=\"12\" rx=\"1\" stroke=\"black\" stroke-width=\"2\"/>\n</g>\n<defs>\n<clipPath id=\"clip0_21_40\">\n<rect width=\"60\" height=\"60\" fill=\"white\"/>\n</clipPath>\n</defs>\n</svg>\n",
+        "useOriginalColors": false,
+        "svgJson": {
+            "name": "svg",
+            "type": "element",
+            "value": "",
+            "attributes": {
+                "width": "60",
+                "height": "60",
+                "viewBox": "0 0 60 60",
+                "fill": "none",
+                "xmlns": "http://www.w3.org/2000/svg"
+            },
+            "children": [
+                {
+                    "name": "g",
+                    "type": "element",
+                    "value": "",
+                    "attributes": {
+                        "clip-path": "url(#clip0_21_40)"
+                    },
+                    "children": [
+                        {
+                            "name": "circle",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "cx": "30",
+                                "cy": "30",
+                                "r": "29",
+                                "stroke": "black",
+                                "stroke-width": "2"
+                            },
+                            "children": []
+                        },
+                        {
+                            "name": "rect",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "x": "16",
+                                "y": "16",
+                                "width": "12",
+                                "height": "12",
+                                "rx": "1",
+                                "stroke": "black",
+                                "stroke-width": "2"
+                            },
+                            "children": []
+                        },
+                        {
+                            "name": "rect",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "x": "16",
+                                "y": "32",
+                                "width": "12",
+                                "height": "12",
+                                "rx": "1",
+                                "stroke": "black",
+                                "stroke-width": "2"
+                            },
+                            "children": []
+                        },
+                        {
+                            "name": "rect",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "x": "32",
+                                "y": "32",
+                                "width": "12",
+                                "height": "12",
+                                "rx": "1",
+                                "stroke": "black",
+                                "stroke-width": "2"
+                            },
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "name": "defs",
+                    "type": "element",
+                    "value": "",
+                    "attributes": {},
+                    "children": [
+                        {
+                            "name": "clipPath",
+                            "type": "element",
+                            "value": "",
+                            "attributes": {
+                                "id": "clip0_21_40"
+                            },
+                            "children": [
+                                {
+                                    "name": "rect",
+                                    "type": "element",
+                                    "value": "",
+                                    "attributes": {
+                                        "width": "60",
+                                        "height": "60",
+                                        "fill": "white"
+                                    },
+                                    "children": []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+]

@@ -4,48 +4,62 @@ This module contains detailed descriptions for each tool, providing guidance
 to the LLM on how to use them correctly.
 """
 
-CREATE_TOOL_DESCRIPTION = """Create stunning WSB components with smart defaults and professional structure.
+CREATE_TOOL_DESCRIPTION = """Create WSB components using the full schema from components-map.json, with smart defaults and flat relIn/relTo layout.
 
-COMPONENT TYPES & AUTO-DEFAULTS:
-- SECTION: Full-width layout sections (auto: stretch=true, selectedTheme="White", pin=0, mobile responsive)
-- CONTAINER: Flexible layout boxes for nested content
-- TEXT: Typography elements (auto: fontSize=16, lineHeight=1.5)
-- BUTTON: Interactive buttons (auto: rounded corners, bold text)
-- IMAGE, SVG, LOGO, etc.
+CORE KINDS & DEFAULTS
+- SECTION: stretch=true, pin=0, selectedTheme="White", mobileSettings.size="cover"
+- CONTAINER: wrap=false by default
+- TEXT: fontSize=16, lineHeight=1.5
+- BUTTON: bold=true, corners.radius=5, fontSize=16
+- IMAGE/SVG/LOGO/MENU/FORM/MAP/etc. supported; pass required style/data as below.
 
-TWO LAYOUT PATTERNS:
+LAYOUT (FLAT STRUCTURE)
+- parent_id sets relIn.id automatically; children stay in the root list.
+- relTo stacks siblings: e.g., relTo={"id": "<prev-section>", "below": 0}. after_id/before_id auto-add relTo with below=0.
+- Position with left/top/width/height; verticalAlignment/horizontalAlignment optional; bbox can hold bounding box ints.
+- For precise placement, set relIn offsets (e.g., {"id": "<section>", "left": 120, "top": 80}); use relTo only for stacking relative to a sibling.
+- Sections: always give relTo to stack them; inner blocks: give relIn with numeric offsets or alignment plus width/height.
 
-Pattern A - Simple Nesting (for cards, components):
-  kind="CONTAINER", width=300, height=400, background="#fff", padding={"top":20,"left":20,"right":20,"bottom":20}
-  └─ Use parent_id to nest children
-  └─ Use left/top/width/height for positioning
+CONTENT/STYLES
+- content/text/title/name plus paras/links/globalStyleId for rich text.
+- style/background: background.colorData.color=[\"HSL\", h,s,l,a], background.assetData.asset={url,width,height,etag,...}, repeat/position/size/scrollEffect/opacity supported.
+- style/global refs: globalId, globalName, type, text={size: int}.
+- styles accepts mixed Style or raw JSON fragments (as seen in components-map).
+- Theming: selectedTheme/selectedGradientTheme, themeColorType, themeOverrideColor/themeHighlightColor/themeShadow*.
+- Border/corners/padding accept structured data; gradient/seo/hover/onHover/press/svgJson allow JSON blobs.
 
-Pattern B - Section-Based (for full pages):
-  kind="SECTION", title="Hero", height=700, selectedTheme="Main"
-  └─ Use relTo={"id":"previous-section-id","below":0} to stack sections vertically
-  └─ Children use relIn={"id":"section-id","left":100,"top":50} for absolute positioning within section
+MOBILE & VISIBILITY
+- mobileSettings {align,font,size}, mobileHide, mobileDown, mobileHorizontalAlignment, mobileFontSize, mobileSize.
+- size/mobileSize accept str or int.
 
-KEY FEATURES:
-- Smart defaults per component type (override any default explicitly)
-- Professional theming: selectedTheme="Main"|"White"|"Dark"
-- Relational positioning: relTo (stack sections), relIn (position in section)
-- Mobile responsive: mobileSettings, stretch, mobileHide
-- Rich styling: style, corners, padding, border, gradient, shadows
+LINKS & ACTIONS
+- linkAction {link:{type,value}, openInNewWindow}, link/openLink (string or bool), linkId, buttonThemeSelected, fuButtonThemeSelected.
 
-EXAMPLES:
+FORMS & CONTACT
+- formElements {fieldName: {inputType,isRequired,errorMessage,name,values}}, formElementsOrder (list), recipientEmail, subject, submitBtn, successMessage.
+- isCaptchaEnabled, captchaLang, isMarketingConsentEnabled, marketingConsentCheckBoxText, readPrivacyPolicyText.
+- styleForm {font,fontSize,fontColor}, styleButton/styleForm/subStyle (Style), themeStyles {mainMenu, submenu}, themeColorType.
 
-Professional section:
-  kind="SECTION", title="Hero", height=700, background="#f5f5f5"
+MENUS/HEADER
+- layoutType (e.g., HORIZONTAL_DROPDOWN), startLevel, moreButtonEnabled/moreText, isStickyToHeader, logoHorizontalAlignment, logoTitleScale, horizontalAlign/verticalAlign.
+- generic info blocks: generic {customPrefixText, iconSize, iconTextSpacing, textStyle{bold,color,fontFamily,fontSize,letterSpacing,lineHeight,prefix*}, themeOverrideColor, mobile* flags}.
+- specific info blocks: specific {placeholderText, placeholder{addressName/addressLine1/…}, showCountry, showWebsiteTitleBeforeAddress}.
 
-Pricing card:
-  kind="CONTAINER", width=300, background="#fff", padding={"top":30,"bottom":30,"left":20,"right":20},
-  corners={"radius":8}, border={"width":1,"color":"#ddd"}
+MAP/ADDRESS
+- addressLocation {lat,lng}, addressText, addressUrl, zoom, useOriginalColors, colors [{fromColor,toColor,toThemeColor}], defaultFillColor.
 
-Styled text:
-  kind="TEXT", content="<h2>Title</h2>", fontSize=36, bold=true, color="#333"
+FLEXIBLE FIELDS (LOOSE JSON OK)
+- styles can mix Style objects with raw fragments (e.g., [1,1,{\"globalId\":\"...\",\"type\":\"web.data.styles.StyleText\"}]).
+- gradient/seo/svgJson/hover/onHover/press accept structured JSON blobs as needed by the renderer.
 
-Call-to-action button:
-  kind="BUTTON", text="Get Started", background="#007bff", color="#fff", width=200, height=50
+PLACEHOLDER IMAGES
+- For IMAGE/GALLERY assets, use placeholder URLs matching component size: "https://placehold.co/<width>x<height>" and set asset.isExternalLink=true.
+- Asset schema supports isExternalLink, width, height, url, contentType, etc.
+
+EXAMPLES
+- Section hero: kind="SECTION", title="Hero", height=700, selectedTheme="Main", relTo={"id": "<prev>", "below":0}, style.background.assetData.asset.url="repository:/image.jpg"
+- Menu: kind="MENU", layoutType="HORIZONTAL_DROPDOWN", themeStyles.mainMenu={id,name}, startLevel=1, moreButtonEnabled=true
+- Form: kind="FORM", formElements={name:{inputType:"text",isRequired:true}}, recipientEmail="hi@example.com", isCaptchaEnabled=true
 """
 
 LIST_TOOL_DESCRIPTION = """List components in the current page JSON so you can reference ids and hierarchy when editing.

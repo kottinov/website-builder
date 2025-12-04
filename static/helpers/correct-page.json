@@ -1,0 +1,176 @@
+{
+  "id": "1D0AEAB4-DF38-46B3-B3ED-B088FBE22BDF",
+  "type": "web.data.components.Page",
+  "name": "Generated Page",
+  "templateId": "81B4ECC6-B1E4-4D71-B313-1693870C10E6",
+  "items": [
+    {
+      "id": "C09DBB3E-FAE2-4F9B-A613-811B9A57C782",
+      "inTemplate": false,
+      "orderIndex": 6,
+      "wrap": false,
+      "mobileDown": false,
+      "onHover": null,
+      "kind": "TEXT",
+      "left": 185,
+      "top": 250,
+      "width": 680,
+      "height": 260,
+      "relIn": {
+        "id": "F15589DF-EE1B-46FC-82AF-CE19B2A611A3",
+        "top": 160,
+        "left": 185,
+        "right": null,
+        "bottom": -340
+      },
+      "relTo": null,
+      "relPage": null,
+      "relPara": null,
+      "verticalAlignment": "bottom",
+      "mobileHide": false,
+      "mobileSettings": { "align": null, "font": 0 },
+      "content": "<p class=\"textheading1\" style=\"text-align: center;\"><span class=\"textheading1\"><span style=\"color: #ffffff;\">GREAT SERVICE AND EXPERTISE</span></span><span class=\"textnormal\"></span></p>",
+      "text": "",
+      "styles": [],
+      "paras": [],
+      "links": [],
+      "themeOverrideColor": null,
+      "themeHighlightColor": null,
+      "themeShadowBlurRadius": 3,
+      "themeShadowColor": null,
+      "themeShadowOffsetX": 3,
+      "themeShadowOffsetY": 3,
+      "globalStyleId": "EAEA20A6-C03E-4C8C-ADA5-43EBBEF4CD23"
+    },
+    {
+      "id": "6C6FCA9D-A601-44A1-BD26-3A74F86A749B",
+      "inTemplate": false,
+      "orderIndex": 7,
+      "wrap": false,
+      "mobileDown": false,
+      "onHover": null,
+      "kind": "BUTTON",
+      "left": 375,
+      "top": 580,
+      "width": 300,
+      "height": 60,
+      "relIn": {
+        "id": "F15589DF-EE1B-46FC-82AF-CE19B2A611A3",
+        "top": 490,
+        "left": 375,
+        "right": null,
+        "bottom": -210
+      },
+      "relTo": { "below": 30, "id": "744A58E4-FCFE-410C-9041-9206E6D00397" },
+      "relPage": null,
+      "relPara": null,
+      "text": "Book a consultation",
+      "mobileHide": false,
+      "mobileSettings": { "align": "justify" },
+      "style": {
+        "globalId": "0E6D94E7-D717-487F-B936-712CA4C430AA",
+        "globalName": "[button.1]",
+        "type": "web.data.styles.StyleButton",
+        "text": { "size": null }
+      },
+      "linkAction": {
+        "link": {
+          "type": "page",
+          "value": "FD90B0D2-DF24-4135-AA5C-A25A71A7C680"
+        },
+        "openInNewWindow": false
+      },
+      "buttonThemeSelected": "primary"
+    },
+    {
+      "id": "42EDB4FE-20FB-4BAA-B401-44BE7154739C",
+      "inTemplate": false,
+      "orderIndex": 8,
+      "wrap": false,
+      "mobileDown": false,
+      "onHover": null,
+      "kind": "TEXT",
+      "left": 150,
+      "top": 520,
+      "width": 750,
+      "height": 31,
+      "relIn": {
+        "id": "F15589DF-EE1B-46FC-82AF-CE19B2A611A3",
+        "top": 430,
+        "left": 150,
+        "right": null,
+        "bottom": -299
+      },
+      "relTo": { "below": 10, "id": "2E7CA4B4-1809-4DDF-BBCB-F489C54C941F" },
+      "relPage": null,
+      "relPara": null,
+      "verticalAlignment": "top",
+      "mobileHide": false,
+      "mobileSettings": { "align": null, "font": 0 },
+      "content": "<p class=\"textheading3\" style=\"text-align: center;\"><span class=\"textheading3\"><span style=\"color: #ffffff;\">Inspired by years of industry experience</span></span></p>",
+      "text": "",
+      "styles": [],
+      "paras": [],
+      "links": [],
+      "themeOverrideColor": null,
+      "themeHighlightColor": null,
+      "themeShadowBlurRadius": 3,
+      "themeShadowColor": null,
+      "themeShadowOffsetX": 3,
+      "themeShadowOffsetY": 3,
+      "globalStyleId": "EAEA20A6-C03E-4C8C-ADA5-43EBBEF4CD23"
+    },
+    {
+      "id": "F15589DF-EE1B-46FC-82AF-CE19B2A611A3",
+      "inTemplate": false,
+      "orderIndex": 5,
+      "stretch": true,
+      "wrap": false,
+      "kind": "SECTION",
+      "left": 0,
+      "top": 90,
+      "width": 1300,
+      "height": 760,
+      "relIn": null,
+      "relTo": { "below": 0, "id": "22FC8C5B-CD71-42B7-9DF2-486F577581A9" },
+      "relPage": null,
+      "relPara": null,
+      "style": {
+        "border": null,
+        "background": {
+          "colorData": {
+            "color": ["HSL", 0.5644999999999936, 0, 0.16820000000000002, 1],
+            "gradient": null
+          },
+          "assetData": {
+            "asset": {
+              "alpha": null,
+              "animated": false,
+              "bpp": null,
+              "contentType": "image/jpeg",
+              "etag": "\"31343-5fc848a346a51\"",
+              "filesize": 201539,
+              "height": 1275,
+              "image": null,
+              "recommendedFormat": null,
+              "url": "repository:/design-universal-template-unsplash-fPcB3Km7PyE.jpg",
+              "width": 1920
+            },
+            "repeat": [false, false],
+            "position": ["50%", "50%"],
+            "size": "cover",
+            "scrollEffect": "parallax",
+            "opacity": 0.6
+          }
+        }
+      },
+      "mobileSettings": { "size": "cover" },
+      "pin": 0,
+      "title": "Section2",
+      "selectedTheme": "Black",
+      "selectedGradientTheme": null
+    }
+  ],
+  "shareHeaderAndFirstSectionBgImg": false,
+  "shareBgImgOffsetTop": 0
+}

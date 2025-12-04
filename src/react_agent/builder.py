@@ -225,8 +225,6 @@ class WSBComponentBuilder:
         """
         if items is not None:
             self._component["items"] = items
-        elif "items" not in self._component:
-            self._component["items"] = []
 
         return self
 
@@ -273,9 +271,6 @@ class WSBComponentBuilder:
         """
         if self._component["kind"] is None:
             raise ValueError("Component 'kind' (type) must be set before building")
-
-        if "items" not in self._component:
-            self._component["items"] = []
 
         component = self._component
         self.reset()

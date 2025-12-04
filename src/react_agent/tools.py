@@ -9,6 +9,7 @@ from react_agent.utils import (
     generate_id,
     get_default_page_path,
     find_component_by_id,
+    get_rel_parent_id,
     insert_component,
     load_page,
     renumber_components,
@@ -20,6 +21,7 @@ from react_agent.signatures import (
     EditInput,
     FindInput,
     ListInput,
+    RelIn,
     ReorderInput,
     RetrieveInput,
     RemoveInput,
@@ -53,12 +55,13 @@ def list(file_path: Optional[str] = None) -> List[Dict[str, Any]]:
     def walk(items: List[Dict[str, Any]], parent_id: Optional[str]) -> None:
         for item in items:
             kind = item.get("kind") or item.get("type")
+            rel_parent = get_rel_parent_id(item)
             result.append(
                 {
                     "id": item.get("id"),
                     "kind": kind,
                     "orderIndex": item.get("orderIndex"),
-                    "parentId": parent_id,
+                    "parentId": rel_parent or parent_id,
                     "title": item.get("title")
                     or item.get("name")
                     or item.get("text")
@@ -91,6 +94,19 @@ def create(**kwargs) -> Dict[str, Any]:
         ValueError: If the component type is missing.
     """
     payload = CreateInput(**kwargs)
+    updates: Dict[str, Any] = {}
+
+    if payload.parent_id and payload.relIn is None:
+        updates["relIn"] = RelIn(id=payload.parent_id)
+
+    if payload.relTo is None:
+        if payload.after_id:
+            updates["relTo"] = {"id": payload.after_id, "below": 0}
+        elif payload.before_id:
+            updates["relTo"] = {"id": payload.before_id, "below": 0}
+
+    if updates:
+        payload = payload.model_copy(update=updates)
 
     page_path = Path(payload.file_path) if payload.file_path else get_default_page_path()
     
@@ -143,13 +159,7 @@ def remove(component_id: str, file_path: Optional[str] = None) -> bool:
 
     page["items"] = prune(page.get("items", []))
 
-    def renumber(items: List[Dict[str, Any]]) -> None:
-        for idx, item in enumerate(items):
-            item["orderIndex"] = idx
-            if item.get("items"):
-                renumber(item["items"])
-
-    renumber(page["items"])
+    renumber_components(page["items"])
     save_page(page_path, page)
     return removed
 
@@ -196,19 +206,12 @@ def reorder(order_ids: List[str], parent_id: Optional[str] = None, file_path: Op
     page_path = Path(file_path) if file_path else get_default_page_path()
     page = load_page(page_path)
 
-    def find_list(items: List[Dict[str, Any]]) -> Optional[List[Dict[str, Any]]]:
-        if parent_id is None:
-            return items
-        for item in items:
-            if item.get("id") == parent_id:
-                return item.setdefault("items", [])
-            sub = find_list(item.get("items", []))
-            if sub is not None:
-                return sub
-        return None
+    def matches_parent(item: Dict[str, Any]) -> bool:
+        rel_parent = get_rel_parent_id(item)
+        return rel_parent == parent_id if parent_id is not None else rel_parent is None
 
-    target_list = find_list(page.get("items", []))
-    if target_list is None:
+    target_list = [item for item in page.get("items", []) if matches_parent(item)]
+    if not target_list:
         return []
 
     id_to_item = {item.get("id"): item for item in target_list}
@@ -218,20 +221,18 @@ def reorder(order_ids: List[str], parent_id: Optional[str] = None, file_path: Op
             new_list.append(item)
     for idx, item in enumerate(new_list):
         item["orderIndex"] = idx
-    if parent_id is None:
-        page["items"] = new_list
-    else:
-        def set_list(items: List[Dict[str, Any]]) -> bool:
-            for item in items:
-                if item.get("id") == parent_id:
-                    item["items"] = new_list
-                    return True
-                if set_list(item.get("items", [])):
-                    return True
-            return False
+    sibling_ids = {item.get("id") for item in target_list}
+    new_items: List[Dict[str, Any]] = []
+    new_iter = iter(new_list)
+    for item in page.get("items", []):
+        if item.get("id") in sibling_ids:
+            new_items.append(next(new_iter))
+        else:
+            new_items.append(item)
 
-        set_list(page["items"])
+    page["items"] = new_items
 
+    renumber_components(page["items"])
     save_page(page_path, page)
     return new_list
 

@@ -100,6 +100,14 @@ def save_page(path: Path, page: Dict[str, Any]) -> None:
     path.write_text(json.dumps(page, indent=2))
 
 
+def get_rel_parent_id(item: Dict[str, Any]) -> Optional[str]:
+    """Return the parent id from relIn, if present."""
+    rel_in = item.get("relIn")
+    if isinstance(rel_in, dict):
+        return rel_in.get("id")
+    return None
+
+
 def renumber_components(items: list[Dict[str, Any]]) -> None:
     """Recursively renumber orderIndex for all components.
 
@@ -109,10 +117,17 @@ def renumber_components(items: list[Dict[str, Any]]) -> None:
     Args:
         items: List of components to renumber.
     """
-    for idx, item in enumerate(items):
-        item["orderIndex"] = idx
+    parent_buckets: dict[Optional[str], list[Dict[str, Any]]] = {}
+
+    for item in items:
+        parent_id = get_rel_parent_id(item)
+        parent_buckets.setdefault(parent_id, []).append(item)
         if item.get("items"):
             renumber_components(item["items"])
+
+    for siblings in parent_buckets.values():
+        for idx, item in enumerate(siblings):
+            item["orderIndex"] = idx
 
 
 def find_component_by_id(
@@ -135,39 +150,24 @@ def insert_component(
     before_id: str | None = None,
     after_id: str | None = None,
 ) -> bool:
-    """Insert a component into the page hierarchy.
+    """Insert a component into the page list.
 
-    Handles three insertion modes:
-        1. Nested insertion: If parent_id is provided, insert into parent's items
-        2. Positional insertion: If before_id/after_id provided, insert at position
-        3. Default insertion: Append to the end of target list
+    Components are kept in a flat list; relIn is used to indicate parent
+    relationships for rendering and ordering.
 
     Args:
         component: Component dictionary to insert.
         page_items: Root-level page items list.
-        parent_id: Optional parent component ID to nest under.
-        before_id: Optional sibling ID to insert before.
-        after_id: Optional sibling ID to insert after.
+        parent_id: Optional parent component ID; sets relIn.id when provided.
+        before_id: Optional sibling ID to insert before (global ordering).
+        after_id: Optional sibling ID to insert after (global ordering).
 
     Returns:
         True if insertion was successful.
     """
     target_list = page_items
-
-    if parent_id:
-        def find_parent(items: list[Dict[str, Any]]) -> list[Dict[str, Any]] | None:
-            for item in items:
-                if item.get("id") == parent_id:
-                    return item.setdefault("items", [])
-                if item.get("items"):
-                    result = find_parent(item["items"])
-                    if result is not None:
-                        return result
-            return None
-
-        found_parent = find_parent(page_items)
-        if found_parent is not None:
-            target_list = found_parent
+    if parent_id and not component.get("relIn"):
+        component["relIn"] = {"id": parent_id}
 
     if before_id or after_id:
         for idx, item in enumerate(target_list):
