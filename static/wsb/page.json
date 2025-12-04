@@ -1,11 +1,11 @@
 {
-  "id": "7C8C2999-8E7A-4C1E-A322-F118F13ADCFC",
+  "id": "C4C52DE5-FD36-44E3-A5EF-3D2F4E9BA14A",
   "type": "web.data.components.Page",
   "name": "Generated Page",
-  "templateId": "4F0AF587-5EB1-46FB-9296-71B37ED89BDD",
+  "templateId": "146EBDE4-C92B-4689-A08D-ADE2001BFEB5",
   "items": [
     {
-      "id": "C1C8FCE6-5459-4ACC-A2F3-A73CB90BACA4",
+      "id": "7AF1898B-BA9D-4AEE-B0A5-B4C3BDD49B36",
       "kind": "SECTION",
       "inTemplate": false,
       "orderIndex": 0,
@@ -23,9 +23,9 @@
           "colorData": {
             "color": [
               "HSL",
-              210,
-              0.8,
-              0.2,
+              220,
+              0.7,
+              0.3,
               1
             ]
           }
@@ -33,48 +33,29 @@
       }
     },
     {
-      "id": "D1B63095-DC26-4F50-AA75-9E125CE8774A",
+      "id": "4C3EF26E-643F-422A-8194-B24A959D3738",
       "kind": "TEXT",
       "inTemplate": false,
       "orderIndex": 0,
       "wrap": false,
-      "fontSize": 48,
-      "lineHeight": 1.5,
-      "width": 800,
+      "fontSize": 18,
+      "lineHeight": 1.6,
+      "width": 600,
       "relIn": {
-        "id": "C1C8FCE6-5459-4ACC-A2F3-A73CB90BACA4",
+        "id": "7AF1898B-BA9D-4AEE-B0A5-B4C3BDD49B36",
         "left": 100,
         "top": 150,
         "right": null,
         "bottom": null
       },
-      "content": "<h1>Welcome to Our Amazing Product</h1>",
-      "color": "#FFFFFF"
+      "content": "<h1>Welcome to Our Amazing Product</h1><p>Transform your business with our innovative solutions. Get started today and see results in days, not months.</p>",
+      "color": "#ffffff"
     },
     {
-      "id": "D01F098B-37EE-4208-B922-15CF94F0224D",
-      "kind": "TEXT",
-      "inTemplate": false,
-      "orderIndex": 1,
-      "wrap": false,
-      "fontSize": 18,
-      "lineHeight": 1.5,
-      "width": 700,
-      "relIn": {
-        "id": "C1C8FCE6-5459-4ACC-A2F3-A73CB90BACA4",
-        "left": 100,
-        "top": 280,
-        "right": null,
-        "bottom": null
-      },
-      "content": "<p>Transform your business with our innovative solution. Join thousands of happy customers today.</p>",
-      "color": "#E0E0E0"
-    },
-    {
-      "id": "8EB6DC14-4955-4AEE-9251-50DB03D0F5F5",
+      "id": "18583636-C896-4646-8913-97E0964E18CF",
       "kind": "BUTTON",
       "inTemplate": false,
-      "orderIndex": 2,
+      "orderIndex": 1,
       "wrap": false,
       "corners": {
         "radius": 5
@@ -84,19 +65,30 @@
       "width": 200,
       "height": 50,
       "relIn": {
-        "id": "C1C8FCE6-5459-4ACC-A2F3-A73CB90BACA4",
+        "id": "7AF1898B-BA9D-4AEE-B0A5-B4C3BDD49B36",
         "left": 100,
-        "top": 380,
+        "top": 350,
         "right": null,
         "bottom": null
       },
       "text": "Get Started Now",
+      "color": "#ffffff",
       "style": {
+        "border": {
+          "color": [
+            "HSL",
+            30,
+            0.9,
+            0.5,
+            1
+          ],
+          "width": 0
+        },
         "background": {
           "colorData": {
             "color": [
               "HSL",
-              200,
+              30,
               0.9,
               0.5,
               1

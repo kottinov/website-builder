@@ -10,6 +10,7 @@ from langchain_core.messages import AIMessage
 from langgraph.graph import StateGraph
 from langgraph.prebuilt import ToolNode
 from langgraph.runtime import Runtime
+from langchain_anthropic import convert_to_anthropic_tool
 
 from react_agent.context import Context
 from react_agent.state import InputState, State
@@ -24,28 +25,50 @@ async def call_model(
     """Call the LLM powering our "agent".
 
     This function prepares the prompt, initializes the model, and processes the response.
+    Implements prompt caching and token-efficient tool use for Anthropic models.
 
     Args:
         state (State): The current state of the conversation.
-        config (RunnableConfig): Configuration for the model run.
+        runtime (Runtime[Context]): Runtime configuration with model and system prompt.
 
     Returns:
         dict: A dictionary containing the model's response message.
     """
-    model = load_chat_model(runtime.context.model).bind_tools(
-        TOOLS,
-        parallel_tool_calls=False
-    )
+    model = load_chat_model(runtime.context.model)
+
+    if "anthropic" in runtime.context.model.lower():
+        anthropic_tools = [convert_to_anthropic_tool(tool) for tool in TOOLS]
+        anthropic_tools[-1]["cache_control"] = {"type": "ephemeral"}
+
+        model = model.bind_tools(
+            anthropic_tools,
+            parallel_tool_calls=False
+        )
+    else:
+        model = model.bind_tools(
+            TOOLS,
+            parallel_tool_calls=False
+        )
 
     system_message = runtime.context.system_prompt.format(
         system_time=datetime.now(tz=UTC).isoformat()
     )
 
+    if "anthropic" in runtime.context.model.lower():
+        system_content = [
+            {
+                "type": "text",
+                "text": system_message,
+                "cache_control": {"type": "ephemeral"} 
+            }
+        ]
+        messages = [{"role": "system", "content": system_content}, *state.messages]
+    else:
+        messages = [{"role": "system", "content": system_message}, *state.messages]
+
     response = cast(
         AIMessage,
-        await model.ainvoke(
-            [{"role": "system", "content": system_message}, *state.messages]
-        ),
+        await model.ainvoke(messages),
     )
 
     if state.is_last_step and response.tool_calls:
