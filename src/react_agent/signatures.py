@@ -380,7 +380,7 @@ class CreateComponent(BaseModel):
     underline: Optional[bool] = Field(default=None, description="Underline text style.")
     letterSpacing: Optional[float] = Field(default=None, description="Letter spacing value.")
     lineHeight: Optional[float] = Field(default=None, description="Line height multiplier.")
-    textStyle: Optional[str] = Field(default=None, description="Predefined text style identifier.")
+    textStyle: Optional[Union[str, LooseJSON]] = Field(default=None, description="Predefined text style identifier or style payload.")
 
     color: Optional[str] = Field(default=None, description="Text or foreground color.")
     background: Optional[str] = Field(default=None, description="Background color or gradient.")
@@ -704,41 +704,23 @@ class FindInput(BaseModel):
 
 
 class CreateInput(BaseModel):
-    """Input schema for creating a new WSB component.
+    """Input schema for creating a new WSB component, aligned to WBTGEN flowTypes."""
 
-    Contains both the component data and insertion metadata (file path,
-    parent relationship, and sibling positioning). Combines CreateComponent
-    fields with insertion control fields.
-    """
+    # insertion metadata
+    file_path: Optional[str] = Field(default=None, description="Target page JSON path; defaults to static/wsb/page.json when omitted.")
+    parent_id: Optional[str] = Field(default=None, description="Optional parent component id to nest the new component under.")
+    before_id: Optional[str] = Field(default=None, description="Optional sibling id; insert new component immediately before this component.")
+    after_id: Optional[str] = Field(default=None, description="Optional sibling id; insert new component immediately after this component.")
 
-    file_path: Optional[str] = Field(
-        default=None,
-        description="Target page JSON path; defaults to static/wsb/page.json when omitted.",
-    )
-
-    parent_id: Optional[str] = Field(
-        default=None,
-        description="Optional parent component id to nest the new component under.",
-    )
-
-    before_id: Optional[str] = Field(
-        default=None,
-        description="Optional sibling id; insert new component immediately before this component.",
-    )
-    
-    after_id: Optional[str] = Field(
-        default=None,
-        description="Optional sibling id; insert new component immediately after this component.",
-    )
-
-    kind: str = Field(description="WSB component kind identifier (e.g., 'TEXT', 'IMAGE', 'BUTTON', 'CONTAINER').")
-
+    # core identity
+    kind: str = Field(description="WSB component kind identifier (e.g., 'TEXT', 'IMAGE', 'BUTTON').")
     id: Optional[str] = Field(default=None, description="Optional explicit id; if omitted a UUID is generated.")
     inTemplate: Optional[bool] = Field(default=False, description="Set true if component belongs to template.")
     orderIndex: Optional[int] = Field(default=None, description="Sibling order index (automatically set during insert).")
     wrap: Optional[bool] = Field(default=False, description="Enable wrapping behavior for container components.")
     items: Optional[List[Dict[str, LooseJSON]]] = Field(default=None, description="Child components (for containers).")
 
+    # layout & relations
     left: Optional[int] = Field(default=None, description="Left position in pixels.")
     top: Optional[int] = Field(default=None, description="Top position in pixels.")
     right: Optional[int] = Field(default=None, description="Right position in pixels.")
@@ -749,10 +731,9 @@ class CreateInput(BaseModel):
     relTo: Optional[RelTo] = Field(default=None, description="Relative positioning to another sibling component.")
     relPage: Optional[RelPage] = Field(default=None, description="Page-level positioning relation.")
     relPara: Optional[RelPara] = Field(default=None, description="Paragraph-level positioning relation.")
+    bbox: Optional[BBox] = Field(default=None, description="Bounding box coordinates (bottom, left, right, top).")
 
-    horizontalAlignment: Optional[str] = Field(default=None, description="Horizontal alignment (left, center, right).")
-    verticalAlignment: Optional[str] = Field(default=None, description="Vertical alignment (top, center, bottom).")
-
+    # content/text
     content: Optional[str] = Field(default=None, description="HTML content for text components.")
     text: Optional[str] = Field(default=None, description="Plain text content.")
     title: Optional[str] = Field(default=None, description="Title or label text.")
@@ -762,7 +743,13 @@ class CreateInput(BaseModel):
     paras: Optional[List[LooseJSON]] = Field(default=None, description="Paragraph metadata for rich text.")
     links: Optional[List[LooseJSON]] = Field(default=None, description="Link metadata for text elements.")
     globalStyleId: Optional[str] = Field(default=None, description="Global style reference id.")
+    verticalAlignment: Optional[str] = Field(default=None, description="Vertical alignment (top, middle, bottom).")
+    horizontalAlignment: Optional[str] = Field(default=None, description="Horizontal alignment (left, center, right).")
+    verticalAlign: Optional[str] = Field(default=None, description="Legacy vertical alignment for menu/logo components.")
+    horizontalAlign: Optional[str] = Field(default=None, description="Legacy horizontal alignment for menu/logo components.")
+    textStyle: Optional[str] = Field(default=None, description="Predefined text style identifier.")
 
+    # typography & color
     font: Optional[str] = Field(default=None, description="Font family or font index.")
     fontFamily: Optional[str] = Field(default=None, description="Explicit font family name.")
     fontSize: Optional[int] = Field(default=None, description="Font size in pixels or points.")
@@ -771,10 +758,7 @@ class CreateInput(BaseModel):
     underline: Optional[bool] = Field(default=None, description="Underline text style.")
     letterSpacing: Optional[float] = Field(default=None, description="Letter spacing value.")
     lineHeight: Optional[float] = Field(default=None, description="Line height multiplier.")
-    textStyle: Optional[str] = Field(default=None, description="Predefined text style identifier.")
-
     color: Optional[str] = Field(default=None, description="Text or foreground color.")
-    background: Optional[str] = Field(default=None, description="Background color or gradient.")
     themeColor: Optional[str] = Field(default=None, description="Theme color identifier.")
     themeHighlightColor: Optional[str] = Field(default=None, description="Theme highlight color.")
     themeOverrideColor: Optional[str] = Field(default=None, description="Override theme color.")
@@ -784,17 +768,35 @@ class CreateInput(BaseModel):
     themeShadowOffsetX: Optional[float] = Field(default=None, description="Shadow horizontal offset.")
     themeShadowOffsetY: Optional[float] = Field(default=None, description="Shadow vertical offset.")
 
+    # styling & themes
     style: Optional[Style] = Field(default=None, description="CSS-like style properties.")
     styles: Optional[List[Union[Style, LooseJSON]]] = Field(default=None, description="Array of style definitions.")
     styleType: Optional[str] = Field(default=None, description="Style type identifier.")
     buttonThemeSelected: Optional[str] = Field(default=None, description="Selected button theme variant.")
+    fuButtonThemeSelected: Optional[str] = Field(default=None, description="File-upload button theme selection.")
     opacity: Optional[float] = Field(default=None, description="Opacity value (0-1).")
     rotation: Optional[float] = Field(default=None, description="Rotation angle in degrees.")
     scale: Optional[float] = Field(default=None, description="Scale factor.")
     border: Optional[LooseJSON] = Field(default=None, description="Border properties.")
     corners: Optional[LooseJSON] = Field(default=None, description="Corner radius properties.")
     padding: Optional[LooseJSON] = Field(default=None, description="Padding properties.")
+    background: Optional[str] = Field(default=None, description="Background color or gradient.")
+    backgroundColor: Optional[LooseJSON] = Field(default=None, description="Background color object/array.")
+    backgroundSize: Optional[str] = Field(default=None, description="Background size.")
+    backgroundRepeat: Optional[str] = Field(default=None, description="Background repeat.")
+    backgroundPosition: Optional[str] = Field(default=None, description="Background position.")
+    backgroundAttachment: Optional[str] = Field(default=None, description="Background attachment.")
+    backgroundClip: Optional[str] = Field(default=None, description="Background clip.")
+    gradient: Optional[LooseJSON] = Field(default=None, description="Gradient configuration.")
+    selectedTheme: Optional[str] = Field(default=None, description="Selected theme name (e.g., 'Main', 'White', 'Dark').")
+    selectedGradientTheme: Optional[str] = Field(default=None, description="Selected gradient theme name.")
+    selectedBorderTheme: Optional[str] = Field(default=None, description="Selected border theme name.")
+    themeColorType: Optional[str] = Field(default=None, description="Theme color type.")
+    themeStyles: Optional[ThemeStyles] = Field(default=None, description="Theme style references for menus.")
+    useOriginalColors: Optional[bool] = Field(default=None, description="Use original colors for icons/assets.")
+    colorType: Optional[str] = Field(default=None, description="Color type for theme adaptation (LIGHT, DARK).")
 
+    # media & assets
     image: Optional[str] = Field(default=None, description="Image URL or identifier.")
     asset: Optional[Union[str, Asset]] = Field(default=None, description="Asset identifier or metadata.")
     assetData: Optional[AssetData] = Field(default=None, description="Asset metadata.")
@@ -802,7 +804,16 @@ class CreateInput(BaseModel):
     cropTop: Optional[float] = Field(default=None, description="Image crop top offset.")
     scaleStrategy: Optional[str] = Field(default=None, description="Image scaling strategy.")
     lightBoxEnabled: Optional[bool] = Field(default=None, description="Enable lightbox for images.")
+    rawSvg: Optional[str] = Field(default=None, description="Raw SVG markup.")
+    svgJson: Optional[LooseJSON] = Field(default=None, description="SVG structure as JSON.")
+    viewBox: Optional[str] = Field(default=None, description="SVG viewBox attribute.")
+    defaultFillColor: Optional[str] = Field(default=None, description="Default fill color.")
+    colors: Optional[List[ColorStop]] = Field(default=None, description="Color stop definitions.")
+    logoHorizontalAlignment: Optional[str] = Field(default=None, description="Logo alignment in menus.")
+    logoSize: Optional[str] = Field(default=None, description="Logo size variant.")
+    logoTitleScale: Optional[float] = Field(default=None, description="Logo title scale factor.")
 
+    # links/actions
     link: Optional[str] = Field(default=None, description="Link URL.")
     linkAction: Optional[LinkAction] = Field(default=None, description="Link action configuration.")
     linkId: Optional[str] = Field(default=None, description="Link target component ID.")
@@ -811,39 +822,31 @@ class CreateInput(BaseModel):
     dialogProps: Optional[Dict[str, LooseJSON]] = Field(default=None, description="Dialog properties for widgets (e.g., youtube).")
     state: Optional[WidgetState] = Field(default=None, description="Widget state for embedded components.")
 
+    # mobile/responsive
     mobileDown: Optional[bool] = Field(default=None, description="Push content down on mobile.")
     mobileHide: Optional[bool] = Field(default=None, description="Hide component on mobile.")
     mobileSettings: Optional[MobileSettings] = Field(default=None, description="Mobile-specific settings.")
     mobileFontSize: Optional[int] = Field(default=None, description="Font size for mobile.")
     mobileSize: Optional[Union[str, int]] = Field(default=None, description="Size configuration for mobile.")
     mobileHorizontalAlignment: Optional[str] = Field(default=None, description="Horizontal alignment on mobile.")
+    stretch: Optional[bool] = Field(default=None, description="Stretch component to fill width (typically for SECTION).")
 
+    # animation/interactions
     animated: Optional[bool] = Field(default=None, description="Enable animation.")
     animation: Optional[Animation] = Field(default=None, description="Animation configuration.")
     scrollEffect: Optional[str] = Field(default=None, description="Scroll-triggered effect.")
     hover: Optional[LooseJSON] = Field(default=None, description="Hover state properties.")
     onHover: Optional[LooseJSON] = Field(default=None, description="On hover behavior.")
     press: Optional[LooseJSON] = Field(default=None, description="Press/click state properties.")
+    onClickAction: Optional[str] = Field(default=None, description="Gallery click action.")
 
-    rawSvg: Optional[str] = Field(default=None, description="Raw SVG markup.")
-    svgJson: Optional[LooseJSON] = Field(default=None, description="SVG structure as JSON.")
-    viewBox: Optional[str] = Field(default=None, description="SVG viewBox attribute.")
-
-    hidden: Optional[bool] = Field(default=None, description="Hide component.")
-    show: Optional[bool] = Field(default=None, description="Show component.")
-    spacing: Optional[float] = Field(default=None, description="Spacing value.")
-    size: Optional[Union[str, int]] = Field(default=None, description="Size configuration.")
-    position: Optional[str] = Field(default=None, description="Position type (absolute, relative, etc).")
-    repeat: Optional[bool] = Field(default=None, description="Repeat pattern.")
-    gradient: Optional[LooseJSON] = Field(default=None, description="Gradient configuration.")
-    seo: Optional[LooseJSON] = Field(default=None, description="SEO metadata.")
+    # gallery/slider media
     images: Optional[List[GalleryImage]] = Field(default=None, description="Gallery images with assets.")
     crop: Optional[bool] = Field(default=None, description="Whether to crop gallery images.")
     captionsEnabled: Optional[bool] = Field(default=None, description="Enable captions for gallery.")
     captionsAlignment: Optional[str] = Field(default=None, description="Caption alignment for gallery.")
     columns: Optional[int] = Field(default=None, description="Gallery columns.")
     spacingPx: Optional[int] = Field(default=None, description="Gallery spacing in pixels.")
-    onClickAction: Optional[str] = Field(default=None, description="Gallery click action.")
     imageStyle: Optional[LooseJSON] = Field(default=None, description="Gallery image style overrides.")
     captionBoxStyle: Optional[LooseJSON] = Field(default=None, description="Gallery caption box style.")
     previousCaptionStyle: Optional[str] = Field(default=None, description="Previous caption style.")
@@ -854,58 +857,93 @@ class CreateInput(BaseModel):
     captionMinHeight: Optional[int] = Field(default=None, description="Minimum caption height.")
     fullWidthOption: Optional[FullWidthOption] = Field(default=None, description="Gallery full width option.")
     compactView: Optional[bool] = Field(default=None, description="Enable compact gallery view.")
-    type: Optional[str] = Field(default=None, description="Gallery type identifier.")
+    captionsPlacement: Optional[str] = Field(default=None, description="Placement of captions in gallery/slider.")
+    delay: Optional[int] = Field(default=None, description="Delay for slideshows.")
+    autoNext: Optional[bool] = Field(default=None, description="Auto-advance slides.")
+    indicator: Optional[str] = Field(default=None, description="Indicator style for slideshows.")
+    navigator: Optional[str] = Field(default=None, description="Navigator visibility for slideshows.")
+    transition: Optional[str] = Field(default=None, description="Transition type for slideshows.")
+    originalSize: Optional[bool] = Field(default=None, description="Show media in original size.")
+    columnCount: Optional[int] = Field(default=None, description="Column count for sliders/grids.")
+    showBackground: Optional[bool] = Field(default=None, description="Show background behind media.")
 
-    bbox: Optional[BBox] = Field(default=None, description="Bounding box coordinates (bottom, left, right, top).")
-    selectedTheme: Optional[str] = Field(default=None, description="Selected theme name (e.g., 'Main', 'White', 'Dark').")
-    selectedGradientTheme: Optional[str] = Field(default=None, description="Selected gradient theme name.")
-    stretch: Optional[bool] = Field(default=None, description="Stretch component to fill width (typically for SECTION).")
+    # visibility/position flags
+    hidden: Optional[bool] = Field(default=None, description="Hide component.")
+    show: Optional[bool] = Field(default=None, description="Show component.")
+    spacing: Optional[float] = Field(default=None, description="Spacing value.")
+    size: Optional[Union[str, int]] = Field(default=None, description="Size configuration.")
+    position: Optional[str] = Field(default=None, description="Position type (absolute, relative, etc).")
+    repeat: Optional[bool] = Field(default=None, description="Repeat pattern.")
+    seo: Optional[LooseJSON] = Field(default=None, description="SEO metadata.")
     pin: Optional[int] = Field(default=None, description="Pin component position (0 for unpinned).")
-    colorType: Optional[str] = Field(default=None, description="Color type for theme adaptation (LIGHT, DARK).")
+
+    # address/map
     addressLocation: Optional[AddressLocation] = Field(default=None, description="Geolocation for map/address components.")
     addressText: Optional[str] = Field(default=None, description="Address display text.")
     addressUrl: Optional[str] = Field(default=None, description="Address link URL.")
+    zoom: Optional[int] = Field(default=None, description="Map zoom level.")
+
+    # forms/contact
     captchaLang: Optional[str] = Field(default=None, description="Captcha language code.")
-    colors: Optional[List[ColorStop]] = Field(default=None, description="Color stop definitions.")
-    defaultFillColor: Optional[str] = Field(default=None, description="Default fill color.")
     formElements: Optional[Dict[str, FormElement]] = Field(default=None, description="Form field definitions keyed by field name.")
     formElementsOrder: Optional[List[str]] = Field(default=None, description="Order of form fields.")
-    fuButtonThemeSelected: Optional[str] = Field(default=None, description="File-upload button theme selection.")
-    generic: Optional[GenericInfo] = Field(default=None, description="Generic info block settings.")
-    horizontalAlign: Optional[str] = Field(default=None, description="Horizontal alignment for menu/logo components.")
-    isCaptchaEnabled: Optional[bool] = Field(default=None, description="Enable captcha for forms.")
-    isDecorative: Optional[bool] = Field(default=None, description="Mark element as decorative.")
-    isMarketingConsentEnabled: Optional[bool] = Field(default=None, description="Require marketing consent.")
-    isStickyToHeader: Optional[bool] = Field(default=None, description="Stick component to header.")
-    layoutType: Optional[str] = Field(default=None, description="Layout type identifier.")
-    locale: Optional[str] = Field(default=None, description="Locale code.")
-    logoHorizontalAlignment: Optional[str] = Field(default=None, description="Logo alignment in menus.")
-    logoTitleScale: Optional[float] = Field(default=None, description="Logo title scale factor.")
-    marketingConsentCheckBoxText: Optional[str] = Field(default=None, description="Marketing consent checkbox text.")
-    moreButtonEnabled: Optional[bool] = Field(default=None, description="Enable more button in menu.")
-    moreText: Optional[str] = Field(default=None, description="More button text.")
-    readPrivacyPolicyText: Optional[str] = Field(default=None, description="Privacy policy link text.")
-    recipientEmail: Optional[str] = Field(default=None, description="Form recipient email.")
-    source: Optional[str] = Field(default=None, description="Source identifier.")
-    specific: Optional[SpecificInfo] = Field(default=None, description="Specific info block settings.")
-    startLevel: Optional[int] = Field(default=None, description="Menu start level.")
-    styleButton: Optional[Style] = Field(default=None, description="Button style reference.")
     styleForm: Optional[StyleForm] = Field(default=None, description="Form style definition.")
-    subStyle: Optional[Style] = Field(default=None, description="Submenu style reference.")
-    subject: Optional[str] = Field(default=None, description="Form subject line.")
+    styleButton: Optional[Style] = Field(default=None, description="Button style reference.")
+    fileUploadButtonStyle: Optional[Style] = Field(default=None, description="File upload button style reference.")
     submitBtn: Optional[str] = Field(default=None, description="Submit button label.")
     successMessage: Optional[str] = Field(default=None, description="Success message after form submit.")
-    themeColorType: Optional[str] = Field(default=None, description="Theme color type.")
-    themeStyles: Optional[ThemeStyles] = Field(default=None, description="Theme style references for menus.")
-    useOriginalColors: Optional[bool] = Field(default=None, description="Use original colors for icons/assets.")
-    verticalAlign: Optional[str] = Field(default=None, description="Vertical alignment for menu/logo components.")
-    zoom: Optional[int] = Field(default=None, description="Map zoom level.")
+    isCaptchaEnabled: Optional[bool] = Field(default=None, description="Enable captcha for forms.")
+    isMarketingConsentEnabled: Optional[bool] = Field(default=None, description="Require marketing consent.")
+    marketingConsentCheckBoxText: Optional[str] = Field(default=None, description="Marketing consent checkbox text.")
+    readPrivacyPolicyText: Optional[str] = Field(default=None, description="Privacy policy link text.")
+    recipientEmail: Optional[str] = Field(default=None, description="Form recipient email.")
+    subject: Optional[str] = Field(default=None, description="Form subject line.")
+
+    # menu/social/embed
+    layoutType: Optional[str] = Field(default=None, description="Layout type identifier.")
+    startLevel: Optional[int] = Field(default=None, description="Menu start level.")
+    moreButtonEnabled: Optional[bool] = Field(default=None, description="Enable more button in menu.")
+    moreText: Optional[str] = Field(default=None, description="More button text.")
+    isStickyToHeader: Optional[bool] = Field(default=None, description="Stick component to header.")
+    theme: Optional[str] = Field(default=None, description="Embed theme.")
+    doNotTrack: Optional[bool] = Field(default=None, description="Disable tracking for embeds.")
+    direction: Optional[str] = Field(default=None, description="Text direction for embeds.")
+    pageURL: Optional[str] = Field(default=None, description="Social/embed page URL.")
+    tabs: Optional[List[str]] = Field(default=None, description="Tabs for social embeds.")
+    hideCover: Optional[bool] = Field(default=None, description="Hide cover image.")
+    showFacepile: Optional[bool] = Field(default=None, description="Show facepile in embeds.")
+    showCTA: Optional[bool] = Field(default=None, description="Show call-to-action in embeds.")
+    smallHeader: Optional[bool] = Field(default=None, description="Use small header in embeds.")
+    adaptContainerWidth: Optional[bool] = Field(default=None, description="Adapt container width for embeds.")
+    timelineLink: Optional[str] = Field(default=None, description="Twitter timeline link.")
+    listLink: Optional[str] = Field(default=None, description="Twitter list link.")
+    tweetHTML: Optional[str] = Field(default=None, description="Embedded tweet HTML.")
+    locale: Optional[str] = Field(default=None, description="Locale code.")
+    source: Optional[str] = Field(default=None, description="Source identifier.")
+    isDecorative: Optional[bool] = Field(default=None, description="Mark element as decorative.")
+
+    # data/table
+    cells: Optional[List[LooseJSON]] = Field(default=None, description="Table/gallery cells data.")
+    commonCellsData: Optional[Dict[str, LooseJSON]] = Field(default=None, description="Shared cell data for grids/tables.")
+
+    # misc props
+    generic: Optional[GenericInfo] = Field(default=None, description="Generic info block settings.")
+    specific: Optional[SpecificInfo] = Field(default=None, description="Specific info block settings.")
+    modernLayout: Optional[LooseJSON] = Field(default=None, description="Modern layout payload for sections.")
+    modernLayoutOptions: Optional[LooseJSON] = Field(default=None, description="Modern layout options for eligible components.")
+    fullWidthOption: Optional[FullWidthOption] = Field(default=None, description="Full width option.")
+    code: Optional[str] = Field(default=None, description="Custom code content for CODE components.")
+    location: Optional[str] = Field(default=None, description="Insert location for CODE components.")
+    textStyleMeta: Optional[Dict[str, LooseJSON]] = Field(default=None, description="Text style metadata for components like BOOKINGS.")
 
     @model_validator(mode="after")
     def _validate_create_input(self) -> "CreateInput":
         """Validate CreateInput constraints for proper WSB component structure."""
         if getattr(self, "component_id", None) is not None:
             return self
+
+        if self.content and "<![CDATA[" in self.content:
+            raise ValueError("Remove CDATA wrappers; provide plain HTML in 'content'.")
 
         missing_layout = [
             field for field in ("left", "top", "width", "height")
@@ -992,4 +1030,3 @@ class EditInput(CreateInput):
         if provided:
             raise ValueError(f"These fields are not editable: {provided}")
         return self
-

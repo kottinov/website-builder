@@ -4,14 +4,19 @@ This module contains detailed descriptions for each tool, providing guidance
 to the LLM on how to use them correctly.
 """
 
-CREATE_TOOL_DESCRIPTION = """Create WSB components using the full schema from components-map.json, with smart defaults and flat relIn/relTo layout.
+CREATE_TOOL_DESCRIPTION = """Create WSB components using the strictly validated schema (extra=forbid) and flat relIn/relTo layout.
 
 CORE KINDS & DEFAULTS
-- SECTION: stretch=true, pin=0, selectedTheme="White", selectedGradientTheme=null, mobileSettings.size="cover", wrap=false
+- SECTION: stretch=true, pin=0, selectedTheme="White", selectedGradientTheme=null, selectedBorderTheme=null, mobileSettings.size="cover", wrap=false (modernLayout accepted when provided)
 - CONTAINER: wrap=false by default
-- TEXT: fontSize=16, lineHeight=1.5, text="", styles=[], paras=[], links=[], mobileDown=false, mobileHide=false, onHover=null, verticalAlignment="bottom" or "top", mobileSettings={"align": null, "font": 0}
-- BUTTON: bold=true, corners.radius=5, fontSize=16, mobileDown=false, mobileHide=false, onHover=null, mobileSettings={"align": "justify"}
+- TEXT: fontSize=16, lineHeight=1.5, text="", styles=[], paras=[], links=[], mobileDown=false, mobileHide=false, verticalAlignment="top", mobileSettings={"align": null, "font": 0}, globalStyleId="GLOBAL_TEXT_STYLE_DEFAULT", themeShadowBlurRadius=3, themeShadowOffsetX=3, themeShadowOffsetY=3, themeShadowColor=null
+- BUTTON: bold=true, corners.radius=5, fontSize=16, mobileDown=false, mobileHide=false, mobileSettings={"align": "justify"}, buttonThemeSelected="primary", style={border:null, background:null, globalId:"BUTTON_STYLE_DEFAULT", globalName:"[button.default]", type:"web.data.styles.StyleButton", text:{size:null}}
+- CODE: use code + location + name along with layout/rel fields
 - IMAGE/SVG/LOGO/MENU/FORM/MAP/etc. supported; pass required style/data as below.
+
+SCHEMA RULES
+- Only the documented CreateInput fields are accepted (extra=forbid); use kind only (no legacy type field).
+- Required subobjects must be complete: TEXT needs relIn, globalStyleId, mobileSettings, verticalAlignment, theme shadow values; BUTTON needs style + buttonThemeSelected; SECTION allows optional modernLayout; CONTACTFORM accepts fileUploadButtonStyle; BACKGROUND/STRIP fields include backgroundColor/size/repeat/position/attachment/clip/border/padding/selectedBorderTheme/asset/scrollEffect; CODE requires code/location/name.
 
 CRITICAL REQUIRED FIELDS FOR ALL COMPONENTS:
 - inTemplate: false (default for non-template components)
@@ -202,7 +207,7 @@ COMMON MISTAKES TO AVOID:
   * Not chaining sections properly (each section must link to the previous one)
 
 CONTENT/STYLES
-- content: HTML content for TEXT components (do NOT wrap in CDATA, use plain HTML)
+- content: HTML content for TEXT components (STRICT: do NOT wrap in CDATA, use plain HTML; CDATA will be rejected)
 - text: Empty string "" for TEXT components with content, or plain text for BUTTON/simple text
 - styles: Empty array [] for TEXT components unless custom styles needed
 - paras: Empty array [] for TEXT components unless paragraph metadata needed

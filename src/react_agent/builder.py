@@ -29,6 +29,7 @@ def get_component_defaults(kind: str) -> Dict[str, Any]:
             "pin": 0,
             "selectedTheme": "White",
             "selectedGradientTheme": None,
+            "selectedBorderTheme": None,
             "mobileSettings": {"size": "cover"}
         })
 
@@ -40,14 +41,39 @@ def get_component_defaults(kind: str) -> Dict[str, Any]:
     elif kind == "TEXT":
         defaults.update({
             "fontSize": 16,
-            "lineHeight": 1.5
+            "lineHeight": 1.5,
+            "text": "",
+            "styles": [],
+            "paras": [],
+            "links": [],
+            "mobileDown": False,
+            "mobileHide": False,
+            "mobileSettings": {"align": None, "font": 0},
+            "verticalAlignment": "top",
+            "globalStyleId": "GLOBAL_TEXT_STYLE_DEFAULT",
+            "themeShadowBlurRadius": 3,
+            "themeShadowOffsetX": 3,
+            "themeShadowOffsetY": 3,
+            "themeShadowColor": None,
         })
 
     elif kind == "BUTTON":
         defaults.update({
             "corners": {"radius": 5},
             "fontSize": 16,
-            "bold": True
+            "bold": True,
+            "mobileDown": False,
+            "mobileHide": False,
+            "mobileSettings": {"align": "justify"},
+            "buttonThemeSelected": "primary",
+            "style": {
+                "border": None,
+                "background": None,
+                "globalId": "BUTTON_STYLE_DEFAULT",
+                "globalName": "[button.default]",
+                "type": "web.data.styles.StyleButton",
+                "text": {"size": None},
+            },
         })
 
     return defaults

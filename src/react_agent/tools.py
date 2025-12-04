@@ -5,29 +5,7 @@ from typing import Any, Callable, Dict, List, Optional
 
 from langchain.tools import tool
 
-from react_agent.utils import (
-    generate_id,
-    get_default_page_path,
-    find_component_by_id,
-    get_rel_parent_id,
-    insert_component,
-    load_page,
-    renumber_components,
-    save_page,
-)
-
-from react_agent.signatures import (
-    CreateInput,
-    EditInput,
-    FindInput,
-    ListInput,
-    RelIn,
-    ReorderInput,
-    RetrieveInput,
-    RemoveInput,
-)
 from react_agent.builder import build_component
-
 from react_agent.descriptions import (
     CREATE_TOOL_DESCRIPTION,
     EDIT_TOOL_DESCRIPTION,
@@ -36,6 +14,26 @@ from react_agent.descriptions import (
     REMOVE_TOOL_DESCRIPTION,
     REORDER_TOOL_DESCRIPTION,
     RETRIEVE_TOOL_DESCRIPTION,
+)
+from react_agent.signatures import (
+    CreateInput,
+    EditInput,
+    FindInput,
+    ListInput,
+    RelIn,
+    RemoveInput,
+    ReorderInput,
+    RetrieveInput,
+)
+from react_agent.utils import (
+    find_component_by_id,
+    generate_id,
+    get_default_page_path,
+    get_rel_parent_id,
+    insert_component,
+    load_page,
+    renumber_components,
+    save_page,
 )
 
 EDIT_EXCLUDE_FIELDS = {"component_id", "file_path", "kind"}
@@ -47,12 +45,12 @@ EDIT_VALIDATION_FIELDS = {
 
 
 @tool(description=LIST_TOOL_DESCRIPTION, args_schema=ListInput)
-def list(file_path: Optional[str] = None) -> List[Dict[str, Any]]:
+def list(file_path: str | None = None) -> List[Dict[str, Any]]:
     """Return a flat list of components with id, kind, orderIndex, parentId, title."""
     page = load_page(Path(file_path) if file_path else get_default_page_path())
     result: List[Dict[str, Any]] = []
 
-    def walk(items: List[Dict[str, Any]], parent_id: Optional[str]) -> None:
+    def walk(items: List[Dict[str, Any]], parent_id: str | None) -> None:
         for item in items:
             kind = item.get("kind") or item.get("type")
             rel_parent = get_rel_parent_id(item)
@@ -72,6 +70,7 @@ def list(file_path: Optional[str] = None) -> List[Dict[str, Any]]:
                 walk(item["items"], item.get("id"))
 
     walk(page.get("items", []), None)
+
     return result
 
 
@@ -93,11 +92,30 @@ def create(**kwargs) -> Dict[str, Any]:
     Raises:
         ValueError: If the component type is missing.
     """
-    page_path = Path(kwargs.get("file_path")) if kwargs.get("file_path") else get_default_page_path()
-    page = load_page(page_path)
+    def _strip_cdata(value: Any) -> Any:
+        if isinstance(value, str):
+            trimmed = value.strip()
+            if trimmed.startswith("<![CDATA[") and trimmed.endswith("]]>"):
+                return trimmed[len("<![CDATA[") : -len("]]>")]
+        return value
 
+    if "content" in kwargs:
+        kwargs["content"] = _strip_cdata(kwargs.get("content"))
+
+    page_path = (
+        Path(kwargs.get("file_path"))
+        if kwargs.get("file_path")
+        else get_default_page_path()
+    )
+
+    page = load_page(page_path)
     rel_in_kw = kwargs.get("relIn")
-    if kwargs.get("parent_id") is None and isinstance(rel_in_kw, dict) and rel_in_kw.get("id"):
+
+    if (
+        kwargs.get("parent_id") is None
+        and isinstance(rel_in_kw, dict)
+        and rel_in_kw.get("id")
+    ):
         kwargs["parent_id"] = rel_in_kw["id"]
 
     # default header id for wsb templates ( first section )
@@ -108,7 +126,8 @@ def create(**kwargs) -> Dict[str, Any]:
 
         if kwargs.get("relTo") is None:
             existing_sections = [
-                item for item in page.get("items", [])
+                item
+                for item in page.get("items", [])
                 if (item.get("kind") or item.get("type")) == "SECTION"
             ]
             if existing_sections:
@@ -117,7 +136,11 @@ def create(**kwargs) -> Dict[str, Any]:
                     key=lambda s: s.get("orderIndex", -1),
                 )[-1]
                 gap = 0
-                if last_section.get("top") is not None and last_section.get("height") is not None and kwargs.get("top") is not None:
+                if (
+                    last_section.get("top") is not None
+                    and last_section.get("height") is not None
+                    and kwargs.get("top") is not None
+                ):
                     gap = kwargs["top"] - (last_section["top"] + last_section["height"])
                 kwargs["relTo"] = {"id": last_section.get("id"), "below": gap}
             else:
@@ -126,20 +149,41 @@ def create(**kwargs) -> Dict[str, Any]:
             rel_to_provided = kwargs.get("relTo")
             if isinstance(rel_to_provided, dict):
                 rel_to_id = rel_to_provided.get("id", "")
-                fake_patterns = ["temp", "anchor", "placeholder", "dummy", "fake", "mock"]
-                if any(p in rel_to_id.lower() for p in fake_patterns) and rel_to_id != DEFAULT_HEADER_ID:
-                    kwargs["relTo"] = {"id": DEFAULT_HEADER_ID, "below": rel_to_provided.get("below", 0)}
+                fake_patterns = [
+                    "temp",
+                    "anchor",
+                    "placeholder",
+                    "dummy",
+                    "fake",
+                    "mock",
+                ]
+                if (
+                    any(p in rel_to_id.lower() for p in fake_patterns)
+                    and rel_to_id != DEFAULT_HEADER_ID
+                ):
+                    kwargs["relTo"] = {
+                        "id": DEFAULT_HEADER_ID,
+                        "below": rel_to_provided.get("below", 0),
+                    }
 
     parent = None
-    parent_id = kwargs.get("parent_id") or (rel_in_kw.get("id") if isinstance(rel_in_kw, dict) else None)
+    parent_id = kwargs.get("parent_id") or (
+        rel_in_kw.get("id") if isinstance(rel_in_kw, dict) else None
+    )
 
     if parent_id:
         parent = find_component_by_id(page.get("items", []), parent_id)
         if parent is None:
-            raise ValueError(f"relIn/parent_id references unknown id '{parent_id}'. Use list() to pick an existing parent id.")
+            raise ValueError(
+                f"relIn/parent_id references unknown id '{parent_id}'. Use list() to pick an existing parent id."
+            )
 
     if parent:
-        rel_in = dict(rel_in_kw) if isinstance(rel_in_kw, dict) else (rel_in_kw.model_dump() if rel_in_kw else {})
+        rel_in = (
+            dict(rel_in_kw)
+            if isinstance(rel_in_kw, dict)
+            else (rel_in_kw.model_dump() if rel_in_kw else {})
+        )
 
         if rel_in.get("id") is None:
             rel_in["id"] = parent.get("id")
@@ -149,21 +193,40 @@ def create(**kwargs) -> Dict[str, Any]:
         width = kwargs.get("width")
         height = kwargs.get("height")
 
-        if rel_in.get("left") is None and left is not None and parent.get("left") is not None:
+        if (
+            rel_in.get("left") is None
+            and left is not None
+            and parent.get("left") is not None
+        ):
             rel_in["left"] = left - parent["left"]
 
-        if rel_in.get("top") is None and top is not None and parent.get("top") is not None:
+        if (
+            rel_in.get("top") is None
+            and top is not None
+            and parent.get("top") is not None
+        ):
             rel_in["top"] = top - parent["top"]
 
-        if rel_in.get("right") is None and width is not None and parent.get("width") is not None and rel_in.get("left") is not None:
+        if (
+            rel_in.get("right") is None
+            and width is not None
+            and parent.get("width") is not None
+            and rel_in.get("left") is not None
+        ):
             rel_in["right"] = -(parent["width"] - (rel_in["left"] + width))
 
-        if rel_in.get("bottom") is None and height is not None and parent.get("height") is not None and rel_in.get("top") is not None:
+        if (
+            rel_in.get("bottom") is None
+            and height is not None
+            and parent.get("height") is not None
+            and rel_in.get("top") is not None
+        ):
             rel_in["bottom"] = -(parent["height"] - (rel_in["top"] + height))
 
         kwargs["relIn"] = rel_in
 
     rel_to_kw = kwargs.get("relTo")
+
     if rel_to_kw and isinstance(rel_to_kw, dict):
         rel_to_target = rel_to_kw.get("id")
         is_section = kwargs.get("kind") == "SECTION"
@@ -171,10 +234,13 @@ def create(**kwargs) -> Dict[str, Any]:
 
         if rel_to_target and not is_section and not is_template_id:
             if find_component_by_id(page.get("items", []), rel_to_target) is None:
-                raise ValueError(f"relTo references unknown id '{rel_to_target}'. Use list() to pick an existing sibling/section id.")
+                raise ValueError(
+                    f"relTo references unknown id '{rel_to_target}'. Use list() to pick an existing sibling/section id."
+                )
 
     payload = CreateInput(**kwargs)
     updates: Dict[str, Any] = {}
+
     if payload.parent_id and payload.relIn is None:
         updates["relIn"] = RelIn(id=payload.parent_id)
 
@@ -207,19 +273,20 @@ def create(**kwargs) -> Dict[str, Any]:
 
 
 @tool(description=RETRIEVE_TOOL_DESCRIPTION, args_schema=RetrieveInput)
-def retrieve(component_id: str, file_path: Optional[str] = None) -> Optional[Dict[str, Any]]:
+def retrieve(component_id: str, file_path: str | None = None) -> Dict[str, Any] | None:
     """Return a single component by id."""
     page_path = Path(file_path) if file_path else get_default_page_path()
     page = load_page(page_path)
 
     return find_component_by_id(page.get("items", []), component_id)
 
+
 @tool(description=REMOVE_TOOL_DESCRIPTION, args_schema=RemoveInput)
-def remove(component_id: str, file_path: Optional[str] = None) -> bool:
+def remove(component_id: str, file_path: str | None = None) -> bool:
     """Remove a component by id."""
     page_path = Path(file_path) if file_path else get_default_page_path()
     page = load_page(page_path)
-    
+
     removed = False
 
     def prune(items: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
@@ -237,14 +304,17 @@ def remove(component_id: str, file_path: Optional[str] = None) -> bool:
 
     renumber_components(page["items"])
     save_page(page_path, page)
+
     return removed
 
 
 @tool(description=EDIT_TOOL_DESCRIPTION, args_schema=EditInput)
-def edit(**kwargs: Any) -> Optional[Dict[str, Any]]:
+def edit(**kwargs: Any) -> Dict[str, Any] | None:
     """Apply a partial update to an existing component."""
     payload = EditInput(**kwargs)
-    page_path = Path(payload.file_path) if payload.file_path else get_default_page_path()
+    page_path = (
+        Path(payload.file_path) if payload.file_path else get_default_page_path()
+    )
     page = load_page(page_path)
 
     target = find_component_by_id(page.get("items", []), payload.component_id)
@@ -256,7 +326,9 @@ def edit(**kwargs: Any) -> Optional[Dict[str, Any]]:
         raise ValueError("Target component missing kind/type; cannot validate update.")
 
     if payload.kind and payload.kind != kind_value:
-        raise ValueError(f"Kind mismatch: target has '{kind_value}', got '{payload.kind}'.")
+        raise ValueError(
+            f"Kind mismatch: target has '{kind_value}', got '{payload.kind}'."
+        )
 
     updates = payload.model_dump(
         exclude_none=True,
@@ -273,11 +345,14 @@ def edit(**kwargs: Any) -> Optional[Dict[str, Any]]:
 
     CreateInput(**validation_payload)
     save_page(page_path, page)
+
     return target
 
 
 @tool(description=REORDER_TOOL_DESCRIPTION, args_schema=ReorderInput)
-def reorder(order_ids: List[str], parent_id: Optional[str] = None, file_path: Optional[str] = None) -> List[Dict[str, Any]]:
+def reorder(
+    order_ids: List[str], parent_id: str | None = None, file_path: str | None = None
+) -> List[Dict[str, Any]]:
     """Reorder children under a parent, or top-level if parent_id is None."""
     page_path = Path(file_path) if file_path else get_default_page_path()
     page = load_page(page_path)
@@ -310,11 +385,12 @@ def reorder(order_ids: List[str], parent_id: Optional[str] = None, file_path: Op
 
     renumber_components(page["items"])
     save_page(page_path, page)
+
     return new_list
 
 
 @tool(description=FIND_TOOL_DESCRIPTION, args_schema=FindInput)
-def find(text: str, file_path: Optional[str] = None) -> List[Dict[str, Any]]:
+def find(text: str, file_path: str | None = None) -> List[Dict[str, Any]]:
     """Locate components whose visible text contains a substring."""
     page = load_page(Path(file_path) if file_path else get_default_page_path())
     hits: List[Dict[str, Any]] = []
@@ -337,6 +413,7 @@ def find(text: str, file_path: Optional[str] = None) -> List[Dict[str, Any]]:
                 walk(item["items"])
 
     walk(page.get("items", []))
+
     return hits
 
 
