@@ -1,25 +1,25 @@
 {
-  "id": "ADFDB54D-5F8C-492A-9A20-A412C199E019",
+  "id": "6B6268E3-9CA2-40AB-AB4A-A92F1104F6B5",
   "type": "web.data.components.Page",
   "name": "Generated Page",
-  "templateId": "0EA27EDC-4B22-4686-9CE5-87E9EA004CE2",
+  "templateId": "A480EDC0-BE1C-4183-B249-077485D0AC50",
   "items": [
     {
-      "id": "67521CED-86F1-4C7D-ACB6-DA5AFC3E968E",
+      "id": "2AB77DB7-0404-4FDC-8D62-F05D855B9B7A",
       "kind": "SECTION",
       "inTemplate": false,
       "orderIndex": 0,
       "wrap": false,
       "stretch": true,
       "pin": 0,
-      "selectedTheme": "Main",
+      "selectedTheme": "White",
       "mobileSettings": {
         "size": "cover"
       },
       "left": 0,
       "top": 0,
       "width": 1300,
-      "height": 850,
+      "height": 800,
       "relIn": null,
       "relTo": {
         "id": "22FC8C5B-CD71-42B7-9DF2-486F577581A9",
@@ -40,9 +40,8 @@
               1
             ],
             "gradient": {
-              "type": "linear",
               "angle": 135,
-              "stops": [
+              "colors": [
                 {
                   "color": [
                     "HSL",
@@ -56,9 +55,9 @@
                 {
                   "color": [
                     "HSL",
-                    0.03,
-                    0.7,
-                    0.3,
+                    0.05,
+                    0.55,
+                    0.35,
                     1
                   ],
                   "position": 100
@@ -67,57 +66,15 @@
             }
           }
         }
-      },
-      "mobileDown": false,
-      "mobileHide": false
+      }
     },
     {
-      "id": "B75392D1-D308-4F49-9574-17C59930A544",
+      "id": "6C299FB4-B5E7-46C4-882B-0A60328DBCAD",
       "kind": "TEXT",
       "inTemplate": false,
       "orderIndex": 0,
       "wrap": false,
-      "fontSize": 72,
-      "lineHeight": 1.2,
-      "text": "",
-      "styles": [],
-      "paras": [],
-      "links": [],
-      "mobileDown": false,
-      "mobileHide": false,
-      "mobileSettings": {
-        "align": "center",
-        "font": 0
-      },
-      "verticalAlignment": "top",
-      "globalStyleId": "EAEA20A6-C03E-4C8C-ADA5-43EBBEF4CD23",
-      "themeShadowBlurRadius": 3.0,
-      "themeShadowOffsetX": 3.0,
-      "themeShadowOffsetY": 3.0,
-      "left": 100,
-      "top": 180,
-      "width": 1100,
-      "height": 120,
-      "relIn": {
-        "id": "67521CED-86F1-4C7D-ACB6-DA5AFC3E968E",
-        "left": 100,
-        "top": 180,
-        "right": -100,
-        "bottom": -550
-      },
-      "relTo": null,
-      "relPage": null,
-      "relPara": null,
-      "content": "<h1 style=\"font-size: 72px; font-weight: 300; letter-spacing: 8px; margin: 0;\">L\u00d6YLY</h1>",
-      "themeOverrideColor": "[\"HSL\", 0.1, 0.05, 0.95, 1]"
-    },
-    {
-      "id": "D458B4C0-7619-4BD7-A576-FD87D15E7224",
-      "kind": "TEXT",
-      "inTemplate": false,
-      "orderIndex": 1,
-      "wrap": false,
-      "fontSize": 24,
+      "fontSize": 16,
       "lineHeight": 1.5,
       "text": "",
       "styles": [],
@@ -126,42 +83,38 @@
       "mobileDown": false,
       "mobileHide": false,
       "mobileSettings": {
-        "align": "center",
+        "align": null,
         "font": 0
       },
       "verticalAlignment": "top",
-      "globalStyleId": "EAEA20A6-C03E-4C8C-ADA5-43EBBEF4CD23",
+      "globalStyleId": "GLOBAL_TEXT_STYLE_DEFAULT",
       "themeShadowBlurRadius": 3.0,
       "themeShadowOffsetX": 3.0,
       "themeShadowOffsetY": 3.0,
       "left": 100,
-      "top": 310,
-      "width": 1100,
-      "height": 50,
+      "top": 250,
+      "width": 550,
+      "height": 120,
       "relIn": {
-        "id": "67521CED-86F1-4C7D-ACB6-DA5AFC3E968E",
+        "id": "2AB77DB7-0404-4FDC-8D62-F05D855B9B7A",
         "left": 100,
-        "top": 310,
-        "right": -100,
-        "bottom": -490
+        "top": 250,
+        "right": -650,
+        "bottom": -430
       },
-      "relTo": {
-        "id": "B75392D1-D308-4F49-9574-17C59930A544",
-        "below": 10
-      },
+      "relTo": null,
       "relPage": null,
       "relPara": null,
-      "content": "<p style=\"font-size: 24px; font-weight: 400; letter-spacing: 2px; margin: 0;\">HELSINKI \u2022 HERNESAARI</p>",
-      "themeOverrideColor": "[\"HSL\", 0.08, 0.3, 0.85, 1]"
+      "content": "<h1 style=\"line-height: 1.1; font-size: 72px; font-weight: 700; letter-spacing: -2px; color: #FFF5E6;\">L\u00d6YLY</h1>"
     },
     {
-      "id": "658B8334-A11B-4845-A50F-8B30FA1A2232",
+      "id": "0BE9A3A8-7FAF-4A32-A5A0-38AC21DA0363",
       "kind": "TEXT",
       "inTemplate": false,
-      "orderIndex": 2,
+      "orderIndex": 1,
       "wrap": false,
-      "fontSize": 20,
-      "lineHeight": 1.8,
+      "fontSize": 16,
+      "lineHeight": 1.5,
       "text": "",
       "styles": [],
       "paras": [],
@@ -169,44 +122,43 @@
       "mobileDown": false,
       "mobileHide": false,
       "mobileSettings": {
-        "align": "center",
+        "align": null,
         "font": 0
       },
       "verticalAlignment": "top",
-      "globalStyleId": "EAEA20A6-C03E-4C8C-ADA5-43EBBEF4CD23",
+      "globalStyleId": "GLOBAL_TEXT_STYLE_DEFAULT",
       "themeShadowBlurRadius": 3.0,
       "themeShadowOffsetX": 3.0,
       "themeShadowOffsetY": 3.0,
       "left": 100,
-      "top": 410,
-      "width": 750,
-      "height": 150,
+      "top": 385,
+      "width": 550,
+      "height": 160,
       "relIn": {
-        "id": "67521CED-86F1-4C7D-ACB6-DA5AFC3E968E",
+        "id": "2AB77DB7-0404-4FDC-8D62-F05D855B9B7A",
         "left": 100,
-        "top": 410,
-        "right": -450,
-        "bottom": -290
+        "top": 385,
+        "right": -650,
+        "bottom": -255
       },
       "relTo": {
-        "id": "D458B4C0-7619-4BD7-A576-FD87D15E7224",
-        "below": 50
+        "id": "6C299FB4-B5E7-46C4-882B-0A60328DBCAD",
+        "below": 15
       },
       "relPage": null,
       "relPara": null,
-      "content": "<p style=\"font-size: 20px; line-height: 1.8; margin: 0; max-width: 700px;\">Experience the warmth of Finnish cuisine by the sea. Where traditional sauna culture meets contemporary Nordic dining, L\u00f6yly offers an unforgettable journey through fire, flavor, and Finnish design.</p>",
-      "themeOverrideColor": "[\"HSL\", 0.1, 0.1, 0.9, 1]"
+      "content": "<p style=\"font-size: 22px; line-height: 1.6; color: #FFF5E6; font-weight: 300;\">Experience the warmth of Finnish dining by the sea. Where exceptional Nordic cuisine meets the timeless tradition of sauna culture in the heart of Helsinki.</p>"
     },
     {
-      "id": "0EB96BE4-E5BB-4ECB-B76E-D234DC2530E9",
+      "id": "055668F1-91F4-40A0-AE18-1E68D94C2968",
       "kind": "BUTTON",
       "inTemplate": false,
-      "orderIndex": 3,
+      "orderIndex": 2,
       "wrap": false,
       "corners": {
-        "radius": 50
+        "radius": 5
       },
-      "fontSize": 18,
+      "fontSize": 16,
       "bold": true,
       "mobileDown": false,
       "mobileHide": false,
@@ -220,7 +172,7 @@
           "colorData": {
             "color": [
               "HSL",
-              0.95,
+              0.03,
               0.75,
               0.55,
               1
@@ -228,42 +180,42 @@
             "gradient": null
           }
         },
-        "globalId": "BUTTON_STYLE_1",
-        "globalName": "[button.1]",
+        "globalId": "BUTTON_STYLE_DEFAULT",
+        "globalName": "[button.default]",
         "type": "web.data.styles.StyleButton",
         "text": {
           "size": null
         }
       },
       "left": 100,
-      "top": 620,
-      "width": 220,
-      "height": 65,
+      "top": 580,
+      "width": 200,
+      "height": 60,
       "relIn": {
-        "id": "67521CED-86F1-4C7D-ACB6-DA5AFC3E968E",
+        "id": "2AB77DB7-0404-4FDC-8D62-F05D855B9B7A",
         "left": 100,
-        "top": 620,
-        "right": -980,
-        "bottom": -165
+        "top": 580,
+        "right": -1000,
+        "bottom": -160
       },
       "relTo": {
-        "id": "658B8334-A11B-4845-A50F-8B30FA1A2232",
-        "below": 60
+        "id": "0BE9A3A8-7FAF-4A32-A5A0-38AC21DA0363",
+        "below": 35
       },
       "relPage": null,
       "relPara": null,
-      "text": "Reserve a Table"
+      "text": "Reserve Table"
     },
     {
-      "id": "87AACCCB-844F-43D2-AE78-A7162108C346",
+      "id": "B5F0561A-EB33-491F-8216-86B999682A97",
       "kind": "BUTTON",
       "inTemplate": false,
-      "orderIndex": 4,
+      "orderIndex": 3,
       "wrap": false,
       "corners": {
-        "radius": 50
+        "radius": 5
       },
-      "fontSize": 18,
+      "fontSize": 16,
       "bold": true,
       "mobileDown": false,
       "mobileHide": false,
@@ -273,13 +225,12 @@
       "buttonThemeSelected": "secondary",
       "style": {
         "border": {
-          "width": 2,
-          "style": "solid",
+          "thickness": 2,
           "color": [
             "HSL",
+            0.03,
+            0.05,
             0.95,
-            0.75,
-            0.55,
             1
           ]
         },
@@ -295,38 +246,264 @@
             "gradient": null
           }
         },
-        "globalId": "BUTTON_STYLE_2",
-        "globalName": "[button.2]",
+        "globalId": "BUTTON_STYLE_SECONDARY",
+        "globalName": "[button.secondary]",
         "type": "web.data.styles.StyleButton",
         "text": {
-          "size": null,
-          "color": [
-            "HSL",
-            0.95,
-            0.75,
-            0.55,
-            1
-          ]
+          "size": null
         }
       },
-      "left": 340,
-      "top": 620,
+      "left": 320,
+      "top": 580,
       "width": 180,
-      "height": 65,
+      "height": 60,
       "relIn": {
-        "id": "67521CED-86F1-4C7D-ACB6-DA5AFC3E968E",
-        "left": 340,
-        "top": 620,
-        "right": -780,
-        "bottom": -165
+        "id": "2AB77DB7-0404-4FDC-8D62-F05D855B9B7A",
+        "left": 320,
+        "top": 580,
+        "right": -800,
+        "bottom": -160
       },
+      "relTo": null,
+      "relPage": null,
+      "relPara": null,
+      "text": "View Menu"
+    },
+    {
+      "id": "D485EBE9-4AB4-411C-9329-02FB41BC1A9B",
+      "kind": "IMAGE",
+      "inTemplate": false,
+      "orderIndex": 4,
+      "wrap": false,
+      "left": 750,
+      "top": 150,
+      "width": 480,
+      "height": 500,
+      "relIn": {
+        "id": "2AB77DB7-0404-4FDC-8D62-F05D855B9B7A",
+        "left": 750,
+        "top": 150,
+        "right": -70,
+        "bottom": -150
+      },
+      "relTo": null,
+      "relPage": null,
+      "relPara": null,
+      "style": {
+        "border": null,
+        "background": null
+      },
+      "asset": {
+        "contentType": "image/jpeg",
+        "height": 500,
+        "url": "https://placehold.co/480x500",
+        "width": 480,
+        "isExternalLink": true
+      },
+      "mobileDown": false,
+      "mobileHide": false
+    },
+    {
+      "id": "0B327195-56E8-4F6D-B454-1F9256A27AE4",
+      "kind": "SECTION",
+      "inTemplate": false,
+      "orderIndex": 1,
+      "wrap": false,
+      "stretch": true,
+      "pin": 0,
+      "selectedTheme": "White",
+      "mobileSettings": {
+        "size": "cover"
+      },
+      "left": 0,
+      "top": 800,
+      "width": 1300,
+      "height": 900,
+      "relIn": null,
       "relTo": {
-        "id": "0EB96BE4-E5BB-4ECB-B76E-D234DC2530E9",
+        "id": "2AB77DB7-0404-4FDC-8D62-F05D855B9B7A",
         "below": 0
       },
       "relPage": null,
       "relPara": null,
-      "text": "View Menu"
+      "title": "Menu",
+      "style": {
+        "border": null,
+        "background": {
+          "colorData": {
+            "color": [
+              "HSL",
+              0.08,
+              0.15,
+              0.96,
+              1
+            ],
+            "gradient": null
+          }
+        }
+      }
+    },
+    {
+      "id": "04105D4C-E33E-406E-BA23-0ADE0DEBC441",
+      "kind": "TEXT",
+      "inTemplate": false,
+      "orderIndex": 0,
+      "wrap": false,
+      "fontSize": 16,
+      "lineHeight": 1.5,
+      "text": "",
+      "styles": [],
+      "paras": [],
+      "links": [],
+      "mobileDown": false,
+      "mobileHide": false,
+      "mobileSettings": {
+        "align": "center",
+        "font": 0
+      },
+      "verticalAlignment": "top",
+      "globalStyleId": "GLOBAL_TEXT_STYLE_DEFAULT",
+      "themeShadowBlurRadius": 3.0,
+      "themeShadowOffsetX": 3.0,
+      "themeShadowOffsetY": 3.0,
+      "left": 100,
+      "top": 880,
+      "width": 1100,
+      "height": 80,
+      "relIn": {
+        "id": "0B327195-56E8-4F6D-B454-1F9256A27AE4",
+        "left": 100,
+        "top": 80,
+        "right": -100,
+        "bottom": -740
+      },
+      "relTo": null,
+      "relPage": null,
+      "relPara": null,
+      "content": "<h2 style=\"font-size: 48px; font-weight: 700; color: #8B4513; text-align: center; letter-spacing: -1px;\">Our Menu</h2>"
+    },
+    {
+      "id": "6614A1C6-D79A-4B86-A0DF-8CD4089143C0",
+      "kind": "TEXT",
+      "inTemplate": false,
+      "orderIndex": 1,
+      "wrap": false,
+      "fontSize": 16,
+      "lineHeight": 1.5,
+      "text": "",
+      "styles": [],
+      "paras": [],
+      "links": [],
+      "mobileDown": false,
+      "mobileHide": false,
+      "mobileSettings": {
+        "align": null,
+        "font": 0
+      },
+      "verticalAlignment": "top",
+      "globalStyleId": "GLOBAL_TEXT_STYLE_DEFAULT",
+      "themeShadowBlurRadius": 3.0,
+      "themeShadowOffsetX": 3.0,
+      "themeShadowOffsetY": 3.0,
+      "left": 100,
+      "top": 985,
+      "width": 500,
+      "height": 600,
+      "relIn": {
+        "id": "0B327195-56E8-4F6D-B454-1F9256A27AE4",
+        "left": 100,
+        "top": 185,
+        "right": -700,
+        "bottom": -115
+      },
+      "relTo": {
+        "id": "04105D4C-E33E-406E-BA23-0ADE0DEBC441",
+        "below": 25
+      },
+      "relPage": null,
+      "relPara": null,
+      "content": "<h3 style=\"font-size: 28px; font-weight: 600; color: #D2691E; margin-bottom: 20px;\">Starters</h3>\n<div style=\"margin-bottom: 30px;\">\n  <p style=\"font-size: 18px; font-weight: 600; color: #333; margin-bottom: 5px;\">Smoked Arctic Char</p>\n  <p style=\"font-size: 14px; color: #666; line-height: 1.6;\">House-smoked fish with dill cream, rye crisps, pickled vegetables</p>\n  <p style=\"font-size: 16px; font-weight: 600; color: #D2691E; margin-top: 8px;\">\u20ac16</p>\n</div>\n<div style=\"margin-bottom: 30px;\">\n  <p style=\"font-size: 18px; font-weight: 600; color: #333; margin-bottom: 5px;\">Forest Mushroom Soup</p>\n  <p style=\"font-size: 14px; color: #666; line-height: 1.6;\">Wild mushrooms, truffle oil, sourdough croutons</p>\n  <p style=\"font-size: 16px; font-weight: 600; color: #D2691E; margin-top: 8px;\">\u20ac12</p>\n</div>\n<div style=\"margin-bottom: 30px;\">\n  <p style=\"font-size: 18px; font-weight: 600; color: #333; margin-bottom: 5px;\">Reindeer Carpaccio</p>\n  <p style=\"font-size: 14px; color: #666; line-height: 1.6;\">Thinly sliced reindeer, lingonberry, aged cheese, arugula</p>\n  <p style=\"font-size: 16px; font-weight: 600; color: #D2691E; margin-top: 8px;\">\u20ac18</p>\n</div>"
+    },
+    {
+      "id": "597D27AA-1B12-44D6-B047-CF188100C189",
+      "kind": "TEXT",
+      "inTemplate": false,
+      "orderIndex": 2,
+      "wrap": false,
+      "fontSize": 16,
+      "lineHeight": 1.5,
+      "text": "",
+      "styles": [],
+      "paras": [],
+      "links": [],
+      "mobileDown": false,
+      "mobileHide": false,
+      "mobileSettings": {
+        "align": null,
+        "font": 0
+      },
+      "verticalAlignment": "top",
+      "globalStyleId": "GLOBAL_TEXT_STYLE_DEFAULT",
+      "themeShadowBlurRadius": 3.0,
+      "themeShadowOffsetX": 3.0,
+      "themeShadowOffsetY": 3.0,
+      "left": 700,
+      "top": 985,
+      "width": 500,
+      "height": 600,
+      "relIn": {
+        "id": "0B327195-56E8-4F6D-B454-1F9256A27AE4",
+        "left": 700,
+        "top": 185,
+        "right": -100,
+        "bottom": -115
+      },
+      "relTo": null,
+      "relPage": null,
+      "relPara": null,
+      "content": "<h3 style=\"font-size: 28px; font-weight: 600; color: #D2691E; margin-bottom: 20px;\">Main Courses</h3>\n<div style=\"margin-bottom: 30px;\">\n  <p style=\"font-size: 18px; font-weight: 600; color: #333; margin-bottom: 5px;\">Grilled Baltic Sea Salmon</p>\n  <p style=\"font-size: 14px; color: #666; line-height: 1.6;\">Fresh salmon, seasonal vegetables, lemon butter sauce</p>\n  <p style=\"font-size: 16px; font-weight: 600; color: #D2691E; margin-top: 8px;\">\u20ac28</p>\n</div>\n<div style=\"margin-bottom: 30px;\">\n  <p style=\"font-size: 18px; font-weight: 600; color: #333; margin-bottom: 5px;\">Slow-Cooked Reindeer</p>\n  <p style=\"font-size: 14px; color: #666; line-height: 1.6;\">Tender reindeer, root vegetables, juniper berry jus</p>\n  <p style=\"font-size: 16px; font-weight: 600; color: #D2691E; margin-top: 8px;\">\u20ac34</p>\n</div>\n<div style=\"margin-bottom: 30px;\">\n  <p style=\"font-size: 18px; font-weight: 600; color: #333; margin-bottom: 5px;\">Wild Mushroom Risotto</p>\n  <p style=\"font-size: 14px; color: #666; line-height: 1.6;\">Creamy risotto, forest mushrooms, parmesan, herbs</p>\n  <p style=\"font-size: 16px; font-weight: 600; color: #D2691E; margin-top: 8px;\">\u20ac24</p>\n</div>"
+    },
+    {
+      "id": "51C4F383-5031-42D8-9B0B-846EA3DAA89B",
+      "kind": "TEXT",
+      "inTemplate": false,
+      "orderIndex": 3,
+      "wrap": false,
+      "fontSize": 16,
+      "lineHeight": 1.5,
+      "text": "",
+      "styles": [],
+      "paras": [],
+      "links": [],
+      "mobileDown": false,
+      "mobileHide": false,
+      "mobileSettings": {
+        "align": "center",
+        "font": 0
+      },
+      "verticalAlignment": "top",
+      "globalStyleId": "GLOBAL_TEXT_STYLE_DEFAULT",
+      "themeShadowBlurRadius": 3.0,
+      "themeShadowOffsetX": 3.0,
+      "themeShadowOffsetY": 3.0,
+      "left": 350,
+      "top": 1620,
+      "width": 600,
+      "height": 50,
+      "relIn": {
+        "id": "0B327195-56E8-4F6D-B454-1F9256A27AE4",
+        "left": 350,
+        "top": 820,
+        "right": -350,
+        "bottom": -30
+      },
+      "relTo": {
+        "id": "6614A1C6-D79A-4B86-A0DF-8CD4089143C0",
+        "below": 35
+      },
+      "relPage": null,
+      "relPara": null,
+      "content": "<p style=\"font-size: 16px; color: #999; text-align: center; font-style: italic;\">All ingredients sourced locally from Finnish producers</p>"
     }
   ],
   "shareHeaderAndFirstSectionBgImg": false,

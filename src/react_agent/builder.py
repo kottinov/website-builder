@@ -7,6 +7,59 @@ structures with proper validation and field mapping.
 from typing import Any, Dict, List, Optional
 from react_agent.signatures import CreateInput
 
+STYLE_FIELDS = {
+    "style",
+    "styles",
+    "hover",
+    "onHover",
+    "press",
+    "imageStyle",
+    "captionBoxStyle",
+    "captionTitleTextStyle",
+    "captionDescriptionTextStyle",
+    "captionStyle",
+    "textStyleMeta",
+}
+
+
+def _camelize_css_key(key: str) -> str:
+    """Convert kebab/underscore CSS keys to camelCase for React inline styles."""
+    if not isinstance(key, str):
+        return key
+    sanitized = key.replace("_", "-")
+    parts = sanitized.split("-")
+    if len(parts) == 1:
+        return key
+    return parts[0] + "".join(part.capitalize() for part in parts[1:] if part)
+
+
+def _camelize_style_value(value: Any) -> Any:
+    """Recursively camelCase dict keys used in style fragments."""
+    if isinstance(value, dict):
+        return {
+            _camelize_css_key(k): _camelize_style_value(v)
+            for k, v in value.items()
+        }
+    if isinstance(value, list):
+        return [_camelize_style_value(v) for v in value]
+    return value
+
+
+def normalize_style_fields(component: Dict[str, Any]) -> Dict[str, Any]:
+    """Normalize style-ish fields to React-friendly camelCase keys."""
+    for field in STYLE_FIELDS:
+        if field not in component:
+            continue
+        field_value = component[field]
+        if field == "styles" and isinstance(field_value, list):
+            component[field] = [
+                _camelize_style_value(entry) if isinstance(entry, dict) else entry
+                for entry in field_value
+            ]
+        elif isinstance(field_value, dict):
+            component[field] = _camelize_style_value(field_value)
+    return component
+
 
 def get_component_defaults(kind: str) -> Dict[str, Any]:
     """Get smart defaults based on component kind.
@@ -386,4 +439,6 @@ def build_component(payload: CreateInput, component_id: str) -> Dict[str, Any]:
 
     builder.add_fields(remaining_fields)
 
-    return builder.build()
+    component = builder.build()
+    normalize_style_fields(component)
+    return component

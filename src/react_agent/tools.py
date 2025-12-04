@@ -5,7 +5,7 @@ from typing import Any, Callable, Dict, List, Optional
 
 from langchain.tools import tool
 
-from react_agent.builder import build_component
+from react_agent.builder import build_component, normalize_style_fields
 from react_agent.descriptions import (
     CREATE_TOOL_DESCRIPTION,
     EDIT_TOOL_DESCRIPTION,
@@ -334,7 +334,9 @@ def edit(**kwargs: Any) -> Dict[str, Any] | None:
         exclude_none=True,
         exclude=EDIT_EXCLUDE_FIELDS,
     )
+    normalize_style_fields(updates)
     target.update(updates)
+    normalize_style_fields(target)
 
     validation_payload: Dict[str, Any] = {
         field: target[field]
