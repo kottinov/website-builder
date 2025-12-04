@@ -36,12 +36,33 @@ from react_agent.utils import (
     save_page,
 )
 
-EDIT_EXCLUDE_FIELDS = {"component_id", "file_path", "kind"}
+EDIT_EXCLUDE_FIELDS = {"component_id", "file_path", "kind", "response_format"}
 EDIT_VALIDATION_FIELDS = {
     name
     for name in CreateInput.model_fields
-    if name not in {"file_path", "parent_id", "before_id", "after_id", "kind"}
+    if name
+    not in {"file_path", "parent_id", "before_id", "after_id", "kind", "response_format"}
 }
+
+
+def _format_component_response(
+    component: Dict[str, Any], response_format: str | None
+) -> Dict[str, Any]:
+    """Return a concise or detailed component representation."""
+    fmt = (response_format or "concise").lower()
+    if fmt == "detailed":
+        return component
+    parent_id = get_rel_parent_id(component)
+    return {
+        "id": component.get("id"),
+        "kind": component.get("kind") or component.get("type"),
+        "orderIndex": component.get("orderIndex"),
+        "parentId": parent_id,
+        "title": component.get("title")
+        or component.get("name")
+        or component.get("text")
+        or component.get("content"),
+    }
 
 
 @tool(description=LIST_TOOL_DESCRIPTION, args_schema=ListInput)
@@ -269,16 +290,23 @@ def create(**kwargs) -> Dict[str, Any]:
     renumber_components(page_items)
     save_page(page_path, page)
 
-    return new_component
+    return _format_component_response(new_component, payload.response_format)
 
 
 @tool(description=RETRIEVE_TOOL_DESCRIPTION, args_schema=RetrieveInput)
-def retrieve(component_id: str, file_path: str | None = None) -> Dict[str, Any] | None:
+def retrieve(
+    component_id: str,
+    file_path: str | None = None,
+    response_format: str = "concise",
+) -> Dict[str, Any] | None:
     """Return a single component by id."""
     page_path = Path(file_path) if file_path else get_default_page_path()
     page = load_page(page_path)
 
-    return find_component_by_id(page.get("items", []), component_id)
+    component = find_component_by_id(page.get("items", []), component_id)
+    if component is None:
+        return None
+    return _format_component_response(component, response_format)
 
 
 @tool(description=REMOVE_TOOL_DESCRIPTION, args_schema=RemoveInput)
@@ -348,12 +376,15 @@ def edit(**kwargs: Any) -> Dict[str, Any] | None:
     CreateInput(**validation_payload)
     save_page(page_path, page)
 
-    return target
+    return _format_component_response(target, payload.response_format)
 
 
 @tool(description=REORDER_TOOL_DESCRIPTION, args_schema=ReorderInput)
 def reorder(
-    order_ids: List[str], parent_id: str | None = None, file_path: str | None = None
+    order_ids: List[str],
+    parent_id: str | None = None,
+    file_path: str | None = None,
+    response_format: str = "concise",
 ) -> List[Dict[str, Any]]:
     """Reorder children under a parent, or top-level if parent_id is None."""
     page_path = Path(file_path) if file_path else get_default_page_path()
@@ -388,7 +419,9 @@ def reorder(
     renumber_components(page["items"])
     save_page(page_path, page)
 
-    return new_list
+    return [
+        _format_component_response(item, response_format) for item in new_list
+    ]
 
 
 @tool(description=FIND_TOOL_DESCRIPTION, args_schema=FindInput)

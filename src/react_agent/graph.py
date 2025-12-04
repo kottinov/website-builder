@@ -3,7 +3,6 @@
 Works with a chat model with tool calling support.
 """
 
-from datetime import UTC, datetime
 from typing import Dict, List, Literal, cast
 
 from langchain_core.messages import AIMessage
@@ -16,6 +15,26 @@ from react_agent.context import Context
 from react_agent.state import InputState, State
 from react_agent.tools import TOOLS
 from react_agent.utils import load_chat_model
+
+_ANTHROPIC_TOOLS_CACHED = None
+_CACHEABLE_TOOL_NAMES = {"create", "edit"}
+
+def _get_anthropic_tools():
+    """Get cached Anthropic tool schemas with prompt caching enabled.
+
+    Converts tools once and caches them for reuse across all LLM calls.
+    Applies cache_control only to selected tools to stay under Anthropic limits.
+    """
+    global _ANTHROPIC_TOOLS_CACHED
+
+    if _ANTHROPIC_TOOLS_CACHED is None:
+        _ANTHROPIC_TOOLS_CACHED = [convert_to_anthropic_tool(tool) for tool in TOOLS]
+
+        for tool in _ANTHROPIC_TOOLS_CACHED:
+            if tool.get("name") in _CACHEABLE_TOOL_NAMES:
+                tool["cache_control"] = {"type": "ephemeral"}
+
+    return _ANTHROPIC_TOOLS_CACHED
 
 
 async def call_model(
@@ -36,16 +55,12 @@ async def call_model(
     model = load_chat_model(runtime.context.model)
 
     if "anthropic" in runtime.context.model.lower():
-        anthropic_tools = [convert_to_anthropic_tool(tool) for tool in TOOLS]
-        anthropic_tools[-1]["cache_control"] = {"type": "ephemeral"}
-
+        anthropic_tools = _get_anthropic_tools()
         model = model.bind_tools(anthropic_tools, parallel_tool_calls=False)
     else:
         model = model.bind_tools(TOOLS, parallel_tool_calls=False)
 
-    system_message = runtime.context.system_prompt.format(
-        system_time=datetime.now(tz=UTC).isoformat()
-    )
+    system_message = runtime.context.system_prompt
 
     if "anthropic" in runtime.context.model.lower():
         system_content = [
@@ -113,4 +128,4 @@ builder.add_conditional_edges(
 
 builder.add_edge("tools", "call_model")
 
-graph = builder.compile(name="ReAct Agent")
+graph = builder.compile(name="ReAct Agent").with_config({"recursion_limit": 100})

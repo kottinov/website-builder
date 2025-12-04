@@ -30,6 +30,14 @@ def load_chat_model(fully_specified_name: str) -> BaseChatModel:
         fully_specified_name (str): String in the format 'provider/model'.
     """
     provider, model = fully_specified_name.split("/", maxsplit=1)
+
+    if provider.lower() == "anthropic":
+        return init_chat_model(
+            model,
+            model_provider=provider,
+            default_headers={"anthropic-beta": "prompt-caching-2024-07-31"},
+        )
+
     return init_chat_model(model, model_provider=provider)
 
 def generate_id() -> str:

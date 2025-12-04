@@ -432,6 +432,7 @@ def build_component(payload: CreateInput, component_id: str) -> Dict[str, Any]:
             "relIn", "relTo", "relPage", "relPara",
             "content", "text", "title", "name",
             "items",
+            "response_format",
         },
         exclude_unset=True,
         mode="json",
