@@ -182,6 +182,29 @@ def renumber_components(items: list[Dict[str, Any]]) -> None:
             item["orderIndex"] = idx
 
 
+def build_component_index(items: List[Dict[str, Any]]) -> Dict[str, Dict[str, Any]]:
+    """Build an index mapping component IDs to component objects.
+
+    Args:
+        items: List of component items to index.
+
+    Returns:
+        Dictionary mapping component ID to component object.
+    """
+    index: Dict[str, Dict[str, Any]] = {}
+
+    def walk(current_items: List[Dict[str, Any]]) -> None:
+        for item in current_items:
+            item_id = item.get("id")
+            if item_id:
+                index[item_id] = item
+            if item.get("items"):
+                walk(item["items"])
+
+    walk(items)
+    return index
+
+
 def find_component_by_id(
     items: list[Dict[str, Any]], component_id: str
 ) -> Optional[Dict[str, Any]]:
@@ -273,25 +296,30 @@ def prune_by_ids(page: Dict[str, Any], target_ids: set[str]) -> bool:
         True if any components were removed, False otherwise.
     """
     items = page.get("items", [])
-    all_items_flat: List[Dict[str, Any]] = []
 
-    def _flatten(current: List[Dict[str, Any]]) -> None:
-        for item in current:
-            all_items_flat.append(item)
+    parent_map: Dict[Optional[str], List[str]] = {}
+
+    def _build_parent_map(current_items: List[Dict[str, Any]]) -> None:
+        for item in current_items:
+            item_id = item.get("id")
+            rel_parent = get_rel_parent_id(item)
+            parent_map.setdefault(rel_parent, []).append(item_id)
             if item.get("items"):
-                _flatten(item["items"])
+                _build_parent_map(item["items"])
 
-    _flatten(items)
+    _build_parent_map(items)
 
     ids_to_remove = set(target_ids)
-    changed = True
-    while changed:
-        changed = False
-        for item in all_items_flat:
-            rel_parent = get_rel_parent_id(item)
-            if rel_parent in ids_to_remove and item.get("id") not in ids_to_remove:
-                ids_to_remove.add(item.get("id"))
-                changed = True
+
+    def _collect_descendants(parent_id: str) -> None:
+        """Recursively mark all descendants of a removed component."""
+        for child_id in parent_map.get(parent_id, []):
+            if child_id not in ids_to_remove:
+                ids_to_remove.add(child_id)
+                _collect_descendants(child_id)
+
+    for target_id in target_ids:
+        _collect_descendants(target_id)
 
     removed_any = False
 
@@ -450,10 +478,10 @@ def execute_create_operation(
                 if (item.get("kind") or item.get("type")) == "SECTION"
             ]
             if existing_sections:
-                last_section = sorted(
+                last_section = max(
                     existing_sections,
                     key=lambda s: s.get("orderIndex", -1),
-                )[-1]
+                )
                 gap = 0
                 if (
                     last_section.get("top") is not None
@@ -684,8 +712,10 @@ def execute_reorder_operation(
 
     id_to_item = {item.get("id"): item for item in target_list}
     new_list = [id_to_item[i] for i in payload.order_ids if i in id_to_item]
+
+    reordered_ids = {item.get("id") for item in new_list}
     for item in target_list:
-        if item not in new_list:
+        if item.get("id") not in reordered_ids:
             new_list.append(item)
     for idx, item in enumerate(new_list):
         item["orderIndex"] = idx
