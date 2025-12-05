@@ -5,307 +5,46 @@ from typing import Any, Callable, Dict, List
 
 from langchain.tools import tool
 
-from react_agent.builder import build_component, normalize_style_fields
 from react_agent.descriptions import (
-    CREATE_TOOL_DESCRIPTION,
-    EDIT_TOOL_DESCRIPTION,
     FIND_TOOL_DESCRIPTION,
     LIST_TOOL_DESCRIPTION,
     MUTATE_TOOL_DESCRIPTION,
-    REMOVE_TOOL_DESCRIPTION,
-    REORDER_TOOL_DESCRIPTION,
     RETRIEVE_TOOL_DESCRIPTION,
 )
 from react_agent.signatures import (
-    CreateInput,
-    EditInput,
     FindInput,
     ListInput,
     MutateInput,
     Operation,
-    RelIn,
-    RemoveInput,
-    ReorderInput,
     RetrieveInput,
 )
 from react_agent.utils import (
+    execute_create_operation,
+    execute_edit_operation,
+    execute_remove_operation,
+    execute_reorder_operation,
     find_component_by_id,
+    flatten_components_list,
+    format_component_response,
     generate_id,
     get_default_page_path,
-    get_rel_parent_id,
-    insert_component,
     load_page,
     renumber_components,
+    resolve_alias_references,
     save_page,
+    search_components_by_text,
 )
-
-EDIT_EXCLUDE_FIELDS = {"component_id", "file_path", "kind", "response_format"}
-EDIT_VALIDATION_FIELDS = {
-    name
-    for name in CreateInput.model_fields
-    if name
-    not in {
-        "file_path",
-        "parent_id",
-        "before_id",
-        "after_id",
-        "kind",
-        "response_format",
-    }
-}
-
-
-def _format_component_response(
-    component: Dict[str, Any], response_format: str | None
-) -> Dict[str, Any]:
-    """Return a concise or detailed component representation."""
-    fmt = (response_format or "concise").lower()
-    if fmt == "detailed":
-        return component
-    parent_id = get_rel_parent_id(component)
-    return {
-        "id": component.get("id"),
-        "kind": component.get("kind") or component.get("type"),
-        "orderIndex": component.get("orderIndex"),
-        "parentId": parent_id,
-        "title": component.get("title")
-        or component.get("name")
-        or component.get("text")
-        or component.get("content"),
-    }
 
 
 @tool(description=LIST_TOOL_DESCRIPTION, args_schema=ListInput)
-def list(file_path: str | None = None) -> List[Dict[str, Any]]:
+def list_components(file_path: str | None = None) -> List[Dict[str, Any]]:
     """Return a flat list of components with id, kind, orderIndex, parentId, title."""
     page = load_page(Path(file_path) if file_path else get_default_page_path())
-    result: List[Dict[str, Any]] = []
-
-    def walk(items: List[Dict[str, Any]], parent_id: str | None) -> None:
-        for item in items:
-            kind = item.get("kind") or item.get("type")
-            rel_parent = get_rel_parent_id(item)
-            result.append(
-                {
-                    "id": item.get("id"),
-                    "kind": kind,
-                    "orderIndex": item.get("orderIndex"),
-                    "parentId": rel_parent or parent_id,
-                    "title": item.get("title")
-                    or item.get("name")
-                    or item.get("text")
-                    or item.get("content"),
-                }
-            )
-            if item.get("items"):
-                walk(item["items"], item.get("id"))
-
-    walk(page.get("items", []), None)
-
-    return result
-
-
-@tool(description=CREATE_TOOL_DESCRIPTION, args_schema=CreateInput)
-def create(**kwargs) -> Dict[str, Any]:
-    """Create a new WSB component and insert it into the page JSON.
-
-    This function uses the bullet-proof builder to ensure:
-    - Typed nested structures (relIn, mobileSettings, etc)
-    - Only provided fields are included
-    - Valid WSB JSON structure
-
-    Args:
-        **kwargs: Component data and insertion metadata matching CreateInput schema.
-
-    Returns:
-        The newly created component as a dictionary with all resolved fields.
-
-    Raises:
-        ValueError: If the component type is missing.
-    """
-
-    def _strip_cdata(value: Any) -> Any:
-        if isinstance(value, str):
-            trimmed = value.strip()
-            if trimmed.startswith("<![CDATA[") and trimmed.endswith("]]>"):
-                return trimmed[len("<![CDATA[") : -len("]]>")]
-        return value
-
-    if "content" in kwargs:
-        kwargs["content"] = _strip_cdata(kwargs.get("content"))
-
-    page_path = (
-        Path(kwargs.get("file_path"))
-        if kwargs.get("file_path")
-        else get_default_page_path()
-    )
-
-    page = load_page(page_path)
-    rel_in_kw = kwargs.get("relIn")
-
-    if (
-        kwargs.get("parent_id") is None
-        and isinstance(rel_in_kw, dict)
-        and rel_in_kw.get("id")
-    ):
-        kwargs["parent_id"] = rel_in_kw["id"]
-
-    # default header id for wsb templates ( first section )
-    DEFAULT_HEADER_ID = "22FC8C5B-CD71-42B7-9DF2-486F577581A9"
-
-    if kwargs.get("kind") == "SECTION":
-        kwargs["relIn"] = None
-
-        if kwargs.get("relTo") is None:
-            existing_sections = [
-                item
-                for item in page.get("items", [])
-                if (item.get("kind") or item.get("type")) == "SECTION"
-            ]
-            if existing_sections:
-                last_section = sorted(
-                    existing_sections,
-                    key=lambda s: s.get("orderIndex", -1),
-                )[-1]
-                gap = 0
-                if (
-                    last_section.get("top") is not None
-                    and last_section.get("height") is not None
-                    and kwargs.get("top") is not None
-                ):
-                    gap = kwargs["top"] - (last_section["top"] + last_section["height"])
-                kwargs["relTo"] = {"id": last_section.get("id"), "below": gap}
-            else:
-                kwargs["relTo"] = {"id": DEFAULT_HEADER_ID, "below": 0}
-        else:
-            rel_to_provided = kwargs.get("relTo")
-            if isinstance(rel_to_provided, dict):
-                rel_to_id = rel_to_provided.get("id", "")
-                fake_patterns = [
-                    "temp",
-                    "anchor",
-                    "placeholder",
-                    "dummy",
-                    "fake",
-                    "mock",
-                ]
-                if (
-                    any(p in rel_to_id.lower() for p in fake_patterns)
-                    and rel_to_id != DEFAULT_HEADER_ID
-                ):
-                    kwargs["relTo"] = {
-                        "id": DEFAULT_HEADER_ID,
-                        "below": rel_to_provided.get("below", 0),
-                    }
-
-    parent = None
-    parent_id = kwargs.get("parent_id") or (
-        rel_in_kw.get("id") if isinstance(rel_in_kw, dict) else None
-    )
-
-    if parent_id:
-        parent = find_component_by_id(page.get("items", []), parent_id)
-        if parent is None:
-            raise ValueError(
-                f"relIn/parent_id references unknown id '{parent_id}'. Use list() to pick an existing parent id."
-            )
-
-    if parent:
-        rel_in = (
-            dict(rel_in_kw)
-            if isinstance(rel_in_kw, dict)
-            else (rel_in_kw.model_dump() if rel_in_kw else {})
-        )
-
-        if rel_in.get("id") is None:
-            rel_in["id"] = parent.get("id")
-
-        left = kwargs.get("left")
-        top = kwargs.get("top")
-        width = kwargs.get("width")
-        height = kwargs.get("height")
-
-        if (
-            rel_in.get("left") is None
-            and left is not None
-            and parent.get("left") is not None
-        ):
-            rel_in["left"] = left - parent["left"]
-
-        if (
-            rel_in.get("top") is None
-            and top is not None
-            and parent.get("top") is not None
-        ):
-            rel_in["top"] = top - parent["top"]
-
-        if (
-            rel_in.get("right") is None
-            and width is not None
-            and parent.get("width") is not None
-            and rel_in.get("left") is not None
-        ):
-            rel_in["right"] = -(parent["width"] - (rel_in["left"] + width))
-
-        if (
-            rel_in.get("bottom") is None
-            and height is not None
-            and parent.get("height") is not None
-            and rel_in.get("top") is not None
-        ):
-            rel_in["bottom"] = -(parent["height"] - (rel_in["top"] + height))
-
-        kwargs["relIn"] = rel_in
-
-    rel_to_kw = kwargs.get("relTo")
-
-    if rel_to_kw and isinstance(rel_to_kw, dict):
-        rel_to_target = rel_to_kw.get("id")
-        is_section = kwargs.get("kind") == "SECTION"
-        is_template_id = rel_to_target == DEFAULT_HEADER_ID
-
-        if rel_to_target and not is_section and not is_template_id:
-            if find_component_by_id(page.get("items", []), rel_to_target) is None:
-                raise ValueError(
-                    f"relTo references unknown id '{rel_to_target}'. Use list() to pick an existing sibling/section id."
-                )
-
-    payload = CreateInput(**kwargs)
-    updates: Dict[str, Any] = {}
-
-    if payload.parent_id and payload.relIn is None:
-        updates["relIn"] = RelIn(id=payload.parent_id)
-
-    if payload.relTo is None:
-        if payload.after_id:
-            updates["relTo"] = {"id": payload.after_id, "below": 0}
-        elif payload.before_id:
-            updates["relTo"] = {"id": payload.before_id, "below": 0}
-
-    if updates:
-        payload = payload.model_copy(update=updates)
-
-    new_id = payload.id or generate_id()
-
-    new_component = build_component(payload, new_id)
-    page_items = page.setdefault("items", [])
-
-    insert_component(
-        new_component,
-        page_items,
-        parent_id=None,
-        before_id=payload.before_id,
-        after_id=payload.after_id,
-    )
-
-    renumber_components(page_items)
-    save_page(page_path, page)
-
-    return _format_component_response(new_component, payload.response_format)
+    return flatten_components_list(page.get("items", []))
 
 
 @tool(description=RETRIEVE_TOOL_DESCRIPTION, args_schema=RetrieveInput)
-def retrieve(
+def retrieve_component(
     component_id: str,
     file_path: str | None = None,
     response_format: str = "concise",
@@ -315,147 +54,18 @@ def retrieve(
     page = load_page(page_path)
 
     component = find_component_by_id(page.get("items", []), component_id)
+
     if component is None:
         return None
-    return _format_component_response(component, response_format)
 
-
-@tool(description=REMOVE_TOOL_DESCRIPTION, args_schema=RemoveInput)
-def remove(component_id: str, file_path: str | None = None) -> bool:
-    """Remove a component by id."""
-    page_path = Path(file_path) if file_path else get_default_page_path()
-    page = load_page(page_path)
-
-    removed = _prune_by_ids(page, {component_id})
-
-    renumber_components(page["items"])
-    save_page(page_path, page)
-
-    return removed
-
-
-@tool(description=EDIT_TOOL_DESCRIPTION, args_schema=EditInput)
-def edit(**kwargs: Any) -> Dict[str, Any] | None:
-    """Apply a partial update to an existing component."""
-    payload = EditInput(**kwargs)
-    page_path = (
-        Path(payload.file_path) if payload.file_path else get_default_page_path()
-    )
-    page = load_page(page_path)
-
-    target = find_component_by_id(page.get("items", []), payload.component_id)
-    if target is None:
-        return None
-
-    kind_value = target.get("kind") or target.get("type")
-    if not kind_value:
-        raise ValueError("Target component missing kind/type; cannot validate update.")
-
-    if payload.kind and payload.kind != kind_value:
-        raise ValueError(
-            f"Kind mismatch: target has '{kind_value}', got '{payload.kind}'."
-        )
-
-    updates = payload.model_dump(
-        exclude_none=True,
-        exclude=EDIT_EXCLUDE_FIELDS,
-    )
-    normalize_style_fields(updates)
-    target.update(updates)
-    normalize_style_fields(target)
-
-    validation_payload: Dict[str, Any] = {
-        field: target[field]
-        for field in EDIT_VALIDATION_FIELDS
-        if field in target and target[field] is not None
-    }
-    validation_payload["kind"] = kind_value
-
-    CreateInput(**validation_payload)
-    save_page(page_path, page)
-
-    return _format_component_response(target, payload.response_format)
-
-
-@tool(description=REORDER_TOOL_DESCRIPTION, args_schema=ReorderInput)
-def reorder(
-    order_ids: List[str],
-    parent_id: str | None = None,
-    file_path: str | None = None,
-    response_format: str = "concise",
-) -> List[Dict[str, Any]]:
-    """Reorder children under a parent, or top-level if parent_id is None."""
-    page_path = Path(file_path) if file_path else get_default_page_path()
-    page = load_page(page_path)
-
-    def matches_parent(item: Dict[str, Any]) -> bool:
-        rel_parent = get_rel_parent_id(item)
-        return rel_parent == parent_id if parent_id is not None else rel_parent is None
-
-    target_list = [item for item in page.get("items", []) if matches_parent(item)]
-    if not target_list:
-        return []
-
-    id_to_item = {item.get("id"): item for item in target_list}
-    new_list = [id_to_item[i] for i in order_ids if i in id_to_item]
-    for item in target_list:
-        if item not in new_list:
-            new_list.append(item)
-    for idx, item in enumerate(new_list):
-        item["orderIndex"] = idx
-        # Update relTo to reflect new ordering within the sibling group.
-        if idx == 0:
-            # Preserve existing relTo for the first item (e.g., section chaining to header).
-            continue
-        prev = new_list[idx - 1]
-        prev_id = prev.get("id")
-        below_val = 0
-        if isinstance(item.get("relTo"), dict) and "below" in item["relTo"]:
-            below_val = item["relTo"].get("below") or 0
-        item["relTo"] = {"id": prev_id, "below": below_val}
-    sibling_ids = {item.get("id") for item in target_list}
-    new_items: List[Dict[str, Any]] = []
-    new_iter = iter(new_list)
-    for item in page.get("items", []):
-        if item.get("id") in sibling_ids:
-            new_items.append(next(new_iter))
-        else:
-            new_items.append(item)
-
-    page["items"] = new_items
-
-    renumber_components(page["items"])
-    save_page(page_path, page)
-
-    return [_format_component_response(item, response_format) for item in new_list]
+    return format_component_response(component, response_format)
 
 
 @tool(description=FIND_TOOL_DESCRIPTION, args_schema=FindInput)
-def find(text: str, file_path: str | None = None) -> List[Dict[str, Any]]:
+def find_component(text: str, file_path: str | None = None) -> List[Dict[str, Any]]:
     """Locate components whose visible text contains a substring."""
     page = load_page(Path(file_path) if file_path else get_default_page_path())
-    hits: List[Dict[str, Any]] = []
-    needle = text.lower()
-
-    def walk(items: List[Dict[str, Any]]) -> None:
-        for item in items:
-            for key in ("text", "content", "title", "name"):
-                val = item.get(key)
-                if isinstance(val, str) and needle in val.lower():
-                    hits.append(
-                        {
-                            "id": item.get("id"),
-                            "kind": item.get("kind") or item.get("type"),
-                            "matchField": key,
-                        }
-                    )
-                    break
-            if item.get("items"):
-                walk(item["items"])
-
-    walk(page.get("items", []))
-
-    return hits
+    return search_components_by_text(page.get("items", []), text)
 
 
 @tool(description=MUTATE_TOOL_DESCRIPTION, args_schema=MutateInput)
@@ -486,15 +96,16 @@ def mutate_components(
     page = load_page(page_path)
 
     results: List[Dict[str, Any]] = []
-
-    # Normalize operations into plain dicts and collect alias/id info up front so
-    # children can reference parents created earlier in the batch.
     normalized_ops: List[Dict[str, Any]] = []
+
     for idx, op_wrapper in enumerate(operations):
         op_type = op_wrapper.op if hasattr(op_wrapper, "op") else op_wrapper.get("op")
         op_payload = (
-            op_wrapper.payload if hasattr(op_wrapper, "payload") else op_wrapper.get("payload")
+            op_wrapper.payload
+            if hasattr(op_wrapper, "payload")
+            else op_wrapper.get("payload")
         )
+
         alias = getattr(op_wrapper, "alias", None)
         if alias is None and isinstance(op_wrapper, dict):
             alias = op_wrapper.get("alias")
@@ -504,7 +115,6 @@ def mutate_components(
         else:
             payload_dict = dict(op_payload) if isinstance(op_payload, dict) else {}
 
-        # Normalize common camelCase fields for compatibility (LLMs may emit orderIds).
         if "orderIds" in payload_dict and "order_ids" not in payload_dict:
             payload_dict["order_ids"] = payload_dict.pop("orderIds")
 
@@ -512,77 +122,94 @@ def mutate_components(
             {"index": idx, "op": op_type, "payload": payload_dict, "alias": alias}
         )
 
-    # First pass: assign concrete IDs and build alias map.
     alias_map: Dict[str, str] = {}
+
     for op in normalized_ops:
         if op["op"] == Operation.CREATE or op["op"] == "CREATE":
             alias = op.get("alias")
+
             if alias:
                 if alias in alias_map:
-                    raise ValueError(f"Duplicate alias '{alias}' at index {op['index']}")
+                    raise ValueError(
+                        f"Duplicate alias '{alias}' at index {op['index']}"
+                    )
+
             payload = op["payload"]
             explicit_id = payload.get("id")
+
             if explicit_id is None:
                 explicit_id = generate_id()
                 payload["id"] = explicit_id
+
             if alias:
                 alias_map[alias] = explicit_id
-
-    def _resolve_id(value: Any) -> Any:
-        if isinstance(value, str) and value in alias_map:
-            return alias_map[value]
-        return value
 
     try:
         for op in normalized_ops:
             op_type = op["op"]
             payload_dict = op["payload"]
 
-            # Resolve any alias references before validation.
             for key in ("parent_id", "before_id", "after_id"):
                 if key in payload_dict:
-                    payload_dict[key] = _resolve_id(payload_dict.get(key))
+                    payload_dict[key] = resolve_alias_references(
+                        payload_dict.get(key), alias_map
+                    )
 
             rel_in_kw = payload_dict.get("relIn")
             if isinstance(rel_in_kw, dict) and "id" in rel_in_kw:
-                rel_in_kw["id"] = _resolve_id(rel_in_kw.get("id"))
+                rel_in_kw["id"] = resolve_alias_references(
+                    rel_in_kw.get("id"), alias_map
+                )
                 payload_dict["relIn"] = rel_in_kw
 
             rel_to_kw = payload_dict.get("relTo")
+
             if isinstance(rel_to_kw, dict) and "id" in rel_to_kw:
-                rel_to_kw["id"] = _resolve_id(rel_to_kw.get("id"))
+                rel_to_kw["id"] = resolve_alias_references(
+                    rel_to_kw.get("id"), alias_map
+                )
                 payload_dict["relTo"] = rel_to_kw
 
             if op_type == Operation.EDIT or op_type == "EDIT":
-                payload_dict["component_id"] = _resolve_id(payload_dict.get("component_id"))
+                payload_dict["component_id"] = resolve_alias_references(
+                    payload_dict.get("component_id"), alias_map
+                )
             elif op_type == Operation.REMOVE or op_type == "REMOVE":
-                payload_dict["component_id"] = _resolve_id(payload_dict.get("component_id"))
+                payload_dict["component_id"] = resolve_alias_references(
+                    payload_dict.get("component_id"), alias_map
+                )
             elif op_type == Operation.REORDER or op_type == "REORDER":
-                payload_dict["parent_id"] = _resolve_id(payload_dict.get("parent_id"))
+                payload_dict["parent_id"] = resolve_alias_references(
+                    payload_dict.get("parent_id"), alias_map
+                )
                 order_ids = payload_dict.get("order_ids") or []
-                payload_dict["order_ids"] = [_resolve_id(oid) for oid in order_ids]
+                payload_dict["order_ids"] = [
+                    resolve_alias_references(oid, alias_map) for oid in order_ids
+                ]
 
             payload_dict["file_path"] = str(page_path)
             payload_dict["response_format"] = response_format
 
             if op_type == Operation.CREATE or op_type == "CREATE":
-                result = _execute_create_in_batch(page, payload_dict, response_format)
+                result = execute_create_operation(page, payload_dict, response_format)
                 results.append(result)
 
             elif op_type == Operation.EDIT or op_type == "EDIT":
-                result = _execute_edit_in_batch(page, payload_dict, response_format)
+                result = execute_edit_operation(page, payload_dict, response_format)
                 results.append(result)
 
             elif op_type == Operation.REMOVE or op_type == "REMOVE":
-                result = _execute_remove_in_batch(page, payload_dict)
+                result = execute_remove_operation(page, payload_dict)
                 results.append(result)
 
             elif op_type == Operation.REORDER or op_type == "REORDER":
-                result = _execute_reorder_in_batch(page, payload_dict, response_format)
+                result = execute_reorder_operation(page, payload_dict, response_format)
                 results.append(result)
 
             else:
-                raise ValueError(f"Unknown operation type at index {op['index']}: {op_type}")
+                raise ValueError(
+                    f"Unknown operation type at index {op['index']}: {op_type}"
+                )
 
         renumber_components(page.get("items", []))
         save_page(page_path, page)
@@ -590,325 +217,14 @@ def mutate_components(
         return results
 
     except Exception as e:
-        raise ValueError(f"Batch operation failed: {str(e)}. All changes rolled back.") from e
-
-
-def _execute_create_in_batch(
-    page: Dict[str, Any],
-    kwargs: Dict[str, Any],
-    response_format: str,
-) -> Dict[str, Any]:
-    """Execute a CREATE operation within a batch (no load/save)."""
-
-    def _strip_cdata(value: Any) -> Any:
-        if isinstance(value, str):
-            trimmed = value.strip()
-            if trimmed.startswith("<![CDATA[") and trimmed.endswith("]]>"):
-                return trimmed[len("<![CDATA[") : -len("]]>")]
-        return value
-
-    if "content" in kwargs:
-        kwargs["content"] = _strip_cdata(kwargs.get("content"))
-
-    rel_in_kw = kwargs.get("relIn")
-
-    if (
-        kwargs.get("parent_id") is None
-        and isinstance(rel_in_kw, dict)
-        and rel_in_kw.get("id")
-    ):
-        kwargs["parent_id"] = rel_in_kw["id"]
-
-    # default header id for wsb templates ( first section )
-    DEFAULT_HEADER_ID = "22FC8C5B-CD71-42B7-9DF2-486F577581A9"
-
-    if kwargs.get("kind") == "SECTION":
-        kwargs["relIn"] = None
-
-        if kwargs.get("relTo") is None:
-            existing_sections = [
-                item
-                for item in page.get("items", [])
-                if (item.get("kind") or item.get("type")) == "SECTION"
-            ]
-            if existing_sections:
-                last_section = sorted(
-                    existing_sections,
-                    key=lambda s: s.get("orderIndex", -1),
-                )[-1]
-                gap = 0
-                if (
-                    last_section.get("top") is not None
-                    and last_section.get("height") is not None
-                    and kwargs.get("top") is not None
-                ):
-                    gap = kwargs["top"] - (last_section["top"] + last_section["height"])
-                kwargs["relTo"] = {"id": last_section.get("id"), "below": gap}
-            else:
-                kwargs["relTo"] = {"id": DEFAULT_HEADER_ID, "below": 0}
-        else:
-            rel_to_provided = kwargs.get("relTo")
-            if isinstance(rel_to_provided, dict):
-                rel_to_id = rel_to_provided.get("id", "")
-                fake_patterns = [
-                    "temp",
-                    "anchor",
-                    "placeholder",
-                    "dummy",
-                    "fake",
-                    "mock",
-                ]
-                if (
-                    any(p in rel_to_id.lower() for p in fake_patterns)
-                    and rel_to_id != DEFAULT_HEADER_ID
-                ):
-                    kwargs["relTo"] = {
-                        "id": DEFAULT_HEADER_ID,
-                        "below": rel_to_provided.get("below", 0),
-                    }
-
-    parent = None
-    parent_id = kwargs.get("parent_id") or (
-        rel_in_kw.get("id") if isinstance(rel_in_kw, dict) else None
-    )
-
-    if parent_id:
-        parent = find_component_by_id(page.get("items", []), parent_id)
-        if parent is None:
-            raise ValueError(
-                f"relIn/parent_id references unknown id '{parent_id}'. Use list() to pick an existing parent id."
-            )
-
-    if parent:
-        rel_in = (
-            dict(rel_in_kw)
-            if isinstance(rel_in_kw, dict)
-            else (rel_in_kw.model_dump() if rel_in_kw else {})
-        )
-
-        if rel_in.get("id") is None:
-            rel_in["id"] = parent.get("id")
-
-        left = kwargs.get("left")
-        top = kwargs.get("top")
-        width = kwargs.get("width")
-        height = kwargs.get("height")
-
-        if (
-            rel_in.get("left") is None
-            and left is not None
-            and parent.get("left") is not None
-        ):
-            rel_in["left"] = left - parent["left"]
-
-        if (
-            rel_in.get("top") is None
-            and top is not None
-            and parent.get("top") is not None
-        ):
-            rel_in["top"] = top - parent["top"]
-
-        if (
-            rel_in.get("right") is None
-            and width is not None
-            and parent.get("width") is not None
-            and rel_in.get("left") is not None
-        ):
-            rel_in["right"] = -(parent["width"] - (rel_in["left"] + width))
-
-        if (
-            rel_in.get("bottom") is None
-            and height is not None
-            and parent.get("height") is not None
-            and rel_in.get("top") is not None
-        ):
-            rel_in["bottom"] = -(parent["height"] - (rel_in["top"] + height))
-
-        kwargs["relIn"] = rel_in
-
-    rel_to_kw = kwargs.get("relTo")
-
-    if rel_to_kw and isinstance(rel_to_kw, dict):
-        rel_to_target = rel_to_kw.get("id")
-        is_section = kwargs.get("kind") == "SECTION"
-        is_template_id = rel_to_target == DEFAULT_HEADER_ID
-
-        if rel_to_target and not is_section and not is_template_id:
-            if find_component_by_id(page.get("items", []), rel_to_target) is None:
-                raise ValueError(
-                    f"relTo references unknown id '{rel_to_target}'. Use list() to pick an existing sibling/section id."
-                )
-
-    payload = CreateInput(**kwargs)
-    updates: Dict[str, Any] = {}
-
-    if payload.parent_id and payload.relIn is None:
-        updates["relIn"] = RelIn(id=payload.parent_id)
-
-    if payload.relTo is None:
-        if payload.after_id:
-            updates["relTo"] = {"id": payload.after_id, "below": 0}
-        elif payload.before_id:
-            updates["relTo"] = {"id": payload.before_id, "below": 0}
-
-    if updates:
-        payload = payload.model_copy(update=updates)
-
-    new_id = payload.id or generate_id()
-
-    new_component = build_component(payload, new_id)
-    page_items = page.setdefault("items", [])
-
-    insert_component(
-        new_component,
-        page_items,
-        parent_id=None,
-        before_id=payload.before_id,
-        after_id=payload.after_id,
-    )
-
-    return _format_component_response(new_component, response_format)
-
-
-def _execute_edit_in_batch(
-    page: Dict[str, Any],
-    kwargs: Dict[str, Any],
-    response_format: str,
-) -> Dict[str, Any]:
-    """Execute an EDIT operation within a batch (no load/save)."""
-    payload = EditInput(**kwargs)
-
-    target = find_component_by_id(page.get("items", []), payload.component_id)
-    if target is None:
-        raise ValueError(f"Component not found: {payload.component_id}")
-
-    kind_value = target.get("kind") or target.get("type")
-    if not kind_value:
-        raise ValueError("Target component missing kind/type; cannot validate update.")
-
-    if payload.kind and payload.kind != kind_value:
         raise ValueError(
-            f"Kind mismatch: target has '{kind_value}', got '{payload.kind}'."
-        )
-
-    updates = payload.model_dump(
-        exclude_none=True,
-        exclude=EDIT_EXCLUDE_FIELDS,
-    )
-    normalize_style_fields(updates)
-    target.update(updates)
-    normalize_style_fields(target)
-
-    validation_payload: Dict[str, Any] = {
-        field: target[field]
-        for field in EDIT_VALIDATION_FIELDS
-        if field in target and target[field] is not None
-    }
-    validation_payload["kind"] = kind_value
-
-    CreateInput(**validation_payload)
-
-    return _format_component_response(target, response_format)
-
-
-def _execute_remove_in_batch(
-    page: Dict[str, Any],
-    kwargs: Dict[str, Any],
-) -> bool:
-    """Execute a REMOVE operation within a batch (no load/save)."""
-    payload = RemoveInput(**kwargs)
-    component_id = payload.component_id
-
-    return _prune_by_ids(page, {component_id})
-
-
-def _prune_by_ids(page: Dict[str, Any], target_ids: set[str]) -> bool:
-    """Remove components matching target_ids and any descendants referencing them via relIn."""
-    items = page.get("items", [])
-    # Build a set of all ids that should be removed: target ids plus any components whose relIn.id
-    # references an id already marked for removal (propagates to grandchildren).
-    all_items_flat: List[Dict[str, Any]] = []
-
-    def _flatten(current: List[Dict[str, Any]]) -> None:
-        for item in current:
-            all_items_flat.append(item)
-            if item.get("items"):
-                _flatten(item["items"])
-
-    _flatten(items)
-
-    ids_to_remove = set(target_ids)
-    changed = True
-    while changed:
-        changed = False
-        for item in all_items_flat:
-            rel_parent = get_rel_parent_id(item)
-            if rel_parent in ids_to_remove and item.get("id") not in ids_to_remove:
-                ids_to_remove.add(item.get("id"))
-                changed = True
-
-    removed_any = False
-
-    def _prune(items_list: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        nonlocal removed_any
-        new_items: List[Dict[str, Any]] = []
-        for item in items_list:
-            item["items"] = _prune(item.get("items", []))
-            if item.get("id") in ids_to_remove:
-                removed_any = True
-                continue
-            rel_parent = get_rel_parent_id(item)
-            if rel_parent in ids_to_remove:
-                removed_any = True
-                continue
-            new_items.append(item)
-        return new_items
-
-    new_items = _prune(items)
-    page["items"] = new_items
-    return removed_any
-
-
-def _execute_reorder_in_batch(
-    page: Dict[str, Any],
-    kwargs: Dict[str, Any],
-    response_format: str,
-) -> List[Dict[str, Any]]:
-    """Execute a REORDER operation within a batch (no load/save)."""
-    payload = ReorderInput(**kwargs)
-
-    def matches_parent(item: Dict[str, Any]) -> bool:
-        rel_parent = get_rel_parent_id(item)
-        return rel_parent == payload.parent_id if payload.parent_id is not None else rel_parent is None
-
-    target_list = [item for item in page.get("items", []) if matches_parent(item)]
-    if not target_list:
-        return []
-
-    id_to_item = {item.get("id"): item for item in target_list}
-    new_list = [id_to_item[i] for i in payload.order_ids if i in id_to_item]
-    for item in target_list:
-        if item not in new_list:
-            new_list.append(item)
-    for idx, item in enumerate(new_list):
-        item["orderIndex"] = idx
-    sibling_ids = {item.get("id") for item in target_list}
-    new_items: List[Dict[str, Any]] = []
-    new_iter = iter(new_list)
-    for item in page.get("items", []):
-        if item.get("id") in sibling_ids:
-            new_items.append(next(new_iter))
-        else:
-            new_items.append(item)
-
-    page["items"] = new_items
-
-    return [_format_component_response(item, response_format) for item in new_list]
+            f"Batch operation failed: {str(e)}. All changes rolled back."
+        ) from e
 
 
 TOOLS: List[Callable[..., Any]] = [
-    list,
-    retrieve,
-    find,
+    list_components,
+    retrieve_component,
+    find_component,
     mutate_components,
 ]
