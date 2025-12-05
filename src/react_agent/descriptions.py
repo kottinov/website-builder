@@ -466,9 +466,9 @@ BATCH EXECUTION:
 
 WORKFLOW:
 1. Call list() ONLY when you need IDs for pre-existing components that are not in your current plan/context. If you are creating a new section plus its children in the same batch (or editing items you just created earlier in the conversation), skip list() and use aliases.
-2. Build operations array with {op: "CREATE"|"EDIT", payload: {...}}
+2. Build operations array with {op: "CREATE"|"EDIT"|"REMOVE"|"REORDER", payload: {...}}.
 3. For CREATE operations: follow all relIn/relTo rules above. If you need to reference this new component later in the batch, set an `alias` (preferred) or set an explicit `id` yourself; do NOT invent placeholder IDs.
-4. For EDIT operations: provide component_id and fields to update
+4. For EDIT operations: provide component_id and fields to update. For REMOVE: provide component_id. For REORDER: provide order_ids and optional parent_id.
 5. Call mutate_components with operations array
 
 INPUTS:

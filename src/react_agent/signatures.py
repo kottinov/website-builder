@@ -748,6 +748,8 @@ class Operation(str, Enum):
     """Operation type for batch mutations."""
     CREATE = "CREATE"
     EDIT = "EDIT"
+    REMOVE = "REMOVE"
+    REORDER = "REORDER"
 
 
 class CreateOp(BaseModel):
@@ -772,8 +774,26 @@ class EditOp(BaseModel):
         extra = "forbid"
 
 
+class RemoveOp(BaseModel):
+    """Remove operation wrapper with discriminator."""
+    op: Literal[Operation.REMOVE] = Field(description="Operation type: REMOVE")
+    payload: RemoveInput = Field(description="Component removal payload")
+
+    class Config:
+        extra = "forbid"
+
+
+class ReorderOp(BaseModel):
+    """Reorder operation wrapper with discriminator."""
+    op: Literal[Operation.REORDER] = Field(description="Operation type: REORDER")
+    payload: ReorderInput = Field(description="Component reorder payload")
+
+    class Config:
+        extra = "forbid"
+
+
 OperationPayload = Annotated[
-    Union[CreateOp, EditOp],
+    Union[CreateOp, EditOp, RemoveOp, ReorderOp],
     Field(discriminator="op", description="Batch operation payload with discriminated union on 'op' field")
 ]
 
@@ -781,7 +801,7 @@ OperationPayload = Annotated[
 class MutateInput(BaseModel):
     """Input schema for batch component mutations."""
     operations: List[OperationPayload] = Field(
-        description="List of CREATE or EDIT operations to execute in sequence"
+        description="List of CREATE, EDIT, REMOVE, or REORDER operations to execute in sequence"
     )
     file_path: Optional[str] = Field(
         default=None,

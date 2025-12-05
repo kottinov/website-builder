@@ -554,6 +554,12 @@ def mutate_components(
 
             if op_type == Operation.EDIT or op_type == "EDIT":
                 payload_dict["component_id"] = _resolve_id(payload_dict.get("component_id"))
+            elif op_type == Operation.REMOVE or op_type == "REMOVE":
+                payload_dict["component_id"] = _resolve_id(payload_dict.get("component_id"))
+            elif op_type == Operation.REORDER or op_type == "REORDER":
+                payload_dict["parent_id"] = _resolve_id(payload_dict.get("parent_id"))
+                order_ids = payload_dict.get("order_ids") or []
+                payload_dict["order_ids"] = [_resolve_id(oid) for oid in order_ids]
 
             payload_dict["file_path"] = str(page_path)
             payload_dict["response_format"] = response_format
@@ -564,6 +570,14 @@ def mutate_components(
 
             elif op_type == Operation.EDIT or op_type == "EDIT":
                 result = _execute_edit_in_batch(page, payload_dict, response_format)
+                results.append(result)
+
+            elif op_type == Operation.REMOVE or op_type == "REMOVE":
+                result = _execute_remove_in_batch(page, payload_dict)
+                results.append(result)
+
+            elif op_type == Operation.REORDER or op_type == "REORDER":
+                result = _execute_reorder_in_batch(page, payload_dict, response_format)
                 results.append(result)
 
             else:
@@ -796,13 +810,71 @@ def _execute_edit_in_batch(
     return _format_component_response(target, response_format)
 
 
+def _execute_remove_in_batch(
+    page: Dict[str, Any],
+    kwargs: Dict[str, Any],
+) -> bool:
+    """Execute a REMOVE operation within a batch (no load/save)."""
+    payload = RemoveInput(**kwargs)
+    component_id = payload.component_id
+
+    removed = False
+
+    def prune(items: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        nonlocal removed
+        new_items = []
+        for item in items:
+            if item.get("id") == component_id:
+                removed = True
+                continue
+            item["items"] = prune(item.get("items", []))
+            new_items.append(item)
+        return new_items
+
+    page["items"] = prune(page.get("items", []))
+    return removed
+
+
+def _execute_reorder_in_batch(
+    page: Dict[str, Any],
+    kwargs: Dict[str, Any],
+    response_format: str,
+) -> List[Dict[str, Any]]:
+    """Execute a REORDER operation within a batch (no load/save)."""
+    payload = ReorderInput(**kwargs)
+
+    def matches_parent(item: Dict[str, Any]) -> bool:
+        rel_parent = get_rel_parent_id(item)
+        return rel_parent == payload.parent_id if payload.parent_id is not None else rel_parent is None
+
+    target_list = [item for item in page.get("items", []) if matches_parent(item)]
+    if not target_list:
+        return []
+
+    id_to_item = {item.get("id"): item for item in target_list}
+    new_list = [id_to_item[i] for i in payload.order_ids if i in id_to_item]
+    for item in target_list:
+        if item not in new_list:
+            new_list.append(item)
+    for idx, item in enumerate(new_list):
+        item["orderIndex"] = idx
+    sibling_ids = {item.get("id") for item in target_list}
+    new_items: List[Dict[str, Any]] = []
+    new_iter = iter(new_list)
+    for item in page.get("items", []):
+        if item.get("id") in sibling_ids:
+            new_items.append(next(new_iter))
+        else:
+            new_items.append(item)
+
+    page["items"] = new_items
+
+    return [_format_component_response(item, response_format) for item in new_list]
+
+
 TOOLS: List[Callable[..., Any]] = [
-    # create,
     list,
     retrieve,
-    remove,
-    # edit,
-    reorder,
     find,
     mutate_components,
 ]
