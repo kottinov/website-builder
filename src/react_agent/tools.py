@@ -498,7 +498,9 @@ def mutate_components(
         op_payload = (
             op_wrapper.payload if hasattr(op_wrapper, "payload") else op_wrapper.get("payload")
         )
-        alias = getattr(op_wrapper, "alias", None) if hasattr(op_wrapper, "alias") else op_wrapper.get("alias")
+        alias = getattr(op_wrapper, "alias", None)
+        if alias is None and isinstance(op_wrapper, dict):
+            alias = op_wrapper.get("alias")
 
         if hasattr(op_payload, "model_dump"):
             payload_dict = op_payload.model_dump(exclude_none=True)

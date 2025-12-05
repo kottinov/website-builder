@@ -465,7 +465,7 @@ BATCH EXECUTION:
 - You can add `alias` on CREATE operations. The tool auto-generates a real id (if you omit `id`) and maps the alias to that id so later operations can use the alias in relIn.id/relTo.id/parent_id/component_id.
 
 WORKFLOW:
-1. ALWAYS call list() first to get existing component IDs
+1. Call list() ONLY when you need IDs for pre-existing components that are not in your current plan/context. If you are creating a new section plus its children in the same batch (or editing items you just created earlier in the conversation), skip list() and use aliases.
 2. Build operations array with {op: "CREATE"|"EDIT", payload: {...}}
 3. For CREATE operations: follow all relIn/relTo rules above. If you need to reference this new component later in the batch, set an `alias` (preferred) or set an explicit `id` yourself; do NOT invent placeholder IDs.
 4. For EDIT operations: provide component_id and fields to update
