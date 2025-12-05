@@ -254,6 +254,7 @@ def insert_component(
                 return True
 
     target_list.append(component)
+
     return True
 
 
@@ -296,7 +297,6 @@ def prune_by_ids(page: Dict[str, Any], target_ids: set[str]) -> bool:
         True if any components were removed, False otherwise.
     """
     items = page.get("items", [])
-
     parent_map: Dict[Optional[str], List[str]] = {}
 
     def _build_parent_map(current_items: List[Dict[str, Any]]) -> None:
@@ -304,6 +304,7 @@ def prune_by_ids(page: Dict[str, Any], target_ids: set[str]) -> bool:
             item_id = item.get("id")
             rel_parent = get_rel_parent_id(item)
             parent_map.setdefault(rel_parent, []).append(item_id)
+
             if item.get("items"):
                 _build_parent_map(item["items"])
 
@@ -326,20 +327,27 @@ def prune_by_ids(page: Dict[str, Any], target_ids: set[str]) -> bool:
     def _prune(items_list: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         nonlocal removed_any
         new_items: List[Dict[str, Any]] = []
+
         for item in items_list:
             item["items"] = _prune(item.get("items", []))
+
             if item.get("id") in ids_to_remove:
                 removed_any = True
                 continue
+
             rel_parent = get_rel_parent_id(item)
+
             if rel_parent in ids_to_remove:
                 removed_any = True
                 continue
+
             new_items.append(item)
+
         return new_items
 
     new_items = _prune(items)
     page["items"] = new_items
+
     return removed_any
 
 
@@ -376,6 +384,7 @@ def flatten_components_list(
         for item in current_items:
             kind = item.get("kind") or item.get("type")
             rel_parent = get_rel_parent_id(item)
+
             result.append(
                 {
                     "id": item.get("id"),
@@ -392,6 +401,7 @@ def flatten_components_list(
                 walk(item["items"], item.get("id"))
 
     walk(items, parent_id)
+
     return result
 
 
@@ -593,7 +603,6 @@ def execute_create_operation(
         payload = payload.model_copy(update=updates)
 
     new_id = payload.id or generate_id()
-
     new_component = build_component(payload, new_id)
     page_items = page.setdefault("items", [])
 
@@ -655,8 +664,8 @@ def execute_edit_operation(
         for field in EDIT_VALIDATION_FIELDS
         if field in target and target[field] is not None
     }
-    validation_payload["kind"] = kind_value
 
+    validation_payload["kind"] = kind_value
     CreateInput(**validation_payload)
 
     return format_component_response(target, response_format)
@@ -700,6 +709,7 @@ def execute_reorder_operation(
 
     def matches_parent(item: Dict[str, Any]) -> bool:
         rel_parent = get_rel_parent_id(item)
+
         return (
             rel_parent == payload.parent_id
             if payload.parent_id is not None
@@ -707,6 +717,7 @@ def execute_reorder_operation(
         )
 
     target_list = [item for item in page.get("items", []) if matches_parent(item)]
+
     if not target_list:
         return []
 
@@ -714,14 +725,18 @@ def execute_reorder_operation(
     new_list = [id_to_item[i] for i in payload.order_ids if i in id_to_item]
 
     reordered_ids = {item.get("id") for item in new_list}
+
     for item in target_list:
         if item.get("id") not in reordered_ids:
             new_list.append(item)
+
     for idx, item in enumerate(new_list):
         item["orderIndex"] = idx
+
     sibling_ids = {item.get("id") for item in target_list}
     new_items: List[Dict[str, Any]] = []
     new_iter = iter(new_list)
+
     for item in page.get("items", []):
         if item.get("id") in sibling_ids:
             new_items.append(next(new_iter))
