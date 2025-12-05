@@ -6,7 +6,8 @@ This module defines the data structures used by the React agent to create
 and modify components in the Website Builder JSON format.
 """
 
-from typing import Any, Dict, List, Optional, Union, Literal
+from enum import Enum
+from typing import Any, Dict, List, Optional, Union, Literal, Annotated
 
 from pydantic import BaseModel, Field, model_validator
 
@@ -680,8 +681,14 @@ class CreateInput(BaseModel):
                     "Use list() to find section IDs, then set relIn={\"id\": \"<section-uuid>\", \"left\": N, \"top\": N, \"bottom\": N}"
                 )
             if self.relIn and self.relIn.id:
-                placeholder_patterns = ["PARENT", "parent", "SECTION", "section", "placeholder", "temp", "TODO"]
-                if any(p in self.relIn.id for p in placeholder_patterns):
+                lower_id = self.relIn.id.lower()
+                placeholder_tokens = ["parent", "section", "placeholder", "temp", "todo"]
+                if any(
+                    lower_id == token
+                    or lower_id.startswith(f"{token}_")
+                    or lower_id.startswith(f"{token}-")
+                    for token in placeholder_tokens
+                ):
                     raise ValueError(
                         f"relIn.id '{self.relIn.id}' looks like a placeholder. "
                         f"Use list() to get REAL section UUIDs, then use that actual UUID."
@@ -735,3 +742,55 @@ class EditInput(CreateInput):
         if provided:
             raise ValueError(f"These fields are not editable: {provided}")
         return self
+
+
+class Operation(str, Enum):
+    """Operation type for batch mutations."""
+    CREATE = "CREATE"
+    EDIT = "EDIT"
+
+
+class CreateOp(BaseModel):
+    """Create operation wrapper with discriminator."""
+    op: Literal[Operation.CREATE] = Field(description="Operation type: CREATE")
+    alias: Optional[str] = Field(
+        default=None,
+        description="Optional short alias for referencing this newly created component later in the same batch.",
+    )
+    payload: CreateInput = Field(description="Component creation payload")
+
+    class Config:
+        extra = "forbid"
+
+
+class EditOp(BaseModel):
+    """Edit operation wrapper with discriminator."""
+    op: Literal[Operation.EDIT] = Field(description="Operation type: EDIT")
+    payload: EditInput = Field(description="Component edit payload")
+
+    class Config:
+        extra = "forbid"
+
+
+OperationPayload = Annotated[
+    Union[CreateOp, EditOp],
+    Field(discriminator="op", description="Batch operation payload with discriminated union on 'op' field")
+]
+
+
+class MutateInput(BaseModel):
+    """Input schema for batch component mutations."""
+    operations: List[OperationPayload] = Field(
+        description="List of CREATE or EDIT operations to execute in sequence"
+    )
+    file_path: Optional[str] = Field(
+        default=None,
+        description="Optional path to the page JSON; defaults to static/wsb/page.json.",
+    )
+    response_format: Optional[Literal["concise", "detailed"]] = Field(
+        default="concise",
+        description="Choose 'concise' (default) for compact summaries, or 'detailed' for full component objects.",
+    )
+
+    class Config:
+        extra = "forbid"
