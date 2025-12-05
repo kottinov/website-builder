@@ -2,11 +2,11 @@
 
 import json
 import uuid
-
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Callable, Dict, List, Optional
 
 from langchain.chat_models import init_chat_model
+from langchain_anthropic import convert_to_anthropic_tool
 from langchain_core.language_models import BaseChatModel
 from langchain_core.messages import BaseMessage
 
@@ -40,6 +40,35 @@ def load_chat_model(fully_specified_name: str) -> BaseChatModel:
 
     return init_chat_model(model, model_provider=provider)
 
+
+_ANTHROPIC_TOOLS_CACHE: Optional[List[Dict[str, Any]]] = None
+_CACHEABLE_TOOL_NAMES = {"mutate_components"}
+
+
+def retrieve_tools(tools: List[Callable]) -> List[Dict[str, Any]]:
+    """Convert tools to Anthropic format with prompt caching enabled.
+
+    Converts tools once and caches them for reuse across all LLM calls.
+    Applies cache_control only to selected tools to stay under Anthropic limits.
+
+    Args:
+        tools: List of LangChain tool callables to convert.
+
+    Returns:
+        List of Anthropic tool schemas with cache_control configured.
+    """
+    global _ANTHROPIC_TOOLS_CACHE
+
+    if _ANTHROPIC_TOOLS_CACHE is None:
+        _ANTHROPIC_TOOLS_CACHE = [convert_to_anthropic_tool(tool) for tool in tools]
+
+        for tool in _ANTHROPIC_TOOLS_CACHE:
+            if tool.get("name") in _CACHEABLE_TOOL_NAMES:
+                tool["cache_control"] = {"type": "ephemeral"}
+
+    return _ANTHROPIC_TOOLS_CACHE
+
+
 def generate_id() -> str:
     """Generate a unique ID for components and pages.
 
@@ -68,10 +97,11 @@ def load_page(path: Path) -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: The page data structure.
     """
+
     def _create_page() -> Dict[str, Any]:
         page_id = generate_id()
         template_id = generate_id()
-  
+
         page = {
             "id": page_id,
             "type": "web.data.components.Page",
@@ -84,7 +114,7 @@ def load_page(path: Path) -> Dict[str, Any]:
 
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(page, indent=2))
-  
+
         return page
 
     if path.exists():
