@@ -326,20 +326,7 @@ def remove(component_id: str, file_path: str | None = None) -> bool:
     page_path = Path(file_path) if file_path else get_default_page_path()
     page = load_page(page_path)
 
-    removed = False
-
-    def prune(items: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        nonlocal removed
-        new_items = []
-        for item in items:
-            if item.get("id") == component_id:
-                removed = True
-                continue
-            item["items"] = prune(item.get("items", []))
-            new_items.append(item)
-        return new_items
-
-    page["items"] = prune(page.get("items", []))
+    removed = _prune_by_ids(page, {component_id})
 
     renumber_components(page["items"])
     save_page(page_path, page)
@@ -416,6 +403,16 @@ def reorder(
             new_list.append(item)
     for idx, item in enumerate(new_list):
         item["orderIndex"] = idx
+        # Update relTo to reflect new ordering within the sibling group.
+        if idx == 0:
+            # Preserve existing relTo for the first item (e.g., section chaining to header).
+            continue
+        prev = new_list[idx - 1]
+        prev_id = prev.get("id")
+        below_val = 0
+        if isinstance(item.get("relTo"), dict) and "below" in item["relTo"]:
+            below_val = item["relTo"].get("below") or 0
+        item["relTo"] = {"id": prev_id, "below": below_val}
     sibling_ids = {item.get("id") for item in target_list}
     new_items: List[Dict[str, Any]] = []
     new_iter = iter(new_list)
@@ -506,6 +503,10 @@ def mutate_components(
             payload_dict = op_payload.model_dump(exclude_none=True)
         else:
             payload_dict = dict(op_payload) if isinstance(op_payload, dict) else {}
+
+        # Normalize common camelCase fields for compatibility (LLMs may emit orderIds).
+        if "orderIds" in payload_dict and "order_ids" not in payload_dict:
+            payload_dict["order_ids"] = payload_dict.pop("orderIds")
 
         normalized_ops.append(
             {"index": idx, "op": op_type, "payload": payload_dict, "alias": alias}
@@ -818,21 +819,54 @@ def _execute_remove_in_batch(
     payload = RemoveInput(**kwargs)
     component_id = payload.component_id
 
-    removed = False
+    return _prune_by_ids(page, {component_id})
 
-    def prune(items: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        nonlocal removed
-        new_items = []
-        for item in items:
-            if item.get("id") == component_id:
-                removed = True
+
+def _prune_by_ids(page: Dict[str, Any], target_ids: set[str]) -> bool:
+    """Remove components matching target_ids and any descendants referencing them via relIn."""
+    items = page.get("items", [])
+    # Build a set of all ids that should be removed: target ids plus any components whose relIn.id
+    # references an id already marked for removal (propagates to grandchildren).
+    all_items_flat: List[Dict[str, Any]] = []
+
+    def _flatten(current: List[Dict[str, Any]]) -> None:
+        for item in current:
+            all_items_flat.append(item)
+            if item.get("items"):
+                _flatten(item["items"])
+
+    _flatten(items)
+
+    ids_to_remove = set(target_ids)
+    changed = True
+    while changed:
+        changed = False
+        for item in all_items_flat:
+            rel_parent = get_rel_parent_id(item)
+            if rel_parent in ids_to_remove and item.get("id") not in ids_to_remove:
+                ids_to_remove.add(item.get("id"))
+                changed = True
+
+    removed_any = False
+
+    def _prune(items_list: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        nonlocal removed_any
+        new_items: List[Dict[str, Any]] = []
+        for item in items_list:
+            item["items"] = _prune(item.get("items", []))
+            if item.get("id") in ids_to_remove:
+                removed_any = True
                 continue
-            item["items"] = prune(item.get("items", []))
+            rel_parent = get_rel_parent_id(item)
+            if rel_parent in ids_to_remove:
+                removed_any = True
+                continue
             new_items.append(item)
         return new_items
 
-    page["items"] = prune(page.get("items", []))
-    return removed
+    new_items = _prune(items)
+    page["items"] = new_items
+    return removed_any
 
 
 def _execute_reorder_in_batch(

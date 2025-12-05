@@ -1,11 +1,192 @@
 {
-  "id": "6EC37588-3DDA-4FDA-9413-FF9C684D7755",
+  "id": "321749EB-27B2-4D26-B92B-79606CB1848F",
   "type": "web.data.components.Page",
   "name": "Generated Page",
-  "templateId": "A172E6D7-AC3E-4059-9877-8036431F9D82",
+  "templateId": "79C78665-7519-4A1F-96AE-FA57C3A6646A",
   "items": [
     {
-      "id": "D588F30C-1BB2-435F-A6D0-8B37B10CB7D7",
+      "id": "07E15F6D-2FDC-4B02-A019-6165FF6C0DA2",
+      "kind": "TEXT",
+      "inTemplate": false,
+      "orderIndex": 0,
+      "wrap": false,
+      "fontSize": 16,
+      "lineHeight": 1.5,
+      "text": "",
+      "styles": [],
+      "paras": [],
+      "links": [],
+      "mobileDown": false,
+      "mobileHide": false,
+      "mobileSettings": {
+        "font": 0
+      },
+      "verticalAlignment": "top",
+      "globalStyleId": "GLOBAL_TEXT_STYLE_DEFAULT",
+      "themeShadowBlurRadius": 3.0,
+      "themeShadowOffsetX": 3.0,
+      "themeShadowOffsetY": 3.0,
+      "left": 100,
+      "top": 200,
+      "width": 700,
+      "height": 180,
+      "relIn": {
+        "id": "5CF9E831-16D0-4C5C-80E5-CCF4972F0DCB",
+        "left": 100,
+        "top": 110,
+        "right": -500,
+        "bottom": -410
+      },
+      "relTo": null,
+      "relPage": null,
+      "relPara": null,
+      "content": "<h1 style='font-size: 72px; line-height: 1.1; margin: 0; font-weight: 700; letter-spacing: -1px;'>L\u00d6YLY</h1><p style='font-size: 28px; margin-top: 20px; font-weight: 300; letter-spacing: 2px;'>Helsinki</p>",
+      "fontFamily": "playfairdisplay",
+      "color": "#F4E4D7",
+      "items": []
+    },
+    {
+      "id": "DE4F0C81-9CB7-4899-BE40-1BD3002F6A68",
+      "kind": "TEXT",
+      "inTemplate": false,
+      "orderIndex": 1,
+      "wrap": false,
+      "fontSize": 16,
+      "lineHeight": 1.5,
+      "text": "",
+      "styles": [],
+      "paras": [],
+      "links": [],
+      "mobileDown": false,
+      "mobileHide": false,
+      "mobileSettings": {
+        "font": 0
+      },
+      "verticalAlignment": "top",
+      "globalStyleId": "GLOBAL_TEXT_STYLE_DEFAULT",
+      "themeShadowBlurRadius": 3.0,
+      "themeShadowOffsetX": 3.0,
+      "themeShadowOffsetY": 3.0,
+      "left": 100,
+      "top": 400,
+      "width": 600,
+      "height": 100,
+      "relIn": {
+        "id": "5CF9E831-16D0-4C5C-80E5-CCF4972F0DCB",
+        "left": 100,
+        "top": 310,
+        "right": -600,
+        "bottom": -290
+      },
+      "relTo": {
+        "id": "07E15F6D-2FDC-4B02-A019-6165FF6C0DA2",
+        "below": 20
+      },
+      "relPage": null,
+      "relPara": null,
+      "content": "<p style='font-size: 20px; line-height: 1.6; margin: 0; font-weight: 400;'>Experience the warmth of Finnish hospitality with contemporary Nordic cuisine, crafted from the finest local ingredients.</p>",
+      "fontFamily": "opensans",
+      "color": "#E8D5C4",
+      "items": []
+    },
+    {
+      "id": "C815AA3D-F6BB-4955-AACD-A85F68AD42C9",
+      "kind": "BUTTON",
+      "inTemplate": false,
+      "orderIndex": 2,
+      "wrap": false,
+      "corners": {
+        "radius": 30
+      },
+      "fontSize": 16,
+      "bold": true,
+      "mobileDown": false,
+      "mobileHide": false,
+      "mobileSettings": {
+        "align": "justify"
+      },
+      "buttonThemeSelected": "primary",
+      "style": {
+        "background": {
+          "colorData": {
+            "color": [
+              "HSL",
+              0.08,
+              0.65,
+              0.48,
+              1
+            ]
+          }
+        },
+        "globalId": "BUTTON_STYLE_DEFAULT",
+        "globalName": "[button.default]",
+        "type": "web.data.styles.StyleButton",
+        "text": {
+          "size": null
+        }
+      },
+      "left": 100,
+      "top": 540,
+      "width": 200,
+      "height": 60,
+      "relIn": {
+        "id": "5CF9E831-16D0-4C5C-80E5-CCF4972F0DCB",
+        "left": 100,
+        "top": 450,
+        "right": -1000,
+        "bottom": -190
+      },
+      "relTo": {
+        "id": "DE4F0C81-9CB7-4899-BE40-1BD3002F6A68",
+        "below": 40
+      },
+      "relPage": null,
+      "relPara": null,
+      "text": "Reserve a Table",
+      "items": []
+    },
+    {
+      "id": "DF1DF761-7D97-4AD8-9CA9-83BBD4995CBF",
+      "kind": "TEXT",
+      "inTemplate": false,
+      "orderIndex": 3,
+      "wrap": false,
+      "fontSize": 16,
+      "lineHeight": 1.5,
+      "text": "",
+      "styles": [],
+      "paras": [],
+      "links": [],
+      "mobileDown": false,
+      "mobileHide": false,
+      "mobileSettings": {
+        "font": 0
+      },
+      "verticalAlignment": "top",
+      "globalStyleId": "GLOBAL_TEXT_STYLE_DEFAULT",
+      "themeShadowBlurRadius": 3.0,
+      "themeShadowOffsetX": 3.0,
+      "themeShadowOffsetY": 3.0,
+      "left": 950,
+      "top": 250,
+      "width": 300,
+      "height": 300,
+      "relIn": {
+        "id": "5CF9E831-16D0-4C5C-80E5-CCF4972F0DCB",
+        "left": 950,
+        "top": 160,
+        "right": -50,
+        "bottom": -240
+      },
+      "relTo": null,
+      "relPage": null,
+      "relPara": null,
+      "content": "<div style='text-align: center; padding: 40px; border: 2px solid #C9A882; border-radius: 50%; width: 220px; height: 220px; display: flex; flex-direction: column; justify-content: center; align-items: center;'><p style='font-size: 18px; margin: 0; color: #F4E4D7; font-weight: 300; letter-spacing: 1px;'>Open Daily</p><p style='font-size: 48px; margin: 10px 0; color: #D4A574; font-weight: 700;'>11-23</p><p style='font-size: 16px; margin: 0; color: #E8D5C4; font-weight: 300;'>Waterfront Dining</p></div>",
+      "fontFamily": "opensans",
+      "items": []
+    },
+    {
+      "id": "5CF9E831-16D0-4C5C-80E5-CCF4972F0DCB",
       "kind": "SECTION",
       "inTemplate": false,
       "orderIndex": 0,
@@ -17,12 +198,12 @@
         "size": "cover"
       },
       "left": 0,
-      "top": 90,
+      "top": 990,
       "width": 1300,
       "height": 700,
       "relIn": null,
       "relTo": {
-        "id": "22FC8C5B-CD71-42B7-9DF2-486F577581A9",
+        "id": "BC1CAC0E-0722-45B6-BF06-C3A3A00761CC",
         "below": 0
       },
       "relPage": null,
@@ -34,199 +215,38 @@
               "HSL",
               0.05,
               0.25,
-              0.2,
+              0.18,
               1
-            ]
+            ],
+            "gradient": {
+              "angle": 135,
+              "colors": [
+                {
+                  "color": [
+                    "HSL",
+                    0.05,
+                    0.35,
+                    0.25,
+                    1
+                  ],
+                  "position": 0
+                },
+                {
+                  "color": [
+                    "HSL",
+                    0.08,
+                    0.4,
+                    0.15,
+                    1
+                  ],
+                  "position": 100
+                }
+              ]
+            }
           }
         }
       },
-      "mobileDown": false,
-      "mobileHide": false
-    },
-    {
-      "id": "F15379FD-2A77-4EF0-9513-0A483987BA54",
-      "kind": "TEXT",
-      "inTemplate": false,
-      "orderIndex": 0,
-      "wrap": false,
-      "fontSize": 72,
-      "lineHeight": 1.2,
-      "text": "",
-      "styles": [],
-      "paras": [],
-      "links": [],
-      "mobileDown": false,
-      "mobileHide": false,
-      "mobileSettings": {
-        "font": 0
-      },
-      "verticalAlignment": "top",
-      "globalStyleId": "GLOBAL_TEXT_STYLE_DEFAULT",
-      "themeShadowBlurRadius": 3.0,
-      "themeShadowOffsetX": 3.0,
-      "themeShadowOffsetY": 3.0,
-      "left": 100,
-      "top": 190,
-      "width": 800,
-      "height": 120,
-      "relIn": {
-        "id": "D588F30C-1BB2-435F-A6D0-8B37B10CB7D7",
-        "left": 100,
-        "top": 100,
-        "right": -400,
-        "bottom": -480
-      },
-      "relTo": null,
-      "relPage": null,
-      "relPara": null,
-      "content": "<h1 style='color: #FFF5E6; font-size: 72px; line-height: 1.2; margin: 0;'>L\u00d6YLY</h1>"
-    },
-    {
-      "id": "9345BB00-52C4-4A0A-AFED-656A68B43245",
-      "kind": "TEXT",
-      "inTemplate": false,
-      "orderIndex": 1,
-      "wrap": false,
-      "fontSize": 24,
-      "lineHeight": 1.6,
-      "text": "",
-      "styles": [],
-      "paras": [],
-      "links": [],
-      "mobileDown": false,
-      "mobileHide": false,
-      "mobileSettings": {
-        "font": 0
-      },
-      "verticalAlignment": "top",
-      "globalStyleId": "GLOBAL_TEXT_STYLE_DEFAULT",
-      "themeShadowBlurRadius": 3.0,
-      "themeShadowOffsetX": 3.0,
-      "themeShadowOffsetY": 3.0,
-      "left": 100,
-      "top": 330,
-      "width": 700,
-      "height": 140,
-      "relIn": {
-        "id": "D588F30C-1BB2-435F-A6D0-8B37B10CB7D7",
-        "left": 100,
-        "top": 240,
-        "right": -500,
-        "bottom": -320
-      },
-      "relTo": null,
-      "relPage": null,
-      "relPara": null,
-      "content": "<p style='color: #FFD4A3; font-size: 24px; line-height: 1.6; margin: 0;'>Experience authentic Finnish sauna culture and contemporary Nordic cuisine on the shores of the Baltic Sea in Helsinki.</p>"
-    },
-    {
-      "id": "2337B417-D9E8-4BBC-B94B-254E5F908213",
-      "kind": "BUTTON",
-      "inTemplate": false,
-      "orderIndex": 2,
-      "wrap": false,
-      "corners": {
-        "radius": 5
-      },
-      "fontSize": 18,
-      "bold": true,
-      "mobileDown": false,
-      "mobileHide": false,
-      "mobileSettings": {
-        "align": "justify"
-      },
-      "buttonThemeSelected": "primary",
-      "style": {
-        "background": {
-          "colorData": {
-            "color": [
-              "HSL",
-              0.08,
-              0.75,
-              0.55,
-              1
-            ]
-          }
-        },
-        "globalId": "BUTTON_STYLE_DEFAULT",
-        "globalName": "[button.default]",
-        "type": "web.data.styles.StyleButton",
-        "text": {
-          "size": null
-        }
-      },
-      "left": 100,
-      "top": 520,
-      "width": 220,
-      "height": 60,
-      "relIn": {
-        "id": "D588F30C-1BB2-435F-A6D0-8B37B10CB7D7",
-        "left": 100,
-        "top": 430,
-        "right": -980,
-        "bottom": -210
-      },
-      "relTo": null,
-      "relPage": null,
-      "relPara": null,
-      "text": "Book a Table"
-    },
-    {
-      "id": "150BFDCE-F38E-4493-9481-E10EC3ED69CB",
-      "kind": "BUTTON",
-      "inTemplate": false,
-      "orderIndex": 3,
-      "wrap": false,
-      "corners": {
-        "radius": 5
-      },
-      "fontSize": 18,
-      "bold": true,
-      "mobileDown": false,
-      "mobileHide": false,
-      "mobileSettings": {
-        "align": "justify"
-      },
-      "buttonThemeSelected": "primary",
-      "style": {
-        "border": {
-          "width": 2,
-          "style": "solid",
-          "color": "#FFD4A3"
-        },
-        "background": {
-          "colorData": {
-            "color": [
-              "HSL",
-              0.08,
-              0.2,
-              0.4,
-              1
-            ]
-          }
-        },
-        "globalId": "BUTTON_STYLE_DEFAULT",
-        "globalName": "[button.default]",
-        "type": "web.data.styles.StyleButton",
-        "text": {
-          "size": null
-        }
-      },
-      "left": 350,
-      "top": 520,
-      "width": 220,
-      "height": 60,
-      "relIn": {
-        "id": "D588F30C-1BB2-435F-A6D0-8B37B10CB7D7",
-        "left": 350,
-        "top": 430,
-        "right": -730,
-        "bottom": -210
-      },
-      "relTo": null,
-      "relPage": null,
-      "relPara": null,
-      "text": "View Menu"
+      "items": []
     }
   ],
   "shareHeaderAndFirstSectionBgImg": false,

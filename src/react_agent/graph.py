@@ -17,7 +17,8 @@ from react_agent.tools import TOOLS
 from react_agent.utils import load_chat_model
 
 _ANTHROPIC_TOOLS_CACHED = None
-_CACHEABLE_TOOL_NAMES = {"create", "edit"}
+_CACHEABLE_TOOL_NAMES = {"mutate_components"}
+
 
 def _get_anthropic_tools():
     """Get cached Anthropic tool schemas with prompt caching enabled.
@@ -33,6 +34,7 @@ def _get_anthropic_tools():
         for tool in _ANTHROPIC_TOOLS_CACHED:
             if tool.get("name") in _CACHEABLE_TOOL_NAMES:
                 tool["cache_control"] = {"type": "ephemeral"}
+                # tool["cache_control"] = {"type": "ephemeral", "ttl_seconds": 900}
 
     return _ANTHROPIC_TOOLS_CACHED
 

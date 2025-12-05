@@ -9,7 +9,7 @@ and modify components in the Website Builder JSON format.
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union, Literal, Annotated
 
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, Field, model_validator, ConfigDict
 
 # because there is no specified documentation on what keys are supported
 LooseJSON = Union[str, int, float, bool, None, Dict[str, Any], List[Any]]
@@ -367,6 +367,10 @@ class RemoveInput(BaseModel):
         description="Optional path to the page JSON; defaults to static/wsb/page.json.",
     )
     component_id: str = Field(description="The component id to delete.")
+    response_format: Optional[Literal["concise", "detailed"]] = Field(
+        default="concise",
+        description="Unused for remove; accepted for consistency with batch payloads.",
+    )
 
     class Config:
         extra = "forbid"
@@ -383,6 +387,7 @@ class ReorderInput(BaseModel):
         description="Parent component id whose children will be reordered; omit for top-level.",
     )
     order_ids: List[str] = Field(
+        alias="orderIds",
         description="List of component ids in the desired order; missing ids stay appended in their previous relative order.",
     )
     response_format: Optional[Literal["concise", "detailed"]] = Field(
@@ -390,8 +395,7 @@ class ReorderInput(BaseModel):
         description="Choose 'concise' (default) for minimal component summaries, or 'detailed' for full component objects in the response.",
     )
 
-    class Config:
-        extra = "forbid"
+    model_config = ConfigDict(extra="forbid", populate_by_name=True)
 
 
 class FindInput(BaseModel):
