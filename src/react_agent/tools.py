@@ -156,6 +156,7 @@ def mutate_components(
                     )
 
             rel_in_kw = payload_dict.get("relIn")
+
             if isinstance(rel_in_kw, dict) and "id" in rel_in_kw:
                 rel_in_kw["id"] = resolve_alias_references(
                     rel_in_kw.get("id"), alias_map
