@@ -46,7 +46,7 @@ async def call_model(
             {
                 "type": "text",
                 "text": system_message,
-                "cache_control": {"type": "ephemeral", "ttl": "1h"},
+                "cache_control": {"type": "ephemeral"},
             }
         ]
         messages = [{"role": "system", "content": system_content}, *state.messages]
